@@ -126,21 +126,29 @@ section{padding:110px 5%;position:relative}
 .serv-card p{color:var(--muted);font-size:14px;font-weight:300}
 .serv-price{margin-top:20px;display:inline-block;color:var(--amber2);font-weight:800;font-size:15px}
 
-/* ---------- BRANDS с живыми кофемашинами ---------- */
+/* ---------- BRANDS с фото кофемашин ---------- */
 #brands{background:rgba(255,255,255,.015)}
-.brand-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;max-width:1200px;margin:0 auto}
+.brand-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:16px;max-width:1200px;margin:0 auto}
 .brand-cell{
-  padding:20px 14px 16px;border:1px solid var(--line);border-radius:16px;text-align:center;
+  padding:14px 14px 16px;border:1px solid var(--line);border-radius:16px;text-align:center;
   background:var(--card);transition:.4s var(--ease);cursor:default;position:relative;overflow:hidden;
   backdrop-filter:blur(8px);
 }
 .brand-cell::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--amber),transparent);opacity:0;transition:.4s}
 .brand-cell:hover{transform:translateY(-6px);border-color:rgba(245,158,11,.4);background:var(--card2);box-shadow:0 16px 40px rgba(0,0,0,.5)}
 .brand-cell:hover::before{opacity:1}
-.brand-cell .b-logo{font-family:'Unbounded',sans-serif;font-size:13px;font-weight:600;color:var(--text);margin-top:10px;letter-spacing:.02em}
+.brand-cell .bm-photo{
+  width:100%;height:110px;border-radius:10px;object-fit:cover;display:block;
+  border:1px solid rgba(255,255,255,.1);
+  filter:saturate(.85) brightness(.9);
+  transition:.45s var(--ease);
+}
+.brand-cell:hover .bm-photo{filter:saturate(1.1) brightness(1);transform:scale(1.04)}
+.brand-cell .b-logo{font-family:'Unbounded',sans-serif;font-size:13px;font-weight:600;color:var(--text);margin-top:12px;letter-spacing:.02em}
 .brand-cell .b-tag{font-size:9.5px;color:var(--muted);margin-top:4px;letter-spacing:.12em;text-transform:uppercase}
 .brand-cell.pro{border-color:rgba(245,158,11,.22);background:linear-gradient(170deg,rgba(245,158,11,.06),var(--card))}
 .brand-cell.pro .b-logo{color:var(--amber2)}
+@media(max-width:560px){.brand-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}}
 
 /* ===== ЖИВАЯ КОФЕМАШИНА (SVG-стиль) ===== */
 .cm{position:relative;width:110px;height:120px;margin:0 auto 4px;filter:drop-shadow(0 10px 18px rgba(0,0,0,.4))}
@@ -413,12 +421,12 @@ footer{border-top:1px solid var(--line);padding:44px 5%;background:rgba(10,14,23
     <p class="sec-sub">От срочного ремонта до полного запуска кофейни — берём на себя всё.</p>
   </div>
   <div class="serv-grid">
-    <div class="serv-card reveal"><div class="serv-icon">🔧</div><h3>Ремонт любой сложности</h3><p>Электроника, гидравлика, помпы, заваривающие блоки. Диагностика и ремонт с гарантией до 12 месяцев.</p><span class="serv-price">от 1 500 ₽</span></div>
+    <div class="serv-card reveal"><div class="serv-icon">🔧</div><h3>Ремонт любой сложности</h3><p>Гидравлика, помпы, клапаны, заваривающие блоки, мельницы. Диагностика и ремонт с гарантией до 12 месяцев.</p><span class="serv-price">от 1 500 ₽</span></div>
     <div class="serv-card reveal"><div class="serv-icon">🧼</div><h3>Чистка и декальцинация</h3><p>Глубокая очистка от накипи и масел — машина варит как новая.</p><span class="serv-price">от 1 200 ₽</span></div>
     <div class="serv-card reveal"><div class="serv-icon">⚙️</div><h3>Профилактика и ТО</h3><p>Продлевает жизнь машины в 2–3 раза. Подписка со скидкой 20%.</p><span class="serv-price">от 990 ₽</span></div>
     <div class="serv-card reveal"><div class="serv-icon">🏪</div><h3>Вендинговые автоматы</h3><p>Ремонт, настройка, обслуживание кофейных автоматов для бизнеса.</p><span class="serv-price">по договору</span></div>
     <div class="serv-card reveal"><div class="serv-icon">🚀</div><h3>Запуск кофейни</h3><p>Подключение оборудования, водоснабжение, настройка рецептур, обучение персонала.</p><span class="serv-price">от 5 000 ₽</span></div>
-    <div class="serv-card reveal"><div class="serv-icon">💻</div><h3>Ремонт электроники</h3><p>Платы, дисплеи, прошивки, Wi-Fi-модули. Ремонт на профессиональном стенде.</p><span class="serv-price">от 2 000 ₽</span></div>
+    <div class="serv-card reveal"><div class="serv-icon">🏭</div><h3>Вендинг под ключ</h3><p>Jofemar, Jetinno, Dr.Coffee, Unicum — установка, настройка, обслуживание и ремонт кофейных автоматов для бизнеса.</p><span class="serv-price">по договору</span></div>
   </div>
 </section>
 
@@ -429,23 +437,23 @@ footer{border-top:1px solid var(--line);padding:44px 5%;background:rgba(10,14,23
     <h2 class="sec-title">Работаем со всеми марками</h2>
   </div>
   <div class="brand-grid">
-    <div class="brand-cell reveal"><div class="cm"><div class="cm-hopper"></div><div class="cm-body"><div class="cm-screen"></div><div class="cm-btns"><i></i><i></i><i></i><i></i></div><div class="cm-tray"></div></div><div class="cm-steam"></div><div class="cm-steam s2"></div><div class="cm-steam s3"></div><div class="cm-cup"></div></div><div class="b-logo">De'Longhi</div><div class="b-tag">Автоматы</div></div>
-    <div class="brand-cell reveal"><div class="cm"><div class="cm-hopper"></div><div class="cm-body"><div class="cm-screen"></div><div class="cm-btns"><i></i><i></i><i></i><i></i></div><div class="cm-tray"></div></div><div class="cm-steam"></div><div class="cm-steam s2"></div><div class="cm-steam s3"></div><div class="cm-cup"></div></div><div class="b-logo">Jura</div><div class="b-tag">Премиум</div></div>
-    <div class="brand-cell reveal"><div class="cm"><div class="cm-hopper"></div><div class="cm-body"><div class="cm-screen"></div><div class="cm-btns"><i></i><i></i><i></i><i></i></div><div class="cm-tray"></div></div><div class="cm-steam"></div><div class="cm-steam s2"></div><div class="cm-steam s3"></div><div class="cm-cup"></div></div><div class="b-logo">Saeco</div><div class="b-tag">Автоматы</div></div>
-    <div class="brand-cell reveal"><div class="cm"><div class="cm-hopper"></div><div class="cm-body"><div class="cm-screen"></div><div class="cm-btns"><i></i><i></i><i></i><i></i></div><div class="cm-tray"></div></div><div class="cm-steam"></div><div class="cm-steam s2"></div><div class="cm-cup"></div></div><div class="b-logo">Philips</div><div class="b-tag">Автоматы</div></div>
-    <div class="brand-cell reveal"><div class="cm"><div class="cm-body"><div class="cm-screen"></div><div class="cm-btns"><i></i><i></i></div><div class="cm-tray"></div></div><div class="cm-cup"></div></div><div class="b-logo">Krups</div><div class="b-tag">Капельные</div></div>
-    <div class="brand-cell reveal"><div class="cm"><div class="cm-hopper"></div><div class="cm-body"><div class="cm-screen"></div><div class="cm-btns"><i></i><i></i><i></i></div><div class="cm-tray"></div></div><div class="cm-steam"></div><div class="cm-steam s2"></div><div class="cm-cup"></div></div><div class="b-logo">Bosch</div><div class="b-tag">Автоматы</div></div>
-    <div class="brand-cell reveal"><div class="cm"><div class="cm-hopper"></div><div class="cm-body"><div class="cm-screen"></div><div class="cm-btns"><i></i><i></i><i></i></div><div class="cm-tray"></div></div><div class="cm-steam"></div><div class="cm-steam s2"></div><div class="cm-cup"></div></div><div class="b-logo">Siemens</div><div class="b-tag">Автоматы</div></div>
-    <div class="brand-cell reveal"><div class="cm"><div class="cm-hopper"></div><div class="cm-body"><div class="cm-screen"></div><div class="cm-btns"><i></i><i></i><i></i></div><div class="cm-tray"></div></div><div class="cm-steam"></div><div class="cm-steam s2"></div><div class="cm-cup"></div></div><div class="b-logo">Melitta</div><div class="b-tag">Автоматы</div></div>
-    <div class="brand-cell pro reveal"><div class="cm cm-pro"><div class="cm-body"><div class="cm-prohead"></div><div class="cm-progrp"></div><div class="cm-progrp g2"></div><div class="cm-tray"></div></div><div class="cm-cup"></div><div class="cm-steam"></div><div class="cm-steam s2"></div></div><div class="b-logo">La Marzocco</div><div class="b-tag">Профи</div></div>
-    <div class="brand-cell pro reveal"><div class="cm cm-pro"><div class="cm-body"><div class="cm-prohead"></div><div class="cm-progrp"></div><div class="cm-tray"></div></div><div class="cm-cup"></div><div class="cm-steam"></div></div><div class="b-logo">Nuova Simonelli</div><div class="b-tag">Профи</div></div>
-    <div class="brand-cell pro reveal"><div class="cm cm-pro"><div class="cm-body"><div class="cm-prohead"></div><div class="cm-progrp"></div><div class="cm-tray"></div></div><div class="cm-cup"></div></div><div class="b-logo">Rancilio</div><div class="b-tag">Профи</div></div>
-    <div class="brand-cell pro reveal"><div class="cm cm-vend"><div class="cm-body"><div class="cm-screen"></div><div class="cm-rows"><i></i><i></i><i></i><i></i></div><div class="cm-venddoor">COFFEE</div></div><div class="cm-cup"></div><div class="cm-steam"></div><div class="cm-steam s2"></div></div><div class="b-logo">Unicum</div><div class="b-tag">Вендинг</div></div>
-    <div class="brand-cell pro reveal"><div class="cm cm-vend"><div class="cm-body"><div class="cm-screen"></div><div class="cm-rows"><i></i><i></i><i></i></div><div class="cm-venddoor">COFFEE</div></div><div class="cm-cup"></div><div class="cm-steam"></div></div><div class="b-logo">Saeco Vending</div><div class="b-tag">Вендинг</div></div>
-    <div class="brand-cell pro reveal"><div class="cm cm-vend"><div class="cm-body"><div class="cm-screen"></div><div class="cm-rows"><i></i><i></i><i></i></div><div class="cm-venddoor">COFFEE</div></div><div class="cm-cup"></div><div class="cm-steam"></div></div><div class="b-logo">Jofemar</div><div class="b-tag">Вендинг</div></div>
-    <div class="brand-cell pro reveal"><div class="cm cm-vend"><div class="cm-body"><div class="cm-screen"></div><div class="cm-rows"><i></i><i></i><i></i><i></i><i></i></div><div class="cm-venddoor">COFFEE</div></div><div class="cm-cup"></div><div class="cm-steam"></div></div><div class="b-logo">Jetinno</div><div class="b-tag">Вендинг</div></div>
-    <div class="brand-cell pro reveal"><div class="cm cm-vend"><div class="cm-body"><div class="cm-screen"></div><div class="cm-rows"><i></i><i></i><i></i></div><div class="cm-venddoor">COFFEE</div></div><div class="cm-cup"></div><div class="cm-steam"></div></div><div class="b-logo">Dr. Coffee</div><div class="b-tag">Вендинг</div></div>
-    <div class="brand-cell pro reveal"><div class="cm cm-vend"><div class="cm-body"><div class="cm-screen"></div><div class="cm-rows"><i></i><i></i><i></i></div><div class="cm-venddoor">COFFEE</div></div><div class="cm-cup"></div><div class="cm-steam"></div></div><div class="b-logo">Necta</div><div class="b-tag">Вендинг</div></div>
+    <div class="brand-cell reveal"><img src="images/machine-delonghi.jpg" alt="Кофемашина De'Longhi" class="bm-photo" loading="lazy"><div class="b-logo">De'Longhi</div><div class="b-tag">Автоматы</div></div>
+    <div class="brand-cell reveal"><img src="images/machine-jura.jpg" alt="Кофемашина Jura" class="bm-photo" loading="lazy"><div class="b-logo">Jura</div><div class="b-tag">Премиум</div></div>
+    <div class="brand-cell reveal"><img src="images/machine-auto.jpg" alt="Кофемашина Saeco" class="bm-photo" loading="lazy"><div class="b-logo">Saeco</div><div class="b-tag">Автоматы</div></div>
+    <div class="brand-cell reveal"><img src="images/machine-auto.jpg" alt="Кофемашина Philips" class="bm-photo" loading="lazy"><div class="b-logo">Philips</div><div class="b-tag">Автоматы</div></div>
+    <div class="brand-cell reveal"><img src="images/machine-auto.jpg" alt="Кофемашина Krups" class="bm-photo" loading="lazy"><div class="b-logo">Krups</div><div class="b-tag">Автоматы</div></div>
+    <div class="brand-cell reveal"><img src="images/machine-auto.jpg" alt="Кофемашина Bosch" class="bm-photo" loading="lazy"><div class="b-logo">Bosch</div><div class="b-tag">Автоматы</div></div>
+    <div class="brand-cell reveal"><img src="images/machine-auto.jpg" alt="Кофемашина Siemens" class="bm-photo" loading="lazy"><div class="b-logo">Siemens</div><div class="b-tag">Автоматы</div></div>
+    <div class="brand-cell reveal"><img src="images/machine-auto.jpg" alt="Кофемашина Melitta" class="bm-photo" loading="lazy"><div class="b-logo">Melitta</div><div class="b-tag">Автоматы</div></div>
+    <div class="brand-cell pro reveal"><img src="images/machine-pro.jpg" alt="Профессиональная кофемашина La Marzocco" class="bm-photo" loading="lazy"><div class="b-logo">La Marzocco</div><div class="b-tag">Профи</div></div>
+    <div class="brand-cell pro reveal"><img src="images/machine-pro.jpg" alt="Профессиональная кофемашина Nuova Simonelli" class="bm-photo" loading="lazy"><div class="b-logo">Nuova Simonelli</div><div class="b-tag">Профи</div></div>
+    <div class="brand-cell pro reveal"><img src="images/machine-pro.jpg" alt="Профессиональная кофемашина Rancilio" class="bm-photo" loading="lazy"><div class="b-logo">Rancilio</div><div class="b-tag">Профи</div></div>
+    <div class="brand-cell pro reveal"><img src="images/machine-vending.jpg" alt="Вендинговый автомат Unicum" class="bm-photo" loading="lazy"><div class="b-logo">Unicum</div><div class="b-tag">Вендинг</div></div>
+    <div class="brand-cell pro reveal"><img src="images/machine-vending.jpg" alt="Вендинговый автомат Saeco Vending" class="bm-photo" loading="lazy"><div class="b-logo">Saeco Vending</div><div class="b-tag">Вендинг</div></div>
+    <div class="brand-cell pro reveal"><img src="images/machine-jofemar.jpg" alt="Вендинговый автомат Jofemar" class="bm-photo" loading="lazy"><div class="b-logo">Jofemar</div><div class="b-tag">Вендинг</div></div>
+    <div class="brand-cell pro reveal"><img src="images/machine-jetinno.jpg" alt="Кофейный автомат Jetinno" class="bm-photo" loading="lazy"><div class="b-logo">Jetinno</div><div class="b-tag">Вендинг</div></div>
+    <div class="brand-cell pro reveal"><img src="images/machine-drcoffee.jpg" alt="Кофейный автомат Dr. Coffee" class="bm-photo" loading="lazy"><div class="b-logo">Dr. Coffee</div><div class="b-tag">Вендинг</div></div>
+    <div class="brand-cell pro reveal"><img src="images/machine-vending.jpg" alt="Вендинговый автомат Necta" class="bm-photo" loading="lazy"><div class="b-logo">Necta</div><div class="b-tag">Вендинг</div></div>
   </div>
 </section>
 
