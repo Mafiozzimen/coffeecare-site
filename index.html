@@ -1562,6 +1562,34 @@ document.getElementById('burger').addEventListener('click', () => {
   document.getElementById('navLinks').classList.toggle('open');
 });
 
+/* ================= УМНЫЙ КОНТЕНТ (из API, редактируется через админку) ================= */
+function applyContent(map){
+  if(!map) return;
+  const set = (sel, text) => {
+    const el = document.querySelector(sel);
+    if(el && text) el.textContent = text;
+  };
+  set('.hero-content h1 .line-mask:first-child span', map['hero:title_line1']);
+  set('.hero-content h1 .line-mask:nth-child(2) span', map['hero:title_line2']);
+  set('.hero-sub', map['hero:subtitle']);
+  set('.contact-line a[href^="tel"]', map['contact:phone']);
+  set('.contact-line a[href^="mailto"]', map['contact:email']);
+  document.querySelectorAll('.contact-line')[2]?.querySelector('span') && (document.querySelectorAll('.contact-line')[2].querySelector('span').textContent = map['contact:address'] || document.querySelectorAll('.contact-line')[2].querySelector('span').textContent);
+  document.querySelectorAll('.contact-line')[3]?.querySelector('span') && (document.querySelectorAll('.contact-line')[3].querySelector('span').textContent = map['contact:hours'] || document.querySelectorAll('.contact-line')[3].querySelector('span').textContent);
+  const secTitle = document.querySelector('#services .sec-title');
+  if(secTitle && map['services:title']) secTitle.innerHTML = map['services:title'].replace(/\n/g,'<br>');
+  const secSub = document.querySelector('#services .sec-sub');
+  if(secSub && map['services:note']) secSub.textContent = map['services:note'];
+  const whyTitle = document.querySelector('#why .sec-title');
+  if(whyTitle && map['about:title']) whyTitle.innerHTML = map['about:title'].replace(/\n/g,'<br>');
+  const ft = document.querySelector('.foot-inner p');
+  if(ft && map['footer:text']) ft.textContent = map['footer:text'];
+}
+fetch('/api/content')
+  .then(r => { if(!r.ok) throw new Error('no api'); return r.json(); })
+  .then(applyContent)
+  .catch(() => {});
+
 /* ================= REVEAL ON SCROLL ================= */
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
