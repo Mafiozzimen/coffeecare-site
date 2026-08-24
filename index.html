@@ -1034,6 +1034,16 @@ footer{background:var(--bg2);border-color:var(--line)}
   <div class="pre-cup"></div>
   <div class="pre-text">Сервис готовится</div>
 </div>
+<script>
+/* Прелоадер скрывается сразу и гарантированно (не зависит от загрузки остальных скриптов) */
+(function(){
+  var pre = document.getElementById('preloader');
+  if (pre) {
+    pre.classList.add('done');
+    setTimeout(function(){ pre.classList.add('done'); }, 1200);
+  }
+})();
+</script>
 
 <!-- NAV -->
 <nav id="nav">
