@@ -10,12 +10,12 @@ camera.position.set(0, 2.2, 10);
 camera.lookAt(0, 1.4, 0);
 
 /* ==== Материалы ==== */
-const steel = new THREE.MeshStandardMaterial({ color: 0x3d3224, metalness: 0.75, roughness: 0.35 });
-const steelLight = new THREE.MeshStandardMaterial({ color: 0x8a7350, metalness: 0.9, roughness: 0.25 });
-const gold = new THREE.MeshStandardMaterial({ color: 0xc8a45d, metalness: 0.95, roughness: 0.2 });
-const dark = new THREE.MeshStandardMaterial({ color: 0x1c1610, metalness: 0.5, roughness: 0.6 });
-const glass = new THREE.MeshStandardMaterial({ color: 0x2a2015, metalness: 0.3, roughness: 0.1, transparent: true, opacity: 0.35 });
-const cream = new THREE.MeshStandardMaterial({ color: 0xf2e6d5, roughness: 0.8 });
+const steel = new THREE.MeshStandardMaterial({ color: 0x334155, metalness: 0.75, roughness: 0.35 });
+const steelLight = new THREE.MeshStandardMaterial({ color: 0x475569, metalness: 0.9, roughness: 0.25 });
+const gold = new THREE.MeshStandardMaterial({ color: 0x34d399, metalness: 0.95, roughness: 0.2 });
+const dark = new THREE.MeshStandardMaterial({ color: 0x1e293b, metalness: 0.5, roughness: 0.6 });
+const glass = new THREE.MeshStandardMaterial({ color: 0x1e293b, metalness: 0.3, roughness: 0.1, transparent: true, opacity: 0.35 });
+const cream = new THREE.MeshStandardMaterial({ color: 0xf1f5f9, roughness: 0.8 });
 
 const machine = new THREE.Group();
 
@@ -151,13 +151,13 @@ scene.add(beans);
 
 /* ==== Освещение ==== */
 scene.add(new THREE.AmbientLight(0xfff2dc, 0.55));
-const keyLight = new THREE.DirectionalLight(0xffd9a0, 1.6);
+const keyLight = new THREE.DirectionalLight(0x9be8c8, 1.6);
 keyLight.position.set(5, 7, 6);
 scene.add(keyLight);
-const rimL = new THREE.DirectionalLight(0xc8a45d, 1.0);
+const rimL = new THREE.DirectionalLight(0x34d399, 1.0);
 rimL.position.set(-5, 3, -5);
 scene.add(rimL);
-const backL = new THREE.DirectionalLight(0x8a6a3a, 0.6);
+const backL = new THREE.DirectionalLight(0x0e9f6e, 0.6);
 backL.position.set(0, 4, -6);
 scene.add(backL);
 
@@ -210,3 +210,4 @@ function animate() {
   renderer.render(scene, camera);
 }
 animate();
+

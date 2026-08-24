@@ -13,8 +13,8 @@
       <stop offset="1" stop-color="#5a5f68"/>
     </linearGradient>
     <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#e8c98a"/>
-      <stop offset="1" stop-color="#a8843f"/>
+      <stop offset="0" stop-color="#34d399"/>
+      <stop offset="1" stop-color="#0e9f6e"/>
     </linearGradient>
     <linearGradient id="rubber" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#3d4a35"/>
@@ -42,15 +42,15 @@
     <rect x="655" y="210" width="40" height="60" rx="8" fill="url(#gold)"/>
     <rect x="660" y="215" width="30" height="12" rx="4" fill="#5a4a30"/>
     <!-- шестерни привода -->
-    <circle cx="480" cy="280" r="18" fill="url(#gold)" stroke="#8a6430" stroke-width="2"/>
+    <circle cx="480" cy="280" r="18" fill="url(#gold)" stroke="#047857" stroke-width="2"/>
     <circle cx="480" cy="280" r="5" fill="#5a4a30"/>
-    <circle cx="430" cy="280" r="12" fill="url(#gold)" stroke="#8a6430" stroke-width="2"/>
+    <circle cx="430" cy="280" r="12" fill="url(#gold)" stroke="#047857" stroke-width="2"/>
   </g>
   <text x="600" y="350" text-anchor="middle" font-family="Arial" font-size="13" fill="#7a6f5e">Блок в сборе</text>
 
   <!-- Стрелка разборки -->
-  <line x1="420" y1="220" x2="300" y2="220" stroke="#a8843f" stroke-width="2" stroke-dasharray="6,4"/>
-  <text x="360" y="205" text-anchor="middle" font-family="Arial" font-size="14" fill="#a8843f">разборка</text>
+  <line x1="420" y1="220" x2="300" y2="220" stroke="#0e9f6e" stroke-width="2" stroke-dasharray="6,4"/>
+  <text x="360" y="205" text-anchor="middle" font-family="Arial" font-size="14" fill="#0e9f6e">разборка</text>
 
   <!-- ==== Детали блока (слева) ==== -->
   <!-- Камера с сеткой -->
@@ -63,16 +63,16 @@
 
   <!-- Поршень -->
   <g filter="url(#shadow)">
-    <rect x="90" y="250" width="70" height="90" rx="10" fill="url(#gold)" stroke="#8a6430" stroke-width="2"/>
+    <rect x="90" y="250" width="70" height="90" rx="10" fill="url(#gold)" stroke="#047857" stroke-width="2"/>
     <rect x="97" y="260" width="56" height="14" rx="5" fill="url(#rubber)"/>
     <rect x="97" y="290" width="56" height="14" rx="5" fill="url(#rubber)"/>
   </g>
   <text x="125" y="360" text-anchor="middle" font-family="Arial" font-size="12" fill="#7a6f5e">Поршень</text>
-  <text x="125" y="374" text-anchor="middle" font-family="Arial" font-size="11" fill="#a8843f">+ O-ring (менять!)</text>
+  <text x="125" y="374" text-anchor="middle" font-family="Arial" font-size="11" fill="#0e9f6e">+ O-ring (менять!)</text>
 
   <!-- Шестерни -->
   <g filter="url(#shadow)">
-    <circle cx="260" cy="320" r="26" fill="url(#gold)" stroke="#8a6430" stroke-width="2"/>
+    <circle cx="260" cy="320" r="26" fill="url(#gold)" stroke="#047857" stroke-width="2"/>
     <circle cx="260" cy="320" r="16" fill="none" stroke="#5a4a30" stroke-width="3" stroke-dasharray="6,4"/>
     <circle cx="260" cy="320" r="5" fill="#5a4a30"/>
   </g>
@@ -99,12 +99,13 @@
 
   <!-- План чистки -->
   <g>
-    <rect x="470" y="400" width="280" height="130" rx="10" fill="#fff" stroke="#a8843f" stroke-width="1.5" opacity="0.9"/>
+    <rect x="470" y="400" width="280" height="130" rx="10" fill="#fff" stroke="#0e9f6e" stroke-width="1.5" opacity="0.9"/>
     <text x="490" y="425" font-family="Arial" font-size="13" font-weight="bold" fill="#33291c">Как мы обслуживаем блок:</text>
     <text x="490" y="448" font-family="Arial" font-size="12" fill="#5a4a30">1. Разборка и промывка (40°C)</text>
     <text x="490" y="468" font-family="Arial" font-size="12" fill="#5a4a30">2. Замена O-ring и уплотнений</text>
     <text x="490" y="488" font-family="Arial" font-size="12" fill="#5a4a30">3. Смазка направляющих (силикон)</text>
     <text x="490" y="508" font-family="Arial" font-size="12" fill="#5a4a30">4. Проверка шестерён и датчиков</text>
-    <text x="490" y="528" font-family="Arial" font-size="12" fill="#a8843f" font-weight="bold">Чистка блока — от 1200 ₽</text>
+    <text x="490" y="528" font-family="Arial" font-size="12" fill="#0e9f6e" font-weight="bold">Чистка блока — от 1200 ₽</text>
   </g>
 </svg>
+
