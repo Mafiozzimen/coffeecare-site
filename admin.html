@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COFFEE CARE — Админ-панель</title>
+<style>
+:root{
+  --bg:#f7f2ea;--card:#fff;--line:#e5d9c2;--text:#33291c;--muted:#7a6f5e;
+  --gold:#a97e3f;--gold2:#c2914a;--green:#4a9e4f;--red:#c0564a;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;padding:24px}
+h1{font-size:22px;margin-bottom:4px}
+.sub{color:var(--muted);font-size:13px;margin-bottom:24px}
+.stats{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:26px}
+.stat-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 26px;min-width:150px}
+.stat-card b{font-size:30px;display:block;color:var(--gold)}
+.stat-card span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.grid{display:grid;grid-template-columns:2fr 1fr;gap:20px}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:20px}
+.panel h2{font-size:16px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between}
+.order{border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:10px;background:#fdfaf5}
+.order .head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.order .name{font-weight:600;font-size:15px}
+.order .badge{font-size:11px;padding:4px 12px;border-radius:30px;font-weight:600}
+.badge.new{background:#fde8d7;color:#a05a1f}
+.badge.done{background:#e2f3e3;color:#2f7d35}
+.badge.work{background:#e8e4f7;color:#5a4a9e}
+.order .meta{color:var(--muted);font-size:12px;margin-top:6px}
+.order .meta b{color:var(--text)}
+.order .actions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.btn{border:none;border-radius:8px;padding:7px 14px;font-size:12px;cursor:pointer;font-weight:600;transition:.2s}
+.btn:hover{opacity:.85}
+.btn-gold{background:var(--gold);color:#fff}
+.btn-green{background:var(--green);color:#fff}
+.btn-red{background:var(--red);color:#fff}
+.btn-gray{background:#eee;color:#555}
+select,input,textarea{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;font-size:14px;margin-bottom:10px;background:#fdfaf5;color:var(--text)}
+label{font-size:12px;color:var(--muted);display:block;margin-bottom:4px;font-weight:600}
+.slot-grid{display:flex;gap:6px;flex-wrap:wrap}
+.slot{font-size:11px;padding:5px 9px;border-radius:8px;border:1px solid var(--line);cursor:pointer}
+.slot.free{background:#e2f3e3;color:#2f7d35}
+.slot.busy{background:#f3e2e2;color:#a04a4a;cursor:not-allowed}
+.slot.sel{outline:2px solid var(--gold);background:var(--gold);color:#fff}
+.day-title{font-size:12px;font-weight:700;color:var(--gold);margin:10px 0 6px}
+.tab-bar{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.tab{padding:9px 18px;border-radius:30px;border:1px solid var(--line);background:var(--card);cursor:pointer;font-size:13px;font-weight:600}
+.tab.active{background:var(--gold);color:#fff;border-color:var(--gold)}
+#postsList .post{border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:10px;background:#fdfaf5}
+#postsList .post b{display:block;margin-bottom:6px}
+#postsList .post .txt{font-size:13px;color:var(--muted);white-space:pre-wrap;max-height:150px;overflow:auto}
+#manualsList .man{border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:10px;background:#fdfaf5}
+#manualsList .man b{color:var(--gold)}
+#manualsList .man .content{font-size:13px;color:var(--muted);white-space:pre-wrap;margin-top:6px}
+.toast{position:fixed;bottom:20px;right:20px;background:var(--green);color:#fff;padding:14px 22px;border-radius:12px;font-size:14px;opacity:0;transition:.4s;z-index:99}
+.toast.show{opacity:1}
+#genResult{white-space:pre-wrap;font-size:13px;background:#fdfaf5;border:1px solid var(--line);border-radius:10px;padding:14px;max-height:300px;overflow:auto;margin-top:10px}
+</style>
+</head>
+<body>
+<h1>☕ COFFEE CARE — Админ-панель</h1>
+<div class="sub">Учёт заказов · график мастера · генератор постов · мануалы</div>
+
+<div class="stats">
+  <div class="stat-card"><b id="stOrders">0</b><span>Заказов всего</span></div>
+  <div class="stat-card"><b id="stNew">0</b><span>Новых</span></div>
+  <div class="stat-card"><b id="stPosts">0</b><span>Постов</span></div>
+  <div class="stat-card"><b id="stManuals">0</b><span>Мануалов</span></div>
+</div>
+
+<div class="tab-bar">
+  <div class="tab active" data-tab="orders">📋 Заказы</div>
+  <div class="tab" data-tab="schedule">🗓️ График</div>
+  <div class="tab" data-tab="posts">✍️ Посты</div>
+  <div class="tab" data-tab="knowledge">🧠 База знаний</div>
+</div>
+
+<div class="grid">
+  <div>
+    <div class="panel" id="tab-orders">
+      <h2>Заказы <button class="btn btn-gray" onclick="refresh()" style="font-size:11px">⟳ Обновить</button></h2>
+      <div id="ordersList"></div>
+    </div>
+    <div class="panel" id="tab-schedule" style="display:none">
+      <h2>График мастера</h2>
+      <div id="scheduleBox"></div>
+    </div>
+    <div class="panel" id="tab-manuals" style="display:none">
+      <h2>База знаний</h2>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px" id="kbTabs">
+        <button class="btn btn-gold kb-tab active" data-kb="firmwares">📡 Прошивки</button>
+        <button class="btn btn-gray kb-tab" data-kb="issues">🩹 Болячки</button>
+        <button class="btn btn-gray kb-tab" data-kb="orings">⭕ Кольца/Резинки</button>
+        <button class="btn btn-gray kb-tab" data-kb="parts">🔩 Расходники</button>
+        <button class="btn btn-gray kb-tab" data-kb="updates">🚀 Апгрейды</button>
+        <button class="btn btn-gray kb-tab" data-kb="service">📋 Регламенты ТО</button>
+        <button class="btn btn-gray kb-tab" data-kb="tips">💡 Советы</button>
+        <button class="btn btn-gray kb-tab" data-kb="manuals">📚 Мануалы</button>
+      </div>
+      <input id="kbSearch" placeholder="Поиск по базе: бренд, модель, размер, проблема..." oninput="loadKB()">
+      <div id="kbContent"></div>
+    </div>
+  </div>
+  <div>
+    <div class="panel" id="tab-posts" style="display:none">
+      <h2>✍️ Генератор постов</h2>
+      <label>Направление (можно пусто — ИИ придумает сам)</label>
+      <input id="postTopic" placeholder="например: как почистить Jura от накипи">
+      <button class="btn btn-gold" style="width:100%" onclick="genPost()">✨ Сгенерировать новый пост</button>
+      <div id="genResult"></div>
+      <div style="height:16px"></div>
+      <h2 style="margin-bottom:10px">Опубликованные посты</h2>
+      <div id="postsList"></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">Сохранено</div>
+
+<script>
+const API = '';
+let slots = [];
+
+function toast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+function loadStats(){
+  fetch(API+'/api/stats').then(r=>r.json()).then(d=>{
+    document.getElementById('stOrders').textContent = d.orders;
+    document.getElementById('stNew').textContent = d.new;
+    document.getElementById('stPosts').textContent = d.posts;
+    document.getElementById('stManuals').textContent = d.manuals;
+  });
+}
+
+function loadOrders(){
+  fetch(API+'/api/orders').then(r=>r.json()).then(orders=>{
+    const box = document.getElementById('ordersList');
+    if(!orders.length){ box.innerHTML = '<div class="sub">Заказов пока нет</div>'; return; }
+    box.innerHTML = orders.map(o=>`
+      <div class="order">
+        <div class="head">
+          <span class="name">${o.name || 'Без имени'} · ${o.phone || 'без телефона'}</span>
+          <span class="badge ${o.status==='Новая'?'new':o.status==='Выполнен'?'done':'work'}">${o.status||'Новая'}</span>
+        </div>
+        <div class="meta"><b>${o.model||'модель не указана'}</b> — ${o.problem||'проблема не описана'}${o.comment? '<br>'+o.comment:''}<br>📅 ${o.created} ${o.slot? '· слот: '+o.slot:''}</div>
+        <div class="actions">
+          <select onchange="setStatus(${o.id},this.value)">
+            <option value="Новая" ${o.status==='Новая'?'selected':''}>Новая</option>
+            <option value="В работе" ${o.status==='В работе'?'selected':''}>В работе</option>
+            <option value="Выполнен" ${o.status==='Выполнен'?'selected':''}>Выполнен</option>
+            <option value="Отменён" ${o.status==='Отменён'?'selected':''}>Отменён</option>
+          </select>
+          <button class="btn btn-green" onclick="bookSlot(${o.id})">🗓️ Выбрать слот</button>
+          <button class="btn btn-red" onclick="delOrder(${o.id})">Удалить</button>
+        </div>
+      </div>
+    `).join('');
+  });
+}
+
+function setStatus(id, status){
+  fetch(API+`/api/orders/${id}`, {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({status})})
+    .then(r=>r.json()).then(()=>{ toast('Статус обновлён'); loadStats(); });
+}
+
+function delOrder(id){
+  if(!confirm('Удалить заказ?')) return;
+  fetch(API+`/api/orders/${id}`, {method:'DELETE'}).then(()=>{ toast('Удалено'); refresh(); });
+}
+
+function loadSchedule(){
+  fetch(API+'/api/slots').then(r=>r.json()).then(data=>{
+    slots = data.days;
+    const box = document.getElementById('scheduleBox');
+    box.innerHTML = slots.map(day=>`
+      <div class="day-title">${day.date}</div>
+      <div class="slot-grid">
+        ${day.slots.map(s=>`<div class="slot ${s.busy?'busy':'free'}" data-slot="${s.time}" onclick="pickSlot(this)">${s.time.slice(11)}</div>`).join('')}
+      </div>
+    `).join('');
+  });
+}
+
+let pickedSlot = null;
+function pickSlot(el){
+  if(el.classList.contains('busy')) return;
+  document.querySelectorAll('.slot.sel').forEach(x=>x.classList.remove('sel'));
+  el.classList.add('sel');
+  pickedSlot = el.dataset.slot;
+  toast('Слот выбран: ' + pickedSlot);
+}
+
+function bookSlot(orderId){
+  if(!pickedSlot){ toast('Сначала выберите слот в графике'); document.querySelector('.tab[data-tab="schedule"]').click(); return; }
+  fetch(API+'/api/booking', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({order_id: orderId, slot: pickedSlot})})
+    .then(r=>r.json()).then(()=>{ toast('Слот назначен'); loadSchedule(); loadOrders(); });
+}
+
+function genPost(){
+  const topic = document.getElementById('postTopic').value;
+  const btn = document.querySelector('#genResult');
+  document.getElementById('genResult').innerHTML = '<div class="sub">⏳ ИИ пишет статью...</div>';
+  fetch(API+'/api/posts/generate', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({topic})})
+    .then(r=>r.json()).then(d=>{
+      document.getElementById('genResult').innerHTML = `<b style="display:block;margin-bottom:8px">${d.title}</b>` + d.text;
+      toast('Пост создан!');
+      loadPosts(); loadStats();
+    }).catch(e=>{ document.getElementById('genResult').textContent = 'Ошибка: '+e; });
+}
+
+function loadPosts(){
+  fetch(API+'/api/posts').then(r=>r.json()).then(posts=>{
+    const box = document.getElementById('postsList');
+    if(!posts.length){ box.innerHTML = '<div class="sub">Постов пока нет — сгенерируйте первый!</div>'; return; }
+    box.innerHTML = posts.map(p=>`<div class="post"><b>${p.title}</b><span class="badge" style="background:#eee;color:#555;font-size:10px;margin-left:8px">${p.category}</span><div class="txt">${p.text}</div><div class="sub" style="margin-top:6px">${p.created}</div></div>`).join('');
+  });
+}
+
+function loadManuals(){
+  const q = document.getElementById('manSearch').value;
+  fetch(API+'/api/manuals'+(q?'?q='+encodeURIComponent(q):'')).then(r=>r.json()).then(manuals=>{
+    const box = document.getElementById('manualsList');
+    box.innerHTML = manuals.map(m=>`<div class="man"><b>${m.brand}</b> · ${m.category} — ${m.title}<div class="content">${m.content}</div></div>`).join('') || '<div class="sub">Ничего не найдено</div>';
+  });
+}
+
+let kbTab = 'firmwares';
+function loadKB(){
+  const q = document.getElementById('kbSearch').value;
+  fetch(API+'/api/'+kbTab+(q?'?q='+encodeURIComponent(q):'')).then(r=>r.json()).then(data=>{
+    const box = document.getElementById('kbContent');
+    let html = '';
+    if(kbTab==='firmwares') html = data.map(x=>`<div class="man"><b>${x.brand}</b> — ${x.version}<div class="content"><b>Модели:</b> ${x.models}<br><b>Источник:</b> ${x.source}<br><b>Заметки:</b> ${x.notes}</div></div>`).join('');
+    if(kbTab==='issues') html = data.map(x=>`<div class="man"><b>${x.brand}</b> — ${x.symptom}<div class="content"><b>Причина:</b> ${x.cause}<br><b>Решение:</b> ${x.fix}</div></div>`).join('');
+    if(kbTab==='orings') html = data.map(x=>`<div class="man"><b>${x.brand}</b> — ${x.system}<div class="content"><b>Размер:</b> ${x.size} · <b>Материал:</b> ${x.material} · <b>Кол-во:</b> ${x.qty}шт<br>${x.note}</div></div>`).join('');
+    if(kbTab==='parts') html = data.map(x=>`<div class="man"><b>${x.name}</b> <span style="color:var(--gold)">${x.price}</span><div class="content"><b>Размер:</b> ${x.size} · <b>Срок:</b> ${x.life}<br>${x.note}</div></div>`).join('');
+    if(kbTab==='updates') html = data.map(x=>`<div class="man"><b>${x.title}</b> <span class="badge" style="background:#eee;font-size:10px">${x.effort}</span><div class="content"><b>Польза:</b> ${x.benefit}<br>${(x.steps||[]).join('<br>')}</div></div>`).join('');
+    if(kbTab==='service') html = data.map(x=>`<div class="man"><b>${x.title}</b> <span class="badge" style="background:#eee;font-size:10px">${x.interval}</span><div class="content">${(x.steps||[]).join('<br>')}</div></div>`).join('');
+    if(kbTab==='tips') html = data.map(x=>`<div class="man"><b>${x.title}</b><div class="content">${x.text}</div></div>`).join('');
+    if(kbTab==='manuals') html = data.map(x=>`<div class="man"><b>${x.brand}</b> · ${x.category} — ${x.title}<div class="content">${x.content}</div></div>`).join('');
+    box.innerHTML = html || '<div class="sub">Ничего не найдено</div>';
+  });
+}
+document.querySelectorAll('.kb-tab').forEach(b=>{
+  b.addEventListener('click', ()=>{
+    document.querySelectorAll('.kb-tab').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    kbTab = b.dataset.kb;
+    document.getElementById('kbSearch').value = '';
+    loadKB();
+  });
+});
+
+document.querySelectorAll('.tab').forEach(t=>{
+  t.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    ['orders','schedule','posts','knowledge'].forEach(id=>{
+      document.getElementById('tab-'+id).style.display = (id===t.dataset.tab) ? '' : 'none';
+    });
+    if(t.dataset.tab==='schedule') loadSchedule();
+    if(t.dataset.tab==='posts') loadPosts();
+    if(t.dataset.tab==='knowledge') loadKB();
+  });
+});
+
+function refresh(){ loadStats(); loadOrders(); loadSchedule(); loadPosts(); }
+refresh();
+setInterval(refresh, 60000);
+</script>
+</body>
+</html>
