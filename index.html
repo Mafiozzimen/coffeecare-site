@@ -1549,9 +1549,15 @@ footer{background:var(--bg2);border-color:var(--line)}
 <script src="three.min.js"></script>
 <script>
 /* ================= PRELOADER ================= */
-window.addEventListener('load', () => {
-  setTimeout(() => document.getElementById('preloader').classList.add('done'), 600);
-});
+(function(){
+  var pre = document.getElementById('preloader');
+  function hide(){ if(pre) pre.classList.add('done'); }
+  // скрыть как только DOM готов
+  if (document.readyState !== 'loading') { setTimeout(hide, 400); }
+  else { document.addEventListener('DOMContentLoaded', function(){ setTimeout(hide, 400); }); }
+  // страховка: максимум через 2.5 сек прелоадер уйдёт в любом случае
+  setTimeout(hide, 2500);
+})();
 
 /* ================= NAV ================= */
 const nav = document.getElementById('nav');
