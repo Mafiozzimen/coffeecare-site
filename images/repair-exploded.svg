@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f7f2ea"/>
+      <stop offset="1" stop-color="#e8dcc8"/>
+    </linearGradient>
+    <linearGradient id="steel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8a8f98"/>
+      <stop offset="1" stop-color="#5a5f68"/>
+    </linearGradient>
+    <linearGradient id="steelDark" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6a6f78"/>
+      <stop offset="1" stop-color="#3a3f48"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e8c98a"/>
+      <stop offset="1" stop-color="#a8843f"/>
+    </linearGradient>
+    <linearGradient id="plastic" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2a2015"/>
+      <stop offset="1" stop-color="#14100a"/>
+    </linearGradient>
+    <linearGradient id="rubber" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3d4a35"/>
+      <stop offset="1" stop-color="#222a1e"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="4" stdDeviation="6" flood-color="#5a4a30" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="600" fill="url(#bg)"/>
+
+  <!-- Заголовок -->
+  <text x="400" y="42" text-anchor="middle" font-family="Georgia, serif" font-size="22" font-weight="bold" fill="#33291c">Разборка кофемашины — все узлы</text>
+  <text x="400" y="62" text-anchor="middle" font-family="Arial" font-size="12" fill="#7a6f5e">COFFEE CARE · сервисный центр · ремонт кофемашин</text>
+
+  <!-- ==== Взрыв-схема: корпус сверху ==== -->
+  <g filter="url(#shadow)">
+    <rect x="270" y="90" width="260" height="70" rx="10" fill="url(#plastic)" stroke="#5a4a30" stroke-width="1.5"/>
+    <rect x="300" y="100" width="80" height="22" rx="4" fill="#14351f" stroke="#3a8a4a" stroke-width="1"/>
+    <circle cx="430" cy="112" r="7" fill="url(#gold)"/>
+    <circle cx="452" cy="112" r="7" fill="url(#gold)"/>
+    <circle cx="474" cy="112" r="7" fill="url(#gold)"/>
+    <rect x="300" y="130" width="60" height="14" rx="3" fill="#3a2f1e"/>
+    <rect x="370" y="130" width="60" height="14" rx="3" fill="#3a2f1e"/>
+    <rect x="440" y="130" width="60" height="14" rx="3" fill="#3a2f1e"/>
+  </g>
+  <text x="670" y="130" font-family="Arial" font-size="12" fill="#7a6f5e">1. Верхняя крышка</text>
+  <line x1="530" y1="125" x2="640" y2="125" stroke="#a8843f" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- ==== Панель управления ==== -->
+  <g filter="url(#shadow)">
+    <rect x="300" y="180" width="200" height="50" rx="8" fill="url(#steel)" stroke="#4a4f58" stroke-width="1.5"/>
+    <rect x="312" y="192" width="70" height="26" rx="4" fill="#0d2415" stroke="#3a8a4a" stroke-width="1"/>
+    <circle cx="420" cy="200" r="6" fill="url(#gold)"/>
+    <circle cx="442" cy="200" r="6" fill="url(#gold)"/>
+    <circle cx="464" cy="200" r="6" fill="url(#gold)"/>
+    <circle cx="484" cy="200" r="6" fill="url(#gold)"/>
+  </g>
+  <text x="670" y="210" font-family="Arial" font-size="12" fill="#7a6f5e">2. Панель с дисплеем</text>
+  <line x1="500" y1="205" x2="640" y2="205" stroke="#a8843f" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- ==== Заваривающий блок (главный узел) ==== -->
+  <g filter="url(#shadow)">
+    <rect x="320" y="260" width="140" height="100" rx="10" fill="url(#plastic)" stroke="#5a4a30" stroke-width="2"/>
+    <rect x="335" y="272" width="60" height="40" rx="6" fill="#3a2f1e"/>
+    <rect x="405" y="272" width="40" height="40" rx="6" fill="#2a2015"/>
+    <rect x="340" y="320" width="100" height="14" rx="4" fill="url(#rubber)"/>
+    <circle cx="350" cy="345" r="8" fill="url(#gold)"/>
+    <circle cx="430" cy="345" r="8" fill="url(#gold)"/>
+    <!-- шестерни -->
+    <circle cx="390" cy="290" r="12" fill="none" stroke="url(#gold)" stroke-width="3"/>
+    <circle cx="390" cy="290" r="3" fill="url(#gold)"/>
+  </g>
+  <text x="670" y="300" font-family="Arial" font-size="12" fill="#7a6f5e">3. Заваривающий блок</text>
+  <text x="670" y="316" font-family="Arial" font-size="11" fill="#a8843f">(главный узел — 80% поломок)</text>
+  <line x1="460" y1="305" x2="640" y2="300" stroke="#a8843f" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- ==== Мельница (жернова) ==== -->
+  <g filter="url(#shadow)">
+    <rect x="150" y="270" width="110" height="90" rx="8" fill="url(#steel)" stroke="#4a4f58" stroke-width="1.5"/>
+    <circle cx="205" cy="315" r="28" fill="url(#steelDark)" stroke="#3a3f48" stroke-width="2"/>
+    <circle cx="205" cy="315" r="18" fill="none" stroke="url(#gold)" stroke-width="2"/>
+    <circle cx="205" cy="315" r="6" fill="#2a2015"/>
+    <rect x="165" y="280" width="80" height="10" rx="3" fill="#3a2f1e"/>
+  </g>
+  <text x="205" y="245" text-anchor="middle" font-family="Arial" font-size="12" fill="#7a6f5e">4. Мельница</text>
+  <text x="205" y="258" text-anchor="middle" font-family="Arial" font-size="11" fill="#a8843f">(жернова)</text>
+
+  <!-- ==== Помпа ==== -->
+  <g filter="url(#shadow)">
+    <rect x="150" y="395" width="110" height="70" rx="8" fill="url(#gold)" stroke="#8a6430" stroke-width="2"/>
+    <rect x="162" y="408" width="40" height="26" rx="4" fill="#5a4a30"/>
+    <rect x="212" y="408" width="36" height="26" rx="4" fill="#5a4a30"/>
+    <rect x="180" y="440" width="50" height="10" rx="3" fill="#8a6430"/>
+    <text x="205" y="430" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#fff">ULKA</text>
+  </g>
+  <text x="205" y="490" text-anchor="middle" font-family="Arial" font-size="12" fill="#7a6f5e">5. Помпа 15 бар</text>
+
+  <!-- ==== Термоблок/бойлер ==== -->
+  <g filter="url(#shadow)">
+    <rect x="560" y="280" width="130" height="90" rx="12" fill="url(#steelDark)" stroke="#3a3f48" stroke-width="2"/>
+    <rect x="572" y="292" width="106" height="22" rx="4" fill="#2a2015"/>
+    <rect x="572" y="322" width="106" height="22" rx="4" fill="#2a2015"/>
+    <rect x="600" y="352" width="50" height="10" rx="3" fill="url(#gold)"/>
+  </g>
+  <text x="625" y="265" text-anchor="middle" font-family="Arial" font-size="12" fill="#7a6f5e">6. Термоблок</text>
+  <text x="625" y="278" text-anchor="middle" font-family="Arial" font-size="11" fill="#a8843f">(нагрев воды)</text>
+
+  <!-- ==== Шланги и клапаны ==== -->
+  <path d="M 260 400 Q 300 420 320 400" fill="none" stroke="#c0564a" stroke-width="5" stroke-linecap="round"/>
+  <path d="M 320 410 Q 380 430 420 405" fill="none" stroke="#c0564a" stroke-width="5" stroke-linecap="round"/>
+  <path d="M 460 380 Q 520 410 560 380" fill="none" stroke="#c0564a" stroke-width="5" stroke-linecap="round"/>
+  <g filter="url(#shadow)">
+    <circle cx="300" cy="460" r="16" fill="url(#gold)" stroke="#8a6430" stroke-width="2"/>
+    <circle cx="300" cy="460" r="6" fill="#5a4a30"/>
+    <circle cx="480" cy="460" r="16" fill="url(#gold)" stroke="#8a6430" stroke-width="2"/>
+    <circle cx="480" cy="460" r="6" fill="#5a4a30"/>
+  </g>
+  <text x="300" y="495" text-anchor="middle" font-family="Arial" font-size="11" fill="#7a6f5e">7. Клапаны</text>
+  <text x="480" y="495" text-anchor="middle" font-family="Arial" font-size="11" fill="#7a6f5e">8. Байпас</text>
+
+  <!-- ==== Инструменты ==== -->
+  <g transform="rotate(-25, 660, 470)">
+    <rect x="630" y="430" width="60" height="14" rx="3" fill="url(#steel)" stroke="#4a4f58"/>
+    <rect x="680" y="434" width="45" height="6" rx="3" fill="#8a6430"/>
+  </g>
+  <g transform="rotate(15, 700, 480)">
+    <rect x="680" y="460" width="55" height="12" rx="3" fill="#c0564a"/>
+    <rect x="725" y="463" width="40" height="6" rx="3" fill="#5a5f68"/>
+  </g>
+  <text x="700" y="520" text-anchor="middle" font-family="Arial" font-size="11" fill="#7a6f5e">Инструменты мастера</text>
+
+  <!-- Низ -->
+  <rect x="0" y="580" width="800" height="20" fill="#e8dcc8"/>
+</svg>

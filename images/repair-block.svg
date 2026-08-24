@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f7f2ea"/>
+      <stop offset="1" stop-color="#e8dcc8"/>
+    </linearGradient>
+    <linearGradient id="plastic" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3a2f1e"/>
+      <stop offset="1" stop-color="#1c1610"/>
+    </linearGradient>
+    <linearGradient id="steel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9aa0a8"/>
+      <stop offset="1" stop-color="#5a5f68"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e8c98a"/>
+      <stop offset="1" stop-color="#a8843f"/>
+    </linearGradient>
+    <linearGradient id="rubber" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3d4a35"/>
+      <stop offset="1" stop-color="#222a1e"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="4" stdDeviation="6" flood-color="#5a4a30" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="600" fill="url(#bg)"/>
+
+  <text x="400" y="42" text-anchor="middle" font-family="Georgia, serif" font-size="22" font-weight="bold" fill="#33291c">Заваривающий блок — разборка и чистка</text>
+  <text x="400" y="62" text-anchor="middle" font-family="Arial" font-size="12" fill="#7a6f5e">Самый частый ремонт: 8 из 10 обращений</text>
+
+  <!-- ==== Блок в сборе (справа, крупно) ==== -->
+  <g filter="url(#shadow)">
+    <rect x="480" y="120" width="240" height="200" rx="14" fill="url(#plastic)" stroke="#5a4a30" stroke-width="2.5"/>
+    <rect x="500" y="140" width="100" height="60" rx="8" fill="#2a2015"/>
+    <rect x="610" y="140" width="90" height="60" rx="8" fill="#2a2015"/>
+    <!-- камера -->
+    <circle cx="540" cy="240" r="34" fill="url(#steel)" stroke="#3a3f48" stroke-width="2"/>
+    <circle cx="540" cy="240" r="22" fill="#2a2015"/>
+    <!-- поршень -->
+    <rect x="655" y="210" width="40" height="60" rx="8" fill="url(#gold)"/>
+    <rect x="660" y="215" width="30" height="12" rx="4" fill="#5a4a30"/>
+    <!-- шестерни привода -->
+    <circle cx="480" cy="280" r="18" fill="url(#gold)" stroke="#8a6430" stroke-width="2"/>
+    <circle cx="480" cy="280" r="5" fill="#5a4a30"/>
+    <circle cx="430" cy="280" r="12" fill="url(#gold)" stroke="#8a6430" stroke-width="2"/>
+  </g>
+  <text x="600" y="350" text-anchor="middle" font-family="Arial" font-size="13" fill="#7a6f5e">Блок в сборе</text>
+
+  <!-- Стрелка разборки -->
+  <line x1="420" y1="220" x2="300" y2="220" stroke="#a8843f" stroke-width="2" stroke-dasharray="6,4"/>
+  <text x="360" y="205" text-anchor="middle" font-family="Arial" font-size="14" fill="#a8843f">разборка</text>
+
+  <!-- ==== Детали блока (слева) ==== -->
+  <!-- Камера с сеткой -->
+  <g filter="url(#shadow)">
+    <circle cx="180" cy="140" r="42" fill="url(#steel)" stroke="#3a3f48" stroke-width="2"/>
+    <circle cx="180" cy="140" r="30" fill="none" stroke="#8a8f98" stroke-width="2" stroke-dasharray="3,3"/>
+    <circle cx="180" cy="140" r="4" fill="#5a5f68"/>
+  </g>
+  <text x="180" y="200" text-anchor="middle" font-family="Arial" font-size="12" fill="#7a6f5e">Камера</text>
+
+  <!-- Поршень -->
+  <g filter="url(#shadow)">
+    <rect x="90" y="250" width="70" height="90" rx="10" fill="url(#gold)" stroke="#8a6430" stroke-width="2"/>
+    <rect x="97" y="260" width="56" height="14" rx="5" fill="url(#rubber)"/>
+    <rect x="97" y="290" width="56" height="14" rx="5" fill="url(#rubber)"/>
+  </g>
+  <text x="125" y="360" text-anchor="middle" font-family="Arial" font-size="12" fill="#7a6f5e">Поршень</text>
+  <text x="125" y="374" text-anchor="middle" font-family="Arial" font-size="11" fill="#a8843f">+ O-ring (менять!)</text>
+
+  <!-- Шестерни -->
+  <g filter="url(#shadow)">
+    <circle cx="260" cy="320" r="26" fill="url(#gold)" stroke="#8a6430" stroke-width="2"/>
+    <circle cx="260" cy="320" r="16" fill="none" stroke="#5a4a30" stroke-width="3" stroke-dasharray="6,4"/>
+    <circle cx="260" cy="320" r="5" fill="#5a4a30"/>
+  </g>
+  <text x="260" y="365" text-anchor="middle" font-family="Arial" font-size="12" fill="#7a6f5e">Шестерни</text>
+
+  <!-- Кольца -->
+  <g>
+    <circle cx="110" cy="440" r="16" fill="none" stroke="#3d4a35" stroke-width="5"/>
+    <circle cx="155" cy="440" r="12" fill="none" stroke="#3d4a35" stroke-width="5"/>
+    <circle cx="195" cy="440" r="9" fill="none" stroke="#3d4a35" stroke-width="5"/>
+    <circle cx="228" cy="440" r="7" fill="none" stroke="#3d4a35" stroke-width="5"/>
+  </g>
+  <text x="170" y="475" text-anchor="middle" font-family="Arial" font-size="12" fill="#7a6f5e">O-ring комплект</text>
+
+  <!-- Сетка -->
+  <g filter="url(#shadow)">
+    <circle cx="330" cy="420" r="30" fill="url(#steel)" stroke="#3a3f48" stroke-width="2"/>
+    <line x1="300" y1="420" x2="360" y2="420" stroke="#5a5f68" stroke-width="1.5"/>
+    <line x1="330" y1="390" x2="330" y2="450" stroke="#5a5f68" stroke-width="1.5"/>
+    <line x1="309" y1="399" x2="351" y2="441" stroke="#5a5f68" stroke-width="1.5"/>
+    <line x1="351" y1="399" x2="309" y2="441" stroke="#5a5f68" stroke-width="1.5"/>
+  </g>
+  <text x="330" y="475" text-anchor="middle" font-family="Arial" font-size="12" fill="#7a6f5e">Сетка-фильтр</text>
+
+  <!-- План чистки -->
+  <g>
+    <rect x="470" y="400" width="280" height="130" rx="10" fill="#fff" stroke="#a8843f" stroke-width="1.5" opacity="0.9"/>
+    <text x="490" y="425" font-family="Arial" font-size="13" font-weight="bold" fill="#33291c">Как мы обслуживаем блок:</text>
+    <text x="490" y="448" font-family="Arial" font-size="12" fill="#5a4a30">1. Разборка и промывка (40°C)</text>
+    <text x="490" y="468" font-family="Arial" font-size="12" fill="#5a4a30">2. Замена O-ring и уплотнений</text>
+    <text x="490" y="488" font-family="Arial" font-size="12" fill="#5a4a30">3. Смазка направляющих (силикон)</text>
+    <text x="490" y="508" font-family="Arial" font-size="12" fill="#5a4a30">4. Проверка шестерён и датчиков</text>
+    <text x="490" y="528" font-family="Arial" font-size="12" fill="#a8843f" font-weight="bold">Чистка блока — от 1200 ₽</text>
+  </g>
+</svg>

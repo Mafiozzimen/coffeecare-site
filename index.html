@@ -540,6 +540,107 @@ footer{
   color:var(--gold2);
 }
 
+/* ============ BRAND CARDS с кофемашинами ============ */
+.brand-cards{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+  gap:16px;max-width:1100px;margin:0 auto;
+}
+.brand-card{
+  background:linear-gradient(170deg,var(--card),var(--card2));
+  border:1px solid var(--line);border-radius:18px;
+  padding:20px 14px 16px;text-align:center;
+  transition:all .45s var(--ease);cursor:default;position:relative;overflow:hidden;
+}
+.brand-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  opacity:0;transition:.4s;
+}
+.brand-card:hover{transform:translateY(-6px);border-color:rgba(169,126,63,.5);box-shadow:0 18px 44px rgba(120,90,40,.18)}
+.brand-card:hover::before{opacity:1}
+.brand-card.pro{border-color:rgba(169,126,63,.35);background:linear-gradient(170deg,rgba(169,126,63,.1),var(--card) 60%)}
+.bm-name{font-weight:800;font-size:15px;margin-top:14px;letter-spacing:.02em}
+.bm-type{font-size:11px;color:var(--muted);margin-top:3px}
+.brand-card.pro .bm-name{color:var(--gold)}
+
+/* CSS-модели кофемашин */
+.bm{position:relative;width:84px;height:110px;margin:0 auto}
+.bm-body{
+  position:absolute;bottom:18px;left:50%;transform:translateX(-50%);
+  width:74px;height:88px;border-radius:8px 8px 4px 4px;
+  background:linear-gradient(180deg,#3f3322,#231b10);
+  border:1px solid rgba(169,126,63,.35);
+  box-shadow:0 10px 22px rgba(0,0,0,.25);
+}
+.bm-screen{
+  position:absolute;top:10px;left:12px;right:12px;height:22px;
+  background:linear-gradient(180deg,#14351f,#0d2415);
+  border:1px solid rgba(120,255,170,.25);border-radius:4px;
+  box-shadow:inset 0 0 10px rgba(80,255,160,.15);
+}
+.bm-grind{
+  position:absolute;top:38px;left:14px;right:14px;height:20px;
+  background:linear-gradient(180deg,rgba(169,126,63,.28),rgba(169,126,63,.1));
+  border:1px solid rgba(169,126,63,.3);border-radius:4px;
+}
+.bm-tray{
+  position:absolute;bottom:4px;left:8px;right:8px;height:8px;
+  background:linear-gradient(180deg,#c8a45d,#8a6430);
+  border-radius:3px;
+}
+.bm-cup{
+  position:absolute;bottom:12px;right:6px;width:14px;height:16px;
+  background:linear-gradient(180deg,#f2e6d5,#d8c4a8);
+  border-radius:0 0 5px 5px;
+}
+.bm-cup::before{
+  content:'';position:absolute;top:2px;right:-5px;width:5px;height:8px;
+  border:1.5px solid #d8c4a8;border-left:none;border-radius:0 4px 4px 0;
+}
+.bm-hopper{
+  position:absolute;top:-16px;left:50%;transform:translateX(-50%);
+  width:26px;height:20px;border-radius:4px;
+  background:rgba(200,164,93,.2);border:1px solid rgba(169,126,63,.4);
+}
+.bm-jura .bm-body{height:96px;border-radius:30px 30px 4px 4px;background:linear-gradient(180deg,#4a3b24,#241c10)}
+.bm-compact .bm-body{height:78px}
+.bm-small .bm-body{width:62px;height:70px}
+.bm-small .bm-screen{height:16px}
+.bm-pro .bm-body{
+  width:92px;height:66px;border-radius:4px;
+  background:linear-gradient(180deg,#4a3b24,#241c10);
+}
+.bm-pro-head{position:absolute;top:6px;left:20px;right:20px;height:12px;background:linear-gradient(180deg,#c8a45d,#8a6430);border-radius:3px}
+.bm-pro-grp{
+  position:absolute;top:26px;left:22px;width:14px;height:26px;border-radius:3px;
+  background:linear-gradient(180deg,#8a7350,#5a4a30);border:1px solid rgba(169,126,63,.4);
+}
+.bm-pro-grp.g2{left:56px}
+.bm-pro-tray{position:absolute;bottom:4px;left:10px;right:10px;height:7px;background:linear-gradient(180deg,#c8a45d,#8a6430);border-radius:3px}
+.bm-vend .bm-vend-body{
+  width:70px;height:104px;border-radius:10px;
+  background:linear-gradient(180deg,#3f3322,#1c1610);
+  border:1px solid rgba(169,126,63,.4);
+  box-shadow:0 10px 22px rgba(0,0,0,.3);
+}
+.bm-vend-screen{
+  position:absolute;top:10px;left:8px;right:8px;height:24px;
+  background:linear-gradient(180deg,#14351f,#0d2415);
+  border:1px solid rgba(120,255,170,.3);border-radius:4px;
+  box-shadow:inset 0 0 12px rgba(80,255,160,.2);
+}
+.bm-vend-rows{position:absolute;top:40px;left:8px;right:8px;display:flex;flex-direction:column;gap:5px}
+.bm-vend-rows i{height:13px;border-radius:3px;background:linear-gradient(180deg,rgba(169,126,63,.3),rgba(169,126,63,.12));border:1px solid rgba(169,126,63,.25)}
+.bm-vend-door{
+  position:absolute;bottom:8px;left:8px;right:8px;height:14px;
+  background:linear-gradient(180deg,#c8a45d,#8a6430);border-radius:3px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:6.5px;font-weight:800;color:#231b10;letter-spacing:.15em;
+}
+@media(max-width:560px){
+  .brand-cards{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
+}
+
 /* ============ VENDING ============ */
 #vending{
   background:
@@ -678,8 +779,38 @@ footer{
   position:relative;z-index:2;padding:26px;
   background:linear-gradient(180deg,transparent,rgba(11,10,8,.85));
 }
+.gal-img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transition:transform .6s var(--ease);
+}
+.gal-card:hover .gal-img{transform:scale(1.05)}
 .gal-card .gal-info b{font-family:'Playfair Display',serif;font-size:19px;display:block;margin-bottom:4px}
 .gal-card .gal-info small{color:var(--muted);font-size:13px;font-weight:300}
+
+/* ============ KNOWLEDGE BASE ============ */
+#knowledge{background:var(--bg)}
+.kb-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.kb-card{
+  display:flex;align-items:center;gap:16px;text-decoration:none;
+  background:linear-gradient(160deg,var(--card),var(--card2));
+  border:1px solid var(--line);border-radius:16px;padding:22px 20px;
+  transition:all .45s var(--ease);position:relative;
+}
+.kb-card:hover{transform:translateY(-4px);border-color:rgba(169,126,63,.5);box-shadow:0 16px 40px rgba(120,90,40,.15)}
+.kb-icon{
+  width:52px;height:52px;border-radius:14px;flex-shrink:0;
+  background:linear-gradient(135deg,rgba(169,126,63,.15),rgba(169,126,63,.04));
+  border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;font-size:24px;
+}
+.kb-card b{display:block;font-size:15.5px;margin-bottom:4px;color:var(--text)}
+.kb-card p{font-size:12.5px;color:var(--muted);font-weight:300;line-height:1.5;margin:0}
+.kb-dl{
+  margin-left:auto;font-size:11px;color:var(--gold);font-weight:700;
+  white-space:nowrap;flex-shrink:0;border:1px solid rgba(169,126,63,.4);
+  padding:7px 12px;border-radius:30px;transition:all .3s;
+}
+.kb-card:hover .kb-dl{background:linear-gradient(135deg,var(--gold),var(--gold3));color:#fff;border-color:transparent}
 
 /* ============ SYMPTOMS ============ */
 #symptoms{background:var(--bg2)}
@@ -885,10 +1016,9 @@ footer{background:var(--bg2);border-color:var(--line)}
 <nav id="nav">
   <a href="#" class="logo"><i>✦</i> COFFEE <span>CARE</span></a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#services">Услуги</a></li>
-    <li><a href="#vending">Вендинг</a></li>
     <li><a href="#brands">Бренды</a></li>
-    <li><a href="#gallery">Работы</a></li>
+    <li><a href="#services">Услуги</a></li>
+    <li><a href="#knowledge">База знаний</a></li>
     <li><a href="#prices">Цены</a></li>
     <li><a href="blog.html">Блог</a></li>
     <li><a href="#contact">Контакты</a></li>
@@ -944,23 +1074,71 @@ footer{background:var(--bg2);border-color:var(--line)}
     <h2 class="sec-title" style="font-size:clamp(28px,3.4vw,44px)">Ремонтируем все популярные марки</h2>
     <p class="sec-sub" style="max-width:560px;margin:14px auto 0">Оригинальные запчасти и сертифицированные инженеры по каждому бренду</p>
   </div>
-  <div class="brands-grid">
-    <div class="brand-chip">De'Longhi</div>
-    <div class="brand-chip">Jura</div>
-    <div class="brand-chip">Saeco</div>
-    <div class="brand-chip">Philips</div>
-    <div class="brand-chip">Krups</div>
-    <div class="brand-chip">Bosch</div>
-    <div class="brand-chip">Siemens</div>
-    <div class="brand-chip">Melitta</div>
-    <div class="brand-chip">Nivona</div>
-    <div class="brand-chip pro">La Marzocco</div>
-    <div class="brand-chip pro">Nuova Simonelli</div>
-    <div class="brand-chip pro">Rancilio</div>
-    <div class="brand-chip pro">Wega</div>
-    <div class="brand-chip pro">Sanremo</div>
-    <div class="brand-chip pro">Unicum</div>
-    <div class="brand-chip pro">Saeco Vending</div>
+  <div class="brand-cards">
+    <div class="brand-card reveal">
+      <div class="bm bm-auto"><div class="bm-body"><div class="bm-screen"></div><div class="bm-grind"></div><div class="bm-tray"></div></div><div class="bm-cup"></div></div>
+      <div class="bm-name">De'Longhi</div><div class="bm-type">Автоматические</div>
+    </div>
+    <div class="brand-card reveal">
+      <div class="bm bm-jura"><div class="bm-body"><div class="bm-screen"></div><div class="bm-hopper"></div><div class="bm-tray"></div></div></div>
+      <div class="bm-name">Jura</div><div class="bm-type">Премиум-автоматы</div>
+    </div>
+    <div class="brand-card reveal">
+      <div class="bm bm-auto bm-compact"><div class="bm-body"><div class="bm-screen"></div><div class="bm-grind"></div><div class="bm-tray"></div></div></div>
+      <div class="bm-name">Saeco</div><div class="bm-type">Автоматические</div>
+    </div>
+    <div class="brand-card reveal">
+      <div class="bm bm-auto bm-small"><div class="bm-body"><div class="bm-screen"></div><div class="bm-tray"></div></div></div>
+      <div class="bm-name">Philips</div><div class="bm-type">Автоматические</div>
+    </div>
+    <div class="brand-card reveal">
+      <div class="bm bm-small"><div class="bm-body"><div class="bm-screen"></div><div class="bm-tray"></div></div></div>
+      <div class="bm-name">Krups</div><div class="bm-type">Капельные и автоматы</div>
+    </div>
+    <div class="brand-card reveal">
+      <div class="bm bm-small"><div class="bm-body"><div class="bm-screen"></div><div class="bm-tray"></div></div></div>
+      <div class="bm-name">Bosch</div><div class="bm-type">Автоматические</div>
+    </div>
+    <div class="brand-card reveal">
+      <div class="bm bm-small"><div class="bm-body"><div class="bm-screen"></div><div class="bm-tray"></div></div></div>
+      <div class="bm-name">Siemens</div><div class="bm-type">Автоматические</div>
+    </div>
+    <div class="brand-card reveal">
+      <div class="bm bm-small"><div class="bm-body"><div class="bm-screen"></div><div class="bm-tray"></div></div></div>
+      <div class="bm-name">Melitta</div><div class="bm-type">Автоматические</div>
+    </div>
+    <div class="brand-card reveal">
+      <div class="bm bm-small"><div class="bm-body"><div class="bm-screen"></div><div class="bm-tray"></div></div></div>
+      <div class="bm-name">Nivona</div><div class="bm-type">Автоматические</div>
+    </div>
+    <div class="brand-card pro reveal">
+      <div class="bm bm-pro"><div class="bm-body"><div class="bm-pro-head"></div><div class="bm-pro-grp"></div><div class="bm-pro-grp g2"></div><div class="bm-pro-tray"></div></div></div>
+      <div class="bm-name">La Marzocco</div><div class="bm-type">Профессиональные</div>
+    </div>
+    <div class="brand-card pro reveal">
+      <div class="bm bm-pro bm-pro2"><div class="bm-body"><div class="bm-pro-head"></div><div class="bm-pro-grp"></div><div class="bm-pro-tray"></div></div></div>
+      <div class="bm-name">Nuova Simonelli</div><div class="bm-type">Профессиональные</div>
+    </div>
+    <div class="brand-card pro reveal">
+      <div class="bm bm-pro bm-pro2"><div class="bm-body"><div class="bm-pro-head"></div><div class="bm-pro-grp"></div><div class="bm-pro-tray"></div></div></div>
+      <div class="bm-name">Rancilio</div><div class="bm-type">Профессиональные</div>
+    </div>
+    <div class="brand-card pro reveal">
+      <div class="bm bm-pro bm-pro2"><div class="bm-body"><div class="bm-pro-head"></div><div class="bm-pro-grp"></div><div class="bm-pro-tray"></div></div></div>
+      <div class="bm-name">Wega</div><div class="bm-type">Профессиональные</div>
+    </div>
+    <div class="brand-card pro reveal">
+      <div class="bm bm-pro bm-pro2"><div class="bm-body"><div class="bm-pro-head"></div><div class="bm-pro-grp"></div><div class="bm-pro-tray"></div></div></div>
+      <div class="bm-name">Sanremo</div><div class="bm-type">Профессиональные</div>
+    </div>
+    <div class="brand-card pro reveal">
+      <div class="bm bm-vend"><div class="bm-vend-body"><div class="bm-vend-screen"></div><div class="bm-vend-rows"><i></i><i></i><i></i></div><div class="bm-vend-door">COFFEE</div></div></div>
+      <div class="bm-name">Unicum</div><div class="bm-type">Вендинговые</div>
+    </div>
+    <div class="brand-card pro reveal">
+      <div class="bm bm-vend bm-vend2"><div class="bm-vend-body"><div class="bm-vend-screen"></div><div class="bm-vend-rows"><i></i><i></i></div><div class="bm-vend-door">COFFEE</div></div></div>
+      <div class="bm-name">Saeco Vending</div><div class="bm-type">Вендинговые</div>
+    </div>
   </div>
 </section>
 
@@ -978,8 +1156,10 @@ footer{background:var(--bg2);border-color:var(--line)}
     <div class="serv-card reveal"><span class="serv-num">04</span><div class="serv-icon">🛠️</div><h3>Ремонт помп и гидроблока</h3><p>Замена помпы, предохранительных клапанов, патрубков. Быстрое решение проблем с давлением и течью.</p><span class="price">от 1 800 ₽</span></div>
     <div class="serv-card reveal"><span class="serv-num">05</span><div class="serv-icon">💻</div><h3>Ремонт электроники</h3><p>Платы управления, дисплеи, датчики, прошивка. Диагностика электроники на профессиональном стенде.</p><span class="price">от 2 000 ₽</span></div>
     <div class="serv-card reveal"><span class="serv-num">06</span><div class="serv-icon">🚚</div><h3>Выезд мастера</h3><p>Ремонтируем на дому или в офисе. Выезд в день обращения. Срочный выезд — в течение 2 часов.</p><span class="price">от 500 ₽</span></div>
-    <div class="serv-card reveal"><span class="serv-num">07</span><div class="serv-icon">🏪</div><h3>Вендинговые автоматы</h3><p>Ремонт и обслуживание кофейных автоматов для бизнеса: Saeco, Unicum, Bianchi, Necta. Договор, отчётность, регламентное ТО.</p><span class="price">по договору</span></div>
+    <div class="serv-card reveal"><span class="serv-num">07</span><div class="serv-icon">🏪</div><h3>Ремонт вендинговых кофемашин</h3><p>Ремонт, настройка и обслуживание кофейных автоматов для бизнеса: Saeco, Unicum, Bianchi, Necta. Договор, отчётность, регламентное ТО, мониторинг.</p><span class="price">по договору</span></div>
     <div class="serv-card reveal"><span class="serv-num">08</span><div class="serv-icon">📦</div><h3>Запчасти под заказ</h3><p>Любые оригинальные комплектующие со склада и под заказ: помпы, клапаны, заваривающие блоки, платы. Доставка 1–3 дня.</p><span class="price">от 300 ₽</span></div>
+    <div class="serv-card reveal"><span class="serv-num">09</span><div class="serv-icon">🚀</div><h3>Подключение и запуск кофейни</h3><p>Полный запуск с нуля: подбор и подключение вендингового кофе-аппарата, водоснабжение, электрика, настройка рецептур, обучение персонала, калибровка помола.</p><span class="price">от 5 000 ₽</span></div>
+    <div class="serv-card reveal"><span class="serv-num">10</span><div class="serv-icon">☕</div><h3>Настройка рецептур и меню</h3><p>Подбор идеальных рецептов под ваши зёрна и молоко: эспрессо, капучино, латте, фильтр. Настройка температуры, помола, дозировок.</p><span class="price">от 1 500 ₽</span></div>
   </div>
 </section>
 
@@ -997,32 +1177,64 @@ footer{background:var(--bg2);border-color:var(--line)}
   </div>
 </section>
 
-<!-- VENDING -->
-<section id="vending">
-  <div class="vend-wrap">
-    <div class="vend-visual reveal">
-      <div class="vend-machine">
-        <div class="cup"></div>
-        <div class="screen">☕</div>
-        <div class="rows"><i></i><i></i><i></i><i></i></div>
-        <div class="door">COFFEE</div>
-      </div>
-      <div class="vend-bean b1"></div>
-      <div class="vend-bean b2"></div>
-      <div class="vend-bean b3"></div>
-    </div>
-    <div class="reveal">
-      <div class="sec-label">Вендинг для бизнеса</div>
-      <h2 class="sec-title">Обслуживание кофейных автоматов, которое приносит прибыль</h2>
-      <p class="sec-sub" style="margin-bottom:34px">Простой вендинга = потерянные продажи. Мы держим ваши автоматы в работе 99% времени: плановое ТО, быстрый ремонт и мониторинг состояния.</p>
-      <div class="vend-stats">
-        <div class="vend-stat"><div class="ic">🤝</div><div><b>Договор на обслуживание</b><p>Фиксированная цена, отчётность и приоритетный выезд для вашего парка автоматов</p></div></div>
-        <div class="vend-stat"><div class="ic">📊</div><div><b>Отчёт после каждого визита</b><p>Что сделано, что заменено, прогноз следующего ТО — для вашей бухгалтерии</p></div></div>
-        <div class="vend-stat"><div class="ic">⏱️</div><div><b>Ремонт за 24 часа</b><p>Среднее время восстановления автомата — меньше суток. Запасные узлы на складе</p></div></div>
-        <div class="vend-stat"><div class="ic">💳</div><div><b>Эквайринг и терминалы</b><p>Настроим и отремонтируем платёжные системы, картридеры и телеметрию</p></div></div>
-      </div>
-      <a href="#contact" class="vend-badge">Получить коммерческое предложение →</a>
-    </div>
+<!-- KNOWLEDGE BASE / FILES -->
+<section id="knowledge">
+  <div class="sec-head reveal">
+    <div class="sec-label">База знаний</div>
+    <h2 class="sec-title">Всё про кофемашины — полезная информация</h2>
+    <p class="sec-sub">Мануалы, прошивки, регламенты обслуживания, размеры колец, типовые неисправности и многое другое. Собрано мастером с 12-летним опытом — бесплатно для скачивания.</p>
+  </div>
+  <div class="kb-grid">
+    <a href="files/Мануалы_по_брендам.txt" class="kb-card reveal" download>
+      <div class="kb-icon">📚</div>
+      <div><b>Мануалы по брендам</b><p>Инструкции по ремонту и чистке для De'Longhi, Jura, Saeco, Philips и др.</p></div>
+      <span class="kb-dl">Скачать ↓</span>
+    </a>
+    <a href="files/Прошивки_и_обновления.txt" class="kb-card reveal" download>
+      <div class="kb-icon">📡</div>
+      <div><b>Прошивки и обновления</b><p>Версии ПО по брендам, источники и способы обновления</p></div>
+      <span class="kb-dl">Скачать ↓</span>
+    </a>
+    <a href="files/Регламенты_ТО_и_гидросистема.txt" class="kb-card reveal" download>
+      <div class="kb-icon">🔧</div>
+      <div><b>Регламенты ТО + гидросистема</b><p>Периодичность обслуживания и полное обновление гидросистемы</p></div>
+      <span class="kb-dl">Скачать ↓</span>
+    </a>
+    <a href="files/Размеры_уплотнительных_колец.txt" class="kb-card reveal" download>
+      <div class="kb-icon">⭕</div>
+      <div><b>Размеры уплотнительных колец</b><p>O-ring по брендам: размеры, материалы, количество</p></div>
+      <span class="kb-dl">Скачать ↓</span>
+    </a>
+    <a href="files/Болячки_по_брендам.txt" class="kb-card reveal" download>
+      <div class="kb-icon">🩹</div>
+      <div><b>Типовые неисправности</b><p>Симптом → причина → решение по каждому бренду</p></div>
+      <span class="kb-dl">Скачать ↓</span>
+    </a>
+    <a href="files/Частые_случаи_ремонта.txt" class="kb-card reveal" download>
+      <div class="kb-icon">⚡</div>
+      <div><b>Частые случаи ремонта</b><p>Симптом → запчасти → устранение → цена</p></div>
+      <span class="kb-dl">Скачать ↓</span>
+    </a>
+    <a href="files/Расходники_с_размерами.txt" class="kb-card reveal" download>
+      <div class="kb-icon">🔩</div>
+      <div><b>Расходники с размерами</b><p>Шланги, жернова, помпы, фильтры — с ценами и ресурсом</p></div>
+      <span class="kb-dl">Скачать ↓</span>
+    </a>
+    <a href="files/Апгрейды_кофемашин.txt" class="kb-card reveal" download>
+      <div class="kb-icon">🚀</div>
+      <div><b>Апгрейды и модернизация</b><p>WiFi-модуль, фильтры, паровой кран, подогрев чашек и др.</p></div>
+      <span class="kb-dl">Скачать ↓</span>
+    </a>
+    <a href="files/Поставщики_запчастей.txt" class="kb-card reveal" download>
+      <div class="kb-icon">🏪</div>
+      <div><b>Где купить запчасти</b><p>Проверенные поставщики и магазины с рейтингами</p></div>
+      <span class="kb-dl">Скачать ↓</span>
+    </a>
+    <a href="files/Советы_владельцам.txt" class="kb-card reveal" download>
+      <div class="kb-icon">💡</div>
+      <div><b>Советы владельцам</b><p>Как продлить жизнь машине, уход за капучинатором и др.</p></div>
+      <span class="kb-dl">Скачать ↓</span>
+    </a>
   </div>
 </section>
 
@@ -1052,20 +1264,20 @@ footer{background:var(--bg2);border-color:var(--line)}
   <div class="sec-head reveal">
     <div class="sec-label">Наши работы</div>
     <h2 class="sec-title">Возвращаем к жизни любую технику</h2>
-    <p class="sec-sub">За 12 лет — более 4 800 отремонтированных машин: от домашних кофемашин до профессиональных и вендинговых автоматов</p>
+    <p class="sec-sub">За 12 лет — более 4 800 отремонтированных машин. Так мы работаем: полная разборка, чистка, замена узлов и тест каждой машины</p>
   </div>
   <div class="gal-grid">
     <div class="gal-card reveal">
-      <div class="gal-machine"><div class="body"></div><div class="stream"></div><div class="drip"></div><div class="cup"></div></div>
-      <div class="gal-info"><b>Домашняя кофемашина</b><small>De'Longhi — замена заваривающего блока, 40 минут</small></div>
+      <img src="images/repair-exploded.svg" alt="Кофемашина в разобранном виде — взрыв-схема узлов" class="gal-img">
+      <div class="gal-info"><b>Кофемашина в разборке</b><small>Все узлы на столе: блок, жернова, помпа, термоблок, клапаны</small></div>
     </div>
-    <div class="gal-card g2 reveal">
-      <div class="gal-machine"><div class="body"></div><div class="stream"></div><div class="drip"></div><div class="cup"></div></div>
-      <div class="gal-info"><b>Профессиональная группа</b><small>La Marzocco — полное ТО, 6 групп, кофейня «Zerno»</small></div>
+    <div class="gal-card reveal">
+      <img src="images/repair-master.svg" alt="Мастер ремонтирует кофемашину в мастерской" class="gal-img">
+      <div class="gal-info"><b>Ремонт в мастерской</b><small>Диагностика → разборка → замена узлов → сборка → тест</small></div>
     </div>
-    <div class="gal-card g3 reveal">
-      <div class="gal-machine"><div class="body"></div><div class="stream"></div><div class="drip"></div><div class="cup"></div></div>
-      <div class="gal-info"><b>Вендинговый автомат</b><small>Unicum — ремонт платы + телеметрия, парк 12 автоматов</small></div>
+    <div class="gal-card reveal">
+      <img src="images/repair-block.svg" alt="Разборка и чистка заваривающего блока кофемашины" class="gal-img">
+      <div class="gal-info"><b>Заваривающий блок</b><small>Самый частый ремонт: чистка, замена O-ring, смазка</small></div>
     </div>
   </div>
 </section>
@@ -1441,158 +1653,9 @@ function orderSaved(){
   toast('Спасибо! Мастер перезвонит в течение 15 минут');
 }
 
-/* ================= 3D SCENE ================= */
-const canvas = document.getElementById('hero-canvas');
-const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.shadowMap.enabled = false;
-
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
-camera.position.set(0, 1.6, 9);
-camera.lookAt(0, 0.6, 0);
-
-/* ---- Saucer ---- */
-const saucerGeo = new THREE.CylinderGeometry(2.6, 2.1, 0.18, 64);
-const goldMat = new THREE.MeshStandardMaterial({ color: 0x2a2015, metalness: 0.85, roughness: 0.32 });
-const saucer = new THREE.Mesh(saucerGeo, goldMat);
-saucer.position.y = -0.1;
-scene.add(saucer);
-
-/* ---- Cup ---- */
-const cupGeo = new THREE.CylinderGeometry(1.15, 0.85, 1.7, 64, 1, false);
-const cupMat = new THREE.MeshStandardMaterial({ color: 0x3a2d1e, metalness: 0.9, roughness: 0.25 });
-const cup = new THREE.Mesh(cupGeo, cupMat);
-cup.position.y = 0.78;
-cup.rotation.y = Math.PI / 4;
-scene.add(cup);
-
-/* Cup rim */
-const rimGeo = new THREE.TorusGeometry(1.15, 0.09, 16, 64);
-const rimMat = new THREE.MeshStandardMaterial({ color: 0xc8a45d, metalness: 0.95, roughness: 0.18 });
-const rim = new THREE.Mesh(rimGeo, rimMat);
-rim.position.y = 1.62;
-rim.rotation.x = Math.PI / 2;
-scene.add(rim);
-
-/* Handle */
-const handleGeo = new THREE.TorusGeometry(0.52, 0.13, 16, 48, Math.PI * 1.25);
-const handle = new THREE.Mesh(handleGeo, cupMat);
-handle.position.set(1.42, 0.8, 0);
-scene.add(handle);
-
-/* ---- Coffee surface ---- */
-const coffeeGeo = new THREE.CircleGeometry(1.02, 48);
-const coffeeMat = new THREE.MeshStandardMaterial({ color: 0x4a2c14, metalness: 0.1, roughness: 0.9 });
-const coffee = new THREE.Mesh(coffeeGeo, coffeeMat);
-coffee.position.y = 1.56;
-coffee.rotation.x = -Math.PI / 2;
-scene.add(coffee);
-
-/* ---- Steam particles ---- */
-const steamCount = 260;
-const steamGeo = new THREE.BufferGeometry();
-const positions = new Float32Array(steamCount * 3);
-const seeds = [];
-for (let i = 0; i < steamCount; i++){
-  const r = 0.15 + Math.random() * 0.9;
-  const a = Math.random() * Math.PI * 2;
-  positions[i*3] = Math.cos(a) * r;
-  positions[i*3+1] = Math.random() * 3.4;
-  positions[i*3+2] = Math.sin(a) * r;
-  seeds.push({ a, r, speed: 0.35 + Math.random() * 0.8, drift: (Math.random() - 0.5) * 1.6 });
-}
-steamGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-const steamMat = new THREE.PointsMaterial({
-  color: 0xc8a45d, size: 0.05, transparent: true, opacity: 0.42,
-  blending: THREE.AdditiveBlending, depthWrite: false,
-});
-const steam = new THREE.Points(steamGeo, steamMat);
-scene.add(steam);
-
-/* ---- Floating coffee beans ---- */
-const beanGroup = new THREE.Group();
-const beanCount = 14;
-for (let i = 0; i < beanCount; i++){
-  const beanGeo = new THREE.SphereGeometry(0.11 + Math.random() * 0.08, 16, 12);
-  const beanMat = new THREE.MeshStandardMaterial({ color: 0x5a3a1a, metalness: 0.35, roughness: 0.75 });
-  const bean = new THREE.Mesh(beanGeo, beanMat);
-  bean.position.set(
-    (Math.random() - 0.5) * 9,
-    1.2 + Math.random() * 4.5,
-    (Math.random() - 0.5) * 6 - 0.5
-  );
-  bean.scale.y = 0.55;
-  bean.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, 0);
-  bean.userData = { speed: 0.1 + Math.random() * 0.25, phase: Math.random() * Math.PI * 2 };
-  beanGroup.add(bean);
-}
-scene.add(beanGroup);
-
-/* ---- Lights ---- */
-const amb = new THREE.AmbientLight(0xfff2dc, 0.5);
-scene.add(amb);
-const key = new THREE.DirectionalLight(0xffd9a0, 1.4);
-key.position.set(4, 6, 5);
-scene.add(key);
-const rimLight = new THREE.DirectionalLight(0xc8a45d, 0.8);
-rimLight.position.set(-4, 3, -4);
-scene.add(rimLight);
-
-/* ---- Mouse parallax ---- */
-let mouseX = 0, mouseY = 0, targetX = 0, targetY = 0;
-window.addEventListener('mousemove', (e) => {
-  mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
-  mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
-});
-
-/* ---- Resize ---- */
-window.addEventListener('resize', () => {
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-});
-
-/* ---- Animate ---- */
-const clock = new THREE.Clock();
-function animate(){
-  requestAnimationFrame(animate);
-  const t = clock.getElapsedTime();
-
-  targetX += (mouseX - targetX) * 0.04;
-  targetY += (mouseY - targetY) * 0.04;
-
-  camera.position.x += (targetX * 0.7 - camera.position.x) * 0.05;
-  camera.position.y += (1.6 - targetY * 0.4 - camera.position.y) * 0.05;
-  camera.lookAt(0, 0.8, 0);
-
-  cup.rotation.y += 0.0016;
-  rim.rotation.y += 0.0016;
-  saucer.rotation.y += 0.0008;
-
-  /* steam */
-  const pos = steam.geometry.attributes.position;
-  for (let i = 0; i < steamCount; i++){
-    const s = seeds[i];
-    let y = pos.array[i*3+1] + s.speed * 0.012;
-    let x = pos.array[i*3] + Math.sin(t * s.speed + s.a) * s.drift * 0.004;
-    let z = pos.array[i*3+2] + Math.cos(t * s.speed * 0.8 + s.a) * s.drift * 0.003;
-    if (y > 3.9){ y = 0.1; x = Math.cos(s.a) * s.r; z = Math.sin(s.a) * s.r; }
-    pos.array[i*3] = x; pos.array[i*3+1] = y; pos.array[i*3+2] = z;
-  }
-  pos.needsUpdate = true;
-
-  /* beans */
-  beanGroup.children.forEach((b, i) => {
-    b.position.y += Math.sin(t * b.userData.speed + b.userData.phase) * 0.004;
-    b.rotation.x += 0.003;
-    b.rotation.z += 0.002;
-  });
-
-  renderer.render(scene, camera);
-}
-animate();
+<script src="machine3d.js"></script>
+<script src="ai-chat.js"></script>
 </script>
 </body>
 </html>
+
