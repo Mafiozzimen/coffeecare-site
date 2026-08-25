@@ -172,31 +172,61 @@ nav.scrolled{background:rgba(10,14,23,.75);backdrop-filter:blur(18px);border-bot
 .hero h1{font-family:'Unbounded',sans-serif;font-size:clamp(34px,5.2vw,62px);font-weight:800;line-height:1.12;letter-spacing:-.01em;margin-bottom:22px}
 .hero h1 .grad{background:linear-gradient(120deg,var(--amber),var(--amber2) 40%,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
 
-/* ===== Заголовок: буквы нарастают ВОЛНОЙ с увеличением ===== */
+/* ===== Заголовок: ЖИВЫЕ БУКВЫ — появляются волной, потом живут вечно ===== */
 #heroTitle{perspective:900px}
 #heroTitle .ht-line{display:block;overflow:visible;white-space:nowrap}
 #heroTitle .ht-char{
-  display:inline-block;opacity:0;font-weight:800;
-  animation:charWave 1.4s cubic-bezier(.19,1,.22,1) forwards;
+  display:inline-block;font-weight:800;opacity:0;
+  animation:charWave 1.2s cubic-bezier(.19,1,.22,1) forwards;
   will-change:transform,opacity;
 }
-/* волна: буква поднимается и увеличивается, плавно оседает */
+/* появление волной */
 @keyframes charWave{
-  0%{opacity:0;transform:translateY(46px) scale(.25) rotate(8deg)}
-  35%{opacity:1;transform:translateY(-14px) scale(1.28) rotate(-2deg)}
-  55%{transform:translateY(2px) scale(1.02) rotate(0)}
-  75%{transform:translateY(-5px) scale(1.08)}
+  0%{opacity:0;transform:translateY(40px) scale(.3) rotate(10deg)}
+  40%{opacity:1;transform:translateY(-12px) scale(1.25) rotate(-2deg)}
+  70%{transform:translateY(2px) scale(1)}
   100%{opacity:1;transform:translateY(0) scale(1) rotate(0)}
 }
-/* акцентное слово — переливающийся градиент + постоянное «дыхание» */
+/* акцентное слово — градиент */
 #heroTitle .ht-accent{background:linear-gradient(120deg,var(--amber),var(--amber2) 50%,var(--cyan),var(--amber));-webkit-background-clip:text;background-clip:text;color:transparent;background-size:300% 100%;animation:shimmerFlow 5s linear infinite;display:inline-block}
 #heroTitle .ht-accent .ht-char{-webkit-text-fill-color:transparent}
-#heroTitle .ht-accent .ht-char{animation:charWave 1.4s cubic-bezier(.19,1,.22,1) forwards, charBreath 3.2s ease-in-out 3s infinite}
-@keyframes charBreath{0%,100%{transform:scale(1) translateY(0)}25%{transform:scale(1.06) translateY(-3px)}50%{transform:scale(1)}75%{transform:scale(1.04) translateY(-2px)}}
 @keyframes shimmerFlow{0%{background-position:0% 0}100%{background-position:300% 0}}
-/* обычные слова — лёгкое покачивание после появления */
-#heroTitle .ht-line .ht-char{animation:charWave 1.4s cubic-bezier(.19,1,.22,1) forwards, charBob 4.5s ease-in-out 3.2s infinite}
-@keyframes charBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+
+/* ===== ЖИВЫЕ БУКВЫ: бегущая волна-прыжок по буквам (цикл навсегда) ===== */
+#heroTitle .ht-line .ht-char{
+  animation:charWave 1.2s cubic-bezier(.19,1,.22,1) forwards, charJump 1.8s ease-in-out infinite;
+}
+#heroTitle .ht-line:nth-child(1) .ht-char{animation-delay:0s,2s}
+#heroTitle .ht-line:nth-child(2) .ht-char{animation-delay:0s,2.6s}
+#heroTitle .ht-line:nth-child(3) .ht-char{animation-delay:0s,3.2s}
+/* каждая буква прыгает со своей задержкой — «живой огонёк» бежит по строке */
+#heroTitle .ht-char:nth-child(1){animation-delay:0s,2.0s}
+#heroTitle .ht-char:nth-child(2){animation-delay:0s,2.08s}
+#heroTitle .ht-char:nth-child(3){animation-delay:0s,2.16s}
+#heroTitle .ht-char:nth-child(4){animation-delay:0s,2.24s}
+#heroTitle .ht-char:nth-child(5){animation-delay:0s,2.32s}
+#heroTitle .ht-char:nth-child(6){animation-delay:0s,2.40s}
+#heroTitle .ht-char:nth-child(7){animation-delay:0s,2.48s}
+#heroTitle .ht-char:nth-child(8){animation-delay:0s,2.56s}
+#heroTitle .ht-char:nth-child(9){animation-delay:0s,2.64s}
+#heroTitle .ht-char:nth-child(10){animation-delay:0s,2.72s}
+#heroTitle .ht-char:nth-child(11){animation-delay:0s,2.80s}
+#heroTitle .ht-char:nth-child(12){animation-delay:0s,2.88s}
+#heroTitle .ht-char:nth-child(13){animation-delay:0s,2.96s}
+#heroTitle .ht-char:nth-child(14){animation-delay:0s,3.04s}
+#heroTitle .ht-char:nth-child(15){animation-delay:0s,3.12s}
+#heroTitle .ht-char:nth-child(16){animation-delay:0s,3.20s}
+#heroTitle .ht-char:nth-child(17){animation-delay:0s,3.28s}
+#heroTitle .ht-char:nth-child(18){animation-delay:0s,3.36s}
+#heroTitle .ht-char:nth-child(19){animation-delay:0s,3.44s}
+#heroTitle .ht-char:nth-child(20){animation-delay:0s,3.52s}
+@keyframes charJump{
+  0%,100%{transform:translateY(0) scale(1)}
+  20%{transform:translateY(-9px) scale(1.12)}
+  40%{transform:translateY(0) scale(1)}
+  60%{transform:translateY(-4px) scale(1.05)}
+  80%{transform:translateY(0) scale(1)}
+}
 /* точка — пульс */
 #heroTitle .ht-dot{color:var(--amber);animation:dotPulse 1.6s ease-in-out infinite}
 @keyframes dotPulse{0%,100%{opacity:1;text-shadow:0 0 8px var(--amber)}50%{opacity:.5;text-shadow:0 0 20px var(--amber),0 0 40px var(--amber)}}
@@ -852,7 +882,7 @@ footer{border-top:1px solid var(--line);padding:44px 5%;background:rgba(10,14,23
       const s = document.createElement('span');
       s.className = 'ht-char';
       s.textContent = ch;
-      s.style.animationDelay = (delayBase + gi * 0.05) + 's';
+      s.style.animationDelay = (delayBase + gi * 0.05) + 's, ' + (2.0 + gi * 0.08) + 's';
       el.appendChild(s);
       gi++;
     }
@@ -992,6 +1022,7 @@ kbLoad('orings');
 </script>
 </body>
 </html>
+
 
 
 
