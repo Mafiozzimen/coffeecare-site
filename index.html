@@ -160,6 +160,103 @@ nav.scrolled{background:rgba(10,14,23,.75);backdrop-filter:blur(18px);border-bot
 .ha-gear::before{content:'';position:absolute;inset:-6px;border-radius:50%;background:conic-gradient(from 0deg,transparent 0deg 24deg,#f59e0b 24deg 30deg,transparent 30deg 54deg,#f59e0b 54deg 60deg,transparent 60deg 84deg,#f59e0b 84deg 90deg,transparent 90deg 114deg,#f59e0b 114deg 120deg,transparent 120deg 144deg,#f59e0b 144deg 150deg,transparent 150deg 174deg,#f59e0b 174deg 180deg,transparent 180deg 204deg,#f59e0b 204deg 210deg,transparent 210deg 234deg,#f59e0b 234deg 240deg,transparent 240deg 264deg,#f59e0b 264deg 270deg,transparent 270deg 294deg,#f59e0b 294deg 300deg,transparent 300deg 324deg,#f59e0b 324deg 330deg,transparent 330deg 354deg,#f59e0b 354deg 360deg);opacity:.5;filter:blur(1px)}
 @keyframes gearSpin{to{transform:rotate(360deg)}}
 
+/* ===== КОФЕЙНЫЙ РОБОТ-ПОМОЩНИК ===== */
+.bot-helper{
+  position:absolute;top:-30px;left:-30px;z-index:4;width:120px;height:150px;
+  animation:botFloat 4.5s ease-in-out infinite;
+  cursor:pointer;
+}
+@keyframes botFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+@keyframes botJump{0%{transform:translateY(0)}40%{transform:translateY(-30px)}100%{transform:translateY(0)}}
+/* антенна */
+.bot-ant{
+  position:absolute;top:6px;left:50%;transform:translateX(-50%);
+  width:4px;height:22px;border-radius:4px;background:linear-gradient(180deg,#f59e0b,#64748b);
+}
+.bot-light{
+  position:absolute;top:-6px;left:50%;transform:translateX(-50%);
+  width:11px;height:11px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#fff,#fbbf24,#d97706);
+  box-shadow:0 0 10px rgba(245,158,11,.9),0 0 22px rgba(245,158,11,.5);
+  animation:botLight 2s ease-in-out infinite;
+}
+@keyframes botLight{0%,100%{opacity:1;transform:translateX(-50%) scale(1)}50%{opacity:.5;transform:translateX(-50%) scale(.8)}}
+/* голова */
+.bot-head{
+  position:absolute;top:30px;left:50%;transform:translateX(-50%);
+  width:76px;height:62px;border-radius:18px;
+  background:linear-gradient(180deg,#37455a,#1e2838);
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:inset 0 0 18px rgba(0,0,0,.4),0 8px 20px rgba(0,0,0,.4);
+  animation:botHead 4s ease-in-out infinite;
+}
+@keyframes botHead{0%,100%{transform:translateX(-50%) rotate(0)}25%{transform:translateX(-50%) rotate(-3deg)}75%{transform:translateX(-50%) rotate(3deg)}}
+.bot-face{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:12px;flex-direction:row;flex-wrap:nowrap;padding:8px}
+/* глаза */
+.bot-eye{
+  width:15px;height:17px;border-radius:50%;
+  background:radial-gradient(circle at 40% 35%,#fff 15%,#4ade80 50%,#15803d);
+  box-shadow:0 0 8px rgba(74,222,128,.6),inset 0 -3px 5px rgba(0,0,0,.3);
+  animation:botBlink 3.6s ease-in-out infinite;
+  position:relative;
+}
+.bot-eye::after{content:'';position:absolute;top:50%;left:50%;width:5px;height:5px;border-radius:50%;background:#0a0e17;transform:translate(-50%,-50%);animation:botLook 6s ease-in-out infinite}
+.bot-eye.left{animation-delay:.1s}
+.bot-eye.right{animation-delay:.1s}
+@keyframes botBlink{0%,90%,100%{transform:scaleY(1)}93%{transform:scaleY(.1)}96%{transform:scaleY(1)}}
+@keyframes botLook{0%,20%{transform:translate(-50%,-50%)}25%,45%{transform:translate(-50%,-50%) translateX(4px)}50%,70%{transform:translate(-50%,-50%) translateX(-4px)}75%,100%{transform:translate(-50%,-50%)}}
+/* рот */
+.bot-mouth{
+  position:absolute;bottom:10px;left:50%;transform:translateX(-50%);
+  width:20px;height:7px;border-radius:0 0 10px 10px;
+  background:linear-gradient(180deg,#1a2230,#0e1420);
+  border:2px solid #f59e0b;border-top:none;
+  animation:botTalk 2.2s ease-in-out infinite;
+}
+@keyframes botTalk{0%,60%,100%{height:6px}70%,85%{height:12px}}
+/* уши */
+.bot-ear{position:absolute;top:20px;width:12px;height:26px;border-radius:6px;background:linear-gradient(180deg,#475569,#2b3648);border:1px solid rgba(255,255,255,.12)}
+.bot-ear.el{left:-8px}
+.bot-ear.er{right:-8px}
+/* тело */
+.bot-body{
+  position:absolute;top:94px;left:50%;transform:translateX(-50%);
+  width:56px;height:48px;border-radius:12px;
+  background:linear-gradient(180deg,#2c3748,#161d2b);
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:inset 0 0 14px rgba(0,0,0,.4);
+  display:flex;align-items:center;justify-content:center;
+}
+.bot-heart{font-size:20px;animation:botHeart 1.8s ease-in-out infinite;filter:drop-shadow(0 0 6px rgba(245,158,11,.6))}
+@keyframes botHeart{0%,100%{transform:scale(1)}30%{transform:scale(1.25)}60%{transform:scale(1)}}
+.bot-btn{position:absolute;width:7px;height:7px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fbbf24,#b45309);box-shadow:0 0 5px rgba(245,158,11,.7);animation:btnBlink 2s infinite}
+.bot-btn.b1{top:5px;right:7px}
+.bot-btn.b2{top:5px;left:7px;animation-delay:.8s}
+/* руки */
+.bot-arm{position:absolute;top:104px;width:26px;height:18px;border-radius:8px;background:linear-gradient(180deg,#475569,#2b3648);border:1px solid rgba(255,255,255,.12);transform-origin:top center;animation:botWave 3s ease-in-out infinite}
+.bot-arm.arm-l{left:8px;transform:rotate(15deg)}
+.bot-arm.arm-r{right:8px;transform:rotate(-15deg);animation-delay:1.2s}
+@keyframes botWave{0%,100%{transform:rotate(0)}25%{transform:rotate(18deg)}50%{transform:rotate(-5deg)}75%{transform:rotate(12deg)}}
+.bot-cup{
+  position:absolute;top:-8px;right:-10px;width:14px;height:12px;border-radius:0 0 5px 5px;
+  background:linear-gradient(180deg,#eef2f7,#cbd5e1);
+  animation:cupShake 3s ease-in-out infinite;
+}
+.bot-cup::before{content:'';position:absolute;top:1px;left:-5px;width:5px;height:7px;border:1.5px solid #cbd5e1;border-left:none;border-radius:0 3px 3px 0}
+@keyframes cupShake{0%,100%{transform:rotate(0) translateY(0)}30%{transform:rotate(-12deg) translateY(-2px)}70%{transform:rotate(10deg) translateY(-1px)}}
+/* пузырь с речью */
+.bot-bubble{
+  position:absolute;top:8px;right:-86px;padding:8px 12px;border-radius:12px;
+  background:rgba(16,22,36,.9);border:1px solid rgba(245,158,11,.35);
+  font-size:12px;font-weight:700;color:var(--text);white-space:nowrap;
+  box-shadow:0 8px 20px rgba(0,0,0,.4);
+  animation:bubblePop 6s ease-in-out infinite;
+}
+.bot-bubble::before{content:'';position:absolute;left:-7px;top:50%;transform:translateY(-50%);border:6px solid transparent;border-right-color:rgba(16,22,36,.9)}
+@keyframes bubblePop{0%,10%{opacity:0;transform:scale(.6)}18%,70%{opacity:1;transform:scale(1)}85%,100%{opacity:0;transform:scale(.8)}}
+@media(max-width:1100px){.bot-helper{transform:scale(.75);top:-50px;left:-50px}}
+@media(max-width:860px){.bot-helper{display:none}}
+
 @media(max-width:1100px){.hero-art{width:300px;opacity:.8}.ha-machine{transform:scale(.8);right:-20px}}
 @media(max-width:860px){.hero-art{display:none}}
 
@@ -620,6 +717,27 @@ footer{border-top:1px solid var(--line);padding:44px 5%;background:rgba(10,14,23
       <div class="ha-gear g3"></div>
       <div class="ha-gear g4"></div>
     </div>
+    <!-- кофейный робот-помощник -->
+    <div class="bot-helper" id="botHelper">
+      <div class="bot-ant"><span class="bot-light"></span></div>
+      <div class="bot-head">
+        <div class="bot-face">
+          <div class="bot-eye left"></div>
+          <div class="bot-eye right"></div>
+          <div class="bot-mouth"></div>
+        </div>
+        <div class="bot-ear el"></div>
+        <div class="bot-ear er"></div>
+      </div>
+      <div class="bot-body">
+        <div class="bot-heart">☕</div>
+        <div class="bot-btn b1"></div>
+        <div class="bot-btn b2"></div>
+      </div>
+      <div class="bot-arm arm-l"><span class="bot-cup"></span></div>
+      <div class="bot-arm arm-r"></div>
+      <div class="bot-bubble">Привет! Я помогу 😊</div>
+    </div>
     <div class="hi-chip c1">🔧 Ремонт за 1 день</div>
     <div class="hi-chip c2">🛡️ Гарантия 12 мес</div>
     <div class="hi-chip c3">⚡ Выезд сегодня</div>
@@ -963,6 +1081,36 @@ footer{border-top:1px solid var(--line);padding:44px 5%;background:rgba(10,14,23
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
 document.getElementById('burger').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
+
+/* ===== КОФЕЙНЫЙ РОБОТ: реакции ===== */
+(function(){
+  const bot = document.getElementById('botHelper');
+  if (!bot) return;
+  const bubble = bot.querySelector('.bot-bubble');
+  const phrases = [
+    'Привет! Я помогу 😊',
+    'Кофемашина сломалась?',
+    'Опишите проблему — ИИ решит 🤖',
+    'Ремонт за 1 день! ⚡',
+    'Диагностика бесплатно 🎁'
+  ];
+  let idx = 0;
+  // менять фразу по клику
+  bot.addEventListener('click', function(){
+    idx = (idx + 1) % phrases.length;
+    bubble.textContent = phrases[idx];
+    bubble.style.animation = 'none';
+    bubble.offsetHeight;
+    bubble.style.animation = 'bubblePop 6s ease-in-out infinite';
+  });
+  // подпрыгивание при наведении
+  bot.addEventListener('mouseenter', function(){
+    this.style.animation = 'botFloat 4.5s ease-in-out infinite, botJump 0.5s ease';
+  });
+  bot.addEventListener('mouseleave', function(){
+    this.style.animation = 'botFloat 4.5s ease-in-out infinite';
+  });
+})();
 
 /* REVEAL */
 const io = new IntersectionObserver((e) => e.forEach(x => { if (x.isIntersecting) { x.target.classList.add('visible'); io.unobserve(x.target); } }), { threshold: 0.1 });
