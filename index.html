@@ -158,14 +158,31 @@ nav.scrolled{background:rgba(10,14,23,.75);backdrop-filter:blur(18px);border-bot
 @keyframes hhDot{0%,100%{opacity:1}50%{opacity:.4}}
 @keyframes hhLineIn{0%{opacity:0;transform:translateY(70px) scale(.6) rotateX(35deg)}55%{opacity:1;transform:translateY(-10px) scale(1.05) rotateX(-5deg)}75%{transform:translateY(3px) scale(.99)}100%{opacity:1;transform:translateY(0) scale(1)}}
 @keyframes hhBreath{0%,100%{transform:translateY(0)}25%{transform:translateY(-5px)}50%{transform:translateY(0)}75%{transform:translateY(-3px)}}
-@media(max-width:640px){#heroTitle{font-size:clamp(32px,8.5vw,46px)}}/* ---------- MARQUEE ---------- */
-.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 0;overflow:hidden;background:rgba(255,255,255,.02)}
-.marquee-track{display:flex;gap:50px;width:max-content;animation:scroll 28s linear infinite}
-.marquee span{font-family:'Unbounded',sans-serif;font-size:16px;color:transparent;background:linear-gradient(90deg,var(--muted),var(--amber),var(--muted));-webkit-background-clip:text;background-clip:text;white-space:nowrap;display:flex;align-items:center;gap:50px}
-.marquee span i{font-style:normal;color:var(--amber);font-size:12px}
-@keyframes scroll{to{transform:translateX(-50%)}}
-
-/* ---------- SECTIONS ---------- */
+@media(max-width:640px){#heroTitle{font-size:clamp(32px,8.5vw,46px)}}/* ---------- MARQUEE: живая лента брендов с фото ---------- */
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 0;overflow:hidden;background:linear-gradient(90deg,rgba(245,158,11,.06),transparent 20%,transparent 80%,rgba(34,211,238,.06))}
+.marquee-track{display:flex;width:max-content;animation:scroll 40s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.mq-group{display:flex;gap:18px;padding-right:18px}
+.mq-brand{
+  display:flex;flex-direction:column;align-items:center;gap:8px;padding:10px 14px 12px;
+  border:1px solid var(--line);border-radius:14px;background:var(--card);backdrop-filter:blur(6px);
+  transition:.35s var(--ease);min-width:110px;
+}
+.mq-brand:hover{transform:translateY(-4px) scale(1.04);border-color:rgba(245,158,11,.5);box-shadow:0 12px 28px rgba(0,0,0,.4);background:var(--card2)}
+.mq-brand img{width:86px;height:64px;object-fit:cover;border-radius:8px;border:1px solid rgba(255,255,255,.12);filter:saturate(.85) brightness(.95);transition:.4s}
+.mq-brand:hover img{filter:saturate(1.15) brightness(1.05)}
+.mq-name{font-family:'Unbounded',sans-serif;font-size:11.5px;font-weight:600;white-space:nowrap;background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:mqShimmer 3s linear infinite}
+.mq-name.n1{background-image:linear-gradient(90deg,#f59e0b,#fbbf24,#f59e0b)}
+.mq-name.n2{background-image:linear-gradient(90deg,#22d3ee,#67e8f9,#22d3ee)}
+.mq-name.n3{background-image:linear-gradient(90deg,#4ade80,#86efac,#4ade80)}
+.mq-name.n4{background-image:linear-gradient(90deg,#a78bfa,#c4b5fd,#a78bfa)}
+.mq-name.n5{background-image:linear-gradient(90deg,#fb7185,#fda4af,#fb7185)}
+.mq-name.n6{background-image:linear-gradient(90deg,#38bdf8,#7dd3fc,#38bdf8)}
+.mq-name.n7{background-image:linear-gradient(90deg,#f472b6,#f9a8d4,#f472b6)}
+.mq-name.n8{background-image:linear-gradient(90deg,#fbbf24,#fde68a,#fbbf24)}
+.mq-name.n9{background-image:linear-gradient(90deg,#34d399,#6ee7b7,#34d399)}
+.mq-name.n10{background-image:linear-gradient(90deg,#f97316,#fdba74,#f97316)}
+@keyframes mqShimmer{0%{background-position:0% 0}100%{background-position:200% 0}}/* ---------- SECTIONS ---------- */
 /* ---------- KB: онлайн-база знаний ---------- */
 .kb-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
 .kb-tab{padding:10px 18px;border-radius:30px;border:1px solid var(--line);background:var(--card);color:var(--muted);font-size:13px;font-weight:700;cursor:pointer;transition:.3s var(--ease);font-family:inherit}
@@ -559,32 +576,35 @@ footer{border-top:1px solid var(--line);padding:44px 5%;background:rgba(10,14,23
   <div class="scroll-hint"><div class="mouse"></div>листайте</div>
 </header>
 
-<!-- MARQUEE -->
+<!-- MARQUEE: живая лента брендов с фото -->
 <div class="marquee">
   <div class="marquee-track">
-    <span>De'Longhi <i>✦</i> Jura <i>✦</i> Saeco <i>✦</i> Philips <i>✦</i> La Marzocco <i>✦</i> Вендинговые автоматы <i>✦</i> Профессиональное оборудование <i>✦</i></span>
-    <span>De'Longhi <i>✦</i> Jura <i>✦</i> Saeco <i>✦</i> Philips <i>✦</i> La Marzocco <i>✦</i> Вендинговые автоматы <i>✦</i> Профессиональное оборудование <i>✦</i></span>
+    <div class="mq-group">
+      <div class="mq-brand"><img src="images/brands/delonghi.jpg" alt="De'Longhi" loading="lazy"><span class="mq-name n1">De'Longhi</span></div>
+      <div class="mq-brand"><img src="images/brands/jura.jpg" alt="Jura" loading="lazy"><span class="mq-name n2">Jura</span></div>
+      <div class="mq-brand"><img src="images/brands/saeco.jpg" alt="Saeco" loading="lazy"><span class="mq-name n3">Saeco</span></div>
+      <div class="mq-brand"><img src="images/brands/philips.jpg" alt="Philips" loading="lazy"><span class="mq-name n4">Philips</span></div>
+      <div class="mq-brand"><img src="images/brands/lamarzocco.jpg" alt="La Marzocco" loading="lazy"><span class="mq-name n5">La Marzocco</span></div>
+      <div class="mq-brand"><img src="images/brands/jofemar.jpg" alt="Jofemar" loading="lazy"><span class="mq-name n6">Jofemar</span></div>
+      <div class="mq-brand"><img src="images/brands/jetinno.jpg" alt="Jetinno" loading="lazy"><span class="mq-name n7">Jetinno</span></div>
+      <div class="mq-brand"><img src="images/brands/rancilio.jpg" alt="Rancilio" loading="lazy"><span class="mq-name n8">Rancilio</span></div>
+      <div class="mq-brand"><img src="images/brands/unicum.jpg" alt="Unicum" loading="lazy"><span class="mq-name n9">Unicum</span></div>
+      <div class="mq-brand"><img src="images/brands/drcoffee.jpg" alt="Dr.Coffee" loading="lazy"><span class="mq-name n10">Dr.Coffee</span></div>
+    </div>
+    <div class="mq-group">
+      <div class="mq-brand"><img src="images/brands/delonghi.jpg" alt="De'Longhi" loading="lazy"><span class="mq-name n1">De'Longhi</span></div>
+      <div class="mq-brand"><img src="images/brands/jura.jpg" alt="Jura" loading="lazy"><span class="mq-name n2">Jura</span></div>
+      <div class="mq-brand"><img src="images/brands/saeco.jpg" alt="Saeco" loading="lazy"><span class="mq-name n3">Saeco</span></div>
+      <div class="mq-brand"><img src="images/brands/philips.jpg" alt="Philips" loading="lazy"><span class="mq-name n4">Philips</span></div>
+      <div class="mq-brand"><img src="images/brands/lamarzocco.jpg" alt="La Marzocco" loading="lazy"><span class="mq-name n5">La Marzocco</span></div>
+      <div class="mq-brand"><img src="images/brands/jofemar.jpg" alt="Jofemar" loading="lazy"><span class="mq-name n6">Jofemar</span></div>
+      <div class="mq-brand"><img src="images/brands/jetinno.jpg" alt="Jetinno" loading="lazy"><span class="mq-name n7">Jetinno</span></div>
+      <div class="mq-brand"><img src="images/brands/rancilio.jpg" alt="Rancilio" loading="lazy"><span class="mq-name n8">Rancilio</span></div>
+      <div class="mq-brand"><img src="images/brands/unicum.jpg" alt="Unicum" loading="lazy"><span class="mq-name n9">Unicum</span></div>
+      <div class="mq-brand"><img src="images/brands/drcoffee.jpg" alt="Dr.Coffee" loading="lazy"><span class="mq-name n10">Dr.Coffee</span></div>
+    </div>
   </div>
-</div>
-
-<!-- SERVICES -->
-<section id="services">
-  <div class="sec-head reveal">
-    <div class="sec-label">Услуги</div>
-    <h2 class="sec-title">Всё, что нужно вашей кофемашине</h2>
-    <p class="sec-sub">От срочного ремонта до полного запуска кофейни — берём на себя всё.</p>
-  </div>
-  <div class="serv-grid">
-    <div class="serv-card reveal"><div class="serv-icon">🔧</div><h3>Ремонт любой сложности</h3><p>Гидравлика, помпы, клапаны, заваривающие блоки, мельницы. Диагностика и ремонт с гарантией до 12 месяцев.</p><span class="serv-price">от 1 500 ₽</span></div>
-    <div class="serv-card reveal"><div class="serv-icon">🧼</div><h3>Чистка и декальцинация</h3><p>Глубокая очистка от накипи и масел — машина варит как новая.</p><span class="serv-price">от 1 200 ₽</span></div>
-    <div class="serv-card reveal"><div class="serv-icon">⚙️</div><h3>Профилактика и ТО</h3><p>Продлевает жизнь машины в 2–3 раза. Подписка со скидкой 20%.</p><span class="serv-price">от 990 ₽</span></div>
-    <div class="serv-card reveal"><div class="serv-icon">🏪</div><h3>Вендинговые автоматы</h3><p>Ремонт, настройка, обслуживание кофейных автоматов для бизнеса.</p><span class="serv-price">по договору</span></div>
-    <div class="serv-card reveal"><div class="serv-icon">🚀</div><h3>Запуск кофейни</h3><p>Подключение оборудования, водоснабжение, настройка рецептур, обучение персонала.</p><span class="serv-price">от 5 000 ₽</span></div>
-    <div class="serv-card reveal"><div class="serv-icon">🏭</div><h3>Вендинг под ключ</h3><p>Jofemar, Jetinno, Dr.Coffee, Unicum — установка, настройка, обслуживание и ремонт кофейных автоматов для бизнеса.</p><span class="serv-price">по договору</span></div>
-  </div>
-</section>
-
-<!-- PROBLEMS -->
+</div><!-- PROBLEMS -->
 <section id="problems">
   <div class="sec-head reveal">
     <div class="sec-label">Проблемы и решения</div>
@@ -965,6 +985,8 @@ kbLoad('orings');
 </script>
 </body>
 </html>
+
+
 
 
 
