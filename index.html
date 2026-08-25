@@ -209,10 +209,12 @@ nav.scrolled{background:rgba(10,14,23,.75);backdrop-filter:blur(18px);border-bot
 
 /* ===== КОФЕЙНЫЙ РОБОТ-ПОМОЩНИК ===== */
 .bot-helper{
-  position:absolute;top:-20px;left:8px;z-index:4;width:120px;height:150px;
+  position:absolute;top:-40px;right:0;z-index:5;width:110px;height:140px;
   animation:botFloat 4.5s ease-in-out infinite;
   cursor:pointer;
 }
+@media(max-width:1100px){.bot-helper{transform:scale(.8);top:-30px;right:-10px}}
+@media(max-width:860px){.bot-helper{display:none}}
 @keyframes botFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
 @keyframes botJump{0%{transform:translateY(0)}40%{transform:translateY(-30px)}100%{transform:translateY(0)}}
 /* антенна */
@@ -703,7 +705,13 @@ footer{border-top:1px solid var(--line);padding:44px 5%;background:rgba(10,14,23
       </div>
       <div class="ha-schematic">▮▮ PCB · CPU · 12V</div>
     </div>
-    <!-- кофейный робот-помощник -->
+    <div class="hi-chip c1">🔧 Ремонт за 1 день</div>
+    <div class="hi-chip c2">🛡️ Гарантия 12 мес</div>
+    <div class="hi-chip c3">⚡ Выезд сегодня</div>
+  </div>
+<div class="hero-inner">
+    <div class="hero-badge"><span class="pulse"></span> Умный сервис · ИИ-диагностика 24/7</div>
+    <!-- кофейный робот-помощник (у заголовка) -->
     <div class="bot-helper" id="botHelper">
       <div class="bot-ant"><span class="bot-light"></span></div>
       <div class="bot-head">
@@ -724,12 +732,6 @@ footer{border-top:1px solid var(--line);padding:44px 5%;background:rgba(10,14,23
       <div class="bot-arm arm-r"></div>
       <div class="bot-bubble">Привет! Я помогу 😊</div>
     </div>
-    <div class="hi-chip c1">🔧 Ремонт за 1 день</div>
-    <div class="hi-chip c2">🛡️ Гарантия 12 мес</div>
-    <div class="hi-chip c3">⚡ Выезд сегодня</div>
-  </div>
-  <div class="hero-inner">
-    <div class="hero-badge"><span class="pulse"></span> Умный сервис · ИИ-диагностика 24/7</div>
     <h1 id="heroTitle">
       <span class="ht-line l1"><span class="ht-word">Диагностика</span> <span class="ht-accent">точная</span><span class="ht-dot">.</span></span>
       <span class="ht-line l2"><span class="ht-word">Цены</span> <span class="ht-accent">честные</span><span class="ht-dot">.</span></span>
@@ -1191,6 +1193,7 @@ kbLoad('orings');
 </script>
 </body>
 </html>
+
 
 
 
