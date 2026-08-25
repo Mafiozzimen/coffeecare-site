@@ -69,247 +69,73 @@ nav.scrolled{background:rgba(10,14,23,.75);backdrop-filter:blur(18px);border-bot
 .burger{display:none;cursor:pointer;flex-direction:column;gap:5px;background:none;border:none;padding:6px}
 .burger div{width:26px;height:2.5px;background:var(--amber);border-radius:3px;transition:.35s}
 
-/* ---------- HERO арт: нарисованная автоматическая машина + инструменты ---------- */
-.hero-art{position:absolute;right:4%;top:50%;transform:translateY(-50%);z-index:3;width:420px;height:430px;pointer-events:none}
-/* машина */
-.ha-machine{position:absolute;right:10px;top:30px;width:250px;height:330px;filter:drop-shadow(0 30px 50px rgba(0,0,0,.6));animation:haFloat 5s ease-in-out infinite}
-@keyframes haFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
-.ha-body{
-  position:absolute;top:70px;left:50%;transform:translateX(-50%);
-  width:210px;height:190px;border-radius:16px 16px 8px 8px;
-  background:linear-gradient(180deg,#2c3748,#161d2b);
-  border:1px solid rgba(255,255,255,.13);
-  box-shadow:inset 0 0 40px rgba(0,0,0,.5),inset 0 2px 0 rgba(255,255,255,.1);
-}
-.ha-body::before{content:'';position:absolute;top:8px;left:10px;width:26px;height:150px;border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,.14),transparent);filter:blur(3px)}
-/* экран */
-.ha-screen{
-  position:absolute;top:18px;left:50%;transform:translateX(-50%);
-  width:150px;height:44px;border-radius:8px;
-  background:linear-gradient(180deg,#0b3a22,#0a2d1a);
-  border:1px solid rgba(80,255,160,.4);
-  box-shadow:inset 0 0 16px rgba(80,255,160,.3),0 0 20px rgba(80,255,160,.15);
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Unbounded',sans-serif;font-size:14px;font-weight:600;color:#4ade80;
-  letter-spacing:.1em;animation:screenPulse 3s ease-in-out infinite;
-}
-@keyframes screenPulse{0%,100%{box-shadow:inset 0 0 16px rgba(80,255,160,.25),0 0 20px rgba(80,255,160,.12)}50%{box-shadow:inset 0 0 26px rgba(80,255,160,.5),0 0 36px rgba(80,255,160,.3)}}
-/* кнопки */
-.ha-btns{position:absolute;top:72px;left:50%;transform:translateX(-50%);display:flex;gap:12px}
-.ha-btns i{width:13px;height:13px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fbbf24,#b45309);box-shadow:0 0 8px rgba(245,158,11,.7);animation:btnBlink 2.4s infinite}
-.ha-btns i:nth-child(2){animation-delay:.4s}.ha-btns i:nth-child(3){animation-delay:.8s}
-.ha-btns i:nth-child(4){animation-delay:1.2s}.ha-btns i:nth-child(5){animation-delay:1.6s}
-@keyframes btnBlink{0%,100%{opacity:1}50%{opacity:.35}}
-/* мельница внутри */
-.ha-grinder{position:absolute;top:100px;left:50%;transform:translateX(-50%);width:90px;height:46px;border-radius:8px;background:linear-gradient(180deg,#3d4a5e,#232c3d);border:1px solid rgba(255,255,255,.1);overflow:hidden}
-.ha-grinder::before{content:'';position:absolute;top:6px;left:50%;transform:translateX(-50%);width:60px;height:12px;border-radius:6px;background:#1a2230;border:1px solid rgba(255,255,255,.12)}
-.ha-grinder::after{content:'';position:absolute;bottom:6px;left:20%;width:26px;height:8px;border-radius:4px;background:linear-gradient(90deg,#8a5a1a,#5a3a12);animation:grindMove 2s ease-in-out infinite}
+/* ---------- МАСТЕРСКАЯ (hero-сцена) ---------- */
+.hero-art{position:absolute;right:2%;top:50%;transform:translateY(-50%);z-index:3;width:440px;height:430px;pointer-events:none}
+.ws{position:relative;width:420px;height:400px;filter:drop-shadow(0 30px 50px rgba(0,0,0,.6))}
+/* стена */
+.ws-wall{position:absolute;inset:0 0 90px 0;border-radius:18px;background:linear-gradient(180deg,#1b2433,#141b28);border:1px solid rgba(255,255,255,.08)}
+/* полки с запчастями */
+.ws-shelf{position:absolute;left:18px;right:18px;height:26px;border-radius:6px;background:linear-gradient(180deg,#3d4a5e,#2b3648);box-shadow:0 6px 14px rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;gap:14px}
+.ws-shelf.sh1{top:26px}
+.ws-shelf.sh2{top:120px}
+.ws-shelf::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:3px;background:rgba(0,0,0,.5)}
+.ws-part{display:inline-block;border-radius:4px;box-shadow:inset 0 2px 4px rgba(255,255,255,.1),0 3px 6px rgba(0,0,0,.4)}
+.ws-part.pb{width:34px;height:20px;background:linear-gradient(180deg,#f59e0b,#b45309)}
+.ws-part.jb{width:26px;height:18px;background:linear-gradient(180deg,#94a3b8,#475569)}
+.ws-part.pump{width:30px;height:16px;background:linear-gradient(180deg,#22d3ee,#0e7490);animation:capPulse 3s infinite}
+.ws-part.filter{width:24px;height:14px;background:linear-gradient(180deg,#4ade80,#15803d)}
+.ws-part.canister{width:28px;height:20px;background:linear-gradient(180deg,#cbd5e1,#64748b);border-radius:6px 6px 4px 4px}
+.ws-part.coil{width:22px;height:18px;background:linear-gradient(180deg,#d97706,#78350f);border-radius:50%}
+.ws-part.gearbox{width:30px;height:16px;background:linear-gradient(180deg,#64748b,#334155)}
+/* инструменты на стене */
+.ws-tools{position:absolute;right:24px;top:60px;display:flex;flex-direction:column;gap:18px}
+.ws-walltool{display:block;width:6px;height:38px;border-radius:3px;background:linear-gradient(180deg,#94a3b8,#475569);transform-origin:top center;animation:toolSwing 4s ease-in-out infinite}
+.ws-walltool.wt1{background:linear-gradient(180deg,#94a3b8,#475569)}
+.ws-walltool.wt2{height:30px;background:linear-gradient(180deg,#f59e0b,#b45309);animation-delay:.8s}
+.ws-walltool.wt3{height:34px;background:linear-gradient(180deg,#4ade80,#15803d);animation-delay:1.6s}
+@keyframes toolSwing{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(5deg)}}
+/* лампа */
+.ws-lamp{position:absolute;top:-8px;left:50%;transform:translateX(-50%);width:40px;height:30px}
+.ws-lamphead{position:absolute;top:0;left:50%;transform:translateX(-50%);width:34px;height:16px;border-radius:8px 8px 4px 4px;background:linear-gradient(180deg,#f59e0b,#d97706);box-shadow:0 0 16px rgba(245,158,11,.5)}
+.ws-light{position:absolute;top:14px;left:50%;transform:translateX(-50%);width:60px;height:120px;background:linear-gradient(180deg,rgba(245,158,11,.25),transparent);filter:blur(6px);border-radius:50%;animation:lampFlicker 4s ease-in-out infinite}
+@keyframes lampFlicker{0%,100%{opacity:.6}50%{opacity:1}}
+/* верстак */
+.ws-bench{position:absolute;left:0;right:0;bottom:0;height:96px}
+.ws-benchtop{position:absolute;top:0;left:0;right:0;height:16px;border-radius:6px;background:linear-gradient(180deg,#8a6a3a,#6a4a2a);box-shadow:0 6px 16px rgba(0,0,0,.4)}
+.ws-benchtop::after{content:'';position:absolute;top:3px;left:20px;right:20px;height:2px;background:rgba(255,255,255,.2)}
+.ws-benchleg{position:absolute;top:16px;bottom:0;width:14px;background:linear-gradient(180deg,#5a4a30,#3a2f1e);border-radius:3px}
+.ws-benchleg.l1{left:18px}
+.ws-benchleg.l2{right:18px}
+.ws-drawer{position:absolute;bottom:0;left:60px;right:60px;height:34px;border-radius:6px 6px 0 0;background:linear-gradient(180deg,#6a5a3a,#4a3a20);display:flex;align-items:center;justify-content:center;gap:8px;border:1px solid rgba(255,255,255,.1)}
+.ws-drawer i{width:10px;height:10px;border-radius:50%;background:#f59e0b;box-shadow:0 0 6px rgba(245,158,11,.6)}
+/* кофемашина на верстаке */
+.ws-machine{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);width:150px;height:150px;animation:haFloat 5s ease-in-out infinite}
+.ws-mbody{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);width:120px;height:100px;border-radius:12px 12px 6px 6px;background:linear-gradient(180deg,#2c3748,#161d2b);border:1px solid rgba(255,255,255,.13);box-shadow:inset 0 0 24px rgba(0,0,0,.5)}
+.ws-mbody::before{content:'';position:absolute;top:6px;left:8px;width:16px;height:80px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,.12),transparent);filter:blur(2px)}
+.ws-mscreen{position:absolute;top:12px;left:50%;transform:translateX(-50%);width:84px;height:26px;border-radius:5px;background:linear-gradient(180deg,#0b3a22,#0a2d1a);border:1px solid rgba(80,255,160,.4);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#4ade80;letter-spacing:.12em;animation:screenPulse 3s infinite}
+.ws-mgrind{position:absolute;top:46px;left:16px;right:16px;height:26px;border-radius:5px;background:linear-gradient(180deg,#3d4a5e,#232c3d);border:1px solid rgba(255,255,255,.1)}
+.ws-mgrind::after{content:'';position:absolute;top:8px;left:20%;width:22px;height:8px;border-radius:4px;background:linear-gradient(90deg,#8a5a1a,#5a3a12);animation:grindMove 2s infinite}
 @keyframes grindMove{0%,100%{left:18%}50%{left:55%}}
-/* лоток выдачи */
-.ha-outlet{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);width:76px;height:22px;border-radius:6px;background:linear-gradient(180deg,#1a2230,#0e1420);border:1px solid rgba(255,255,255,.12)}
-.ha-outlet::after{content:'';position:absolute;top:4px;left:50%;transform:translateX(-50%);width:4px;height:12px;border-radius:3px;background:linear-gradient(180deg,#f59e0b,transparent);animation:pour 3.5s ease-in-out infinite}
-@keyframes pour{0%,55%{opacity:0}65%,80%{opacity:.9}100%{opacity:0}}
-/* верх машины */
-.ha-top{position:absolute;top:52px;left:50%;transform:translateX(-50%);width:214px;height:22px;border-radius:8px 8px 0 0;background:linear-gradient(180deg,#37455a,#242e40);border:1px solid rgba(255,255,255,.1)}
-/* бункер */
-.ha-hopper{
-  position:absolute;top:0;left:50%;transform:translateX(-50%);
-  width:66px;height:56px;border-radius:10px;
-  background:linear-gradient(180deg,rgba(245,158,11,.28),rgba(245,158,11,.1));
-  border:1px solid rgba(245,158,11,.45);
-  box-shadow:inset 0 0 20px rgba(245,158,11,.15);
-}
-.ha-bean{position:absolute;width:9px;height:6px;border-radius:50%;background:linear-gradient(135deg,#8a5a1a,#5a3a12);box-shadow:inset -1px 0 1px rgba(0,0,0,.5);animation:beanFall 2.2s ease-in infinite;opacity:0}
-.ha-bean.b1{left:30%;top:8px;animation-delay:0s}
-.ha-bean.b2{left:50%;top:6px;animation-delay:.7s}
-.ha-bean.b3{left:40%;top:10px;animation-delay:1.4s}
-@keyframes beanFall{0%{transform:translateY(0);opacity:0}25%{opacity:1}100%{transform:translateY(38px);opacity:0}}
-/* основание */
-.ha-base{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:230px;height:20px;border-radius:10px;background:linear-gradient(180deg,#2c3748,#1a2230);border:1px solid rgba(255,255,255,.1)}
-/* чашка с кофе и паром */
-.ha-cup{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);width:44px;height:34px}
-.ha-cup::before{content:'';position:absolute;top:8px;right:-12px;width:12px;height:16px;border:3px solid #cbd5e1;border-left:none;border-radius:0 8px 8px 0}
-.ha-cup::after{content:'';position:absolute;top:0;left:0;width:44px;height:34px;border-radius:0 0 12px 12px;background:linear-gradient(180deg,#eef2f7,#cbd5e1);box-shadow:0 6px 16px rgba(0,0,0,.3)}
-.ha-coffee{position:absolute;top:4px;left:4px;width:36px;height:14px;border-radius:4px;background:linear-gradient(180deg,#4a2c14,#3a2010);z-index:2;animation:coffeeRise 3.5s ease-in-out infinite}
-@keyframes coffeeRise{0%,55%{height:6px}70%,90%{height:14px}100%{height:14px}}
-.ha-steam{position:absolute;top:-14px;left:50%;width:5px;height:16px;border-radius:3px;background:linear-gradient(180deg,transparent,rgba(226,232,240,.6),transparent);animation:steamUp 2.2s ease-out infinite;opacity:0}
-.ha-steam.s1{left:30%}.ha-steam.s2{left:50%;animation-delay:.6s}.ha-steam.s3{left:70%;animation-delay:1.2s}
-@keyframes steamUp{0%{transform:translateY(6px) scaleX(1);opacity:0}30%{opacity:.8}100%{transform:translateY(-20px) scaleX(1.8);opacity:0}}
-/* свечение позади */
-.ha-glow{position:absolute;bottom:-40px;left:50%;transform:translateX(-50%);width:280px;height:80px;border-radius:50%;background:radial-gradient(ellipse,rgba(245,158,11,.3),transparent 70%);filter:blur(20px);animation:glowPulse 4s ease-in-out infinite}
-@keyframes glowPulse{0%,100%{opacity:.5}50%{opacity:1}}
-
-/* инструменты и механика рядом */
-.ha-tools{position:absolute;left:-16px;bottom:24px;width:190px;height:190px}
-.ha-tool{position:absolute;filter:drop-shadow(0 10px 20px rgba(0,0,0,.5));animation:haFloat 6s ease-in-out infinite}
-.ha-tool.wrench{top:6px;left:0;animation-delay:.8s}
-.ha-tool.screwdriver{top:76px;left:66px;animation-delay:1.6s}
-.ha-wrench-body{width:96px;height:18px;border-radius:6px;background:linear-gradient(180deg,#94a3b8,#475569);border:1px solid rgba(255,255,255,.2);transform:rotate(-25deg)}
-.ha-wrench-body::before{content:'';position:absolute;top:-7px;left:8px;width:18px;height:30px;border:6px solid #64748b;border-radius:9px}
-.ha-wrench-body::after{content:'';position:absolute;top:4px;right:12px;width:7px;height:7px;border-radius:50%;background:#1a2230}
-.ha-tool.screwdriver i{display:block;width:16px;height:100px;border-radius:8px;background:linear-gradient(180deg,#f59e0b,#d97706);box-shadow:inset -3px 0 4px rgba(0,0,0,.3);transform:rotate(15deg)}
-.ha-tool.screwdriver i::before{content:'';display:block;width:16px;height:30px;background:linear-gradient(180deg,#94a3b8,#475569);border-radius:8px 8px 2px 2px;margin-top:-30px}
-.ha-tool.screwdriver i::after{content:'';display:block;width:7px;height:22px;background:linear-gradient(180deg,#cbd5e1,#64748b);border-radius:2px;margin:80px auto 0}
-/* шестерни — крупнее и с зубцами */
-.ha-gear{position:absolute;border-radius:50%;background:radial-gradient(circle at 40% 35%,#64748b,#2b3648);border:4px dashed rgba(255,255,255,.4);animation:gearSpin 10s linear infinite;box-shadow:0 8px 20px rgba(0,0,0,.4)}
-.ha-gear.g1{width:56px;height:56px;bottom:-4px;right:-10px;animation-duration:7s}
-.ha-gear.g2{width:38px;height:38px;bottom:52px;left:2px;animation-duration:4.5s;animation-direction:reverse}
-.ha-gear.g3{width:26px;height:26px;top:40px;left:-8px;animation-duration:3.5s}
-.ha-gear.g4{width:18px;height:18px;bottom:90px;right:6px;animation-duration:2.8s}
-.ha-gear::after{content:'';position:absolute;inset:22%;border-radius:50%;background:radial-gradient(circle,#1a2230,#0e1420)}
-.ha-gear::before{content:'';position:absolute;inset:-6px;border-radius:50%;background:conic-gradient(from 0deg,transparent 0deg 24deg,#f59e0b 24deg 30deg,transparent 30deg 54deg,#f59e0b 54deg 60deg,transparent 60deg 84deg,#f59e0b 84deg 90deg,transparent 90deg 114deg,#f59e0b 114deg 120deg,transparent 120deg 144deg,#f59e0b 144deg 150deg,transparent 150deg 174deg,#f59e0b 174deg 180deg,transparent 180deg 204deg,#f59e0b 204deg 210deg,transparent 210deg 234deg,#f59e0b 234deg 240deg,transparent 240deg 264deg,#f59e0b 264deg 270deg,transparent 270deg 294deg,#f59e0b 294deg 300deg,transparent 300deg 324deg,#f59e0b 324deg 330deg,transparent 330deg 354deg,#f59e0b 354deg 360deg);opacity:.5;filter:blur(1px)}
-@keyframes gearSpin{to{transform:rotate(360deg)}}
-
-/* ===== ЭЛЕКТРОНИКА: плата с чипами ===== */
-.ha-electronics{position:absolute;left:20px;top:8px;width:150px;z-index:4;animation:haFloat 7s ease-in-out 0.5s infinite}
-.ha-pcb{
-  position:relative;width:148px;height:120px;border-radius:12px;
-  background:linear-gradient(160deg,#123c2a,#0a2418);
-  border:1px solid rgba(74,222,128,.35);
-  box-shadow:0 10px 24px rgba(0,0,0,.5),inset 0 0 20px rgba(74,222,128,.08);
-  overflow:hidden;
-}
-/* дорожки платы */
-.ha-pcb::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(74,222,128,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(74,222,128,.08) 1px,transparent 1px);background-size:12px 12px}
-.ha-pcb::after{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,transparent,#4ade80,transparent);animation:pcbTrace 3s linear infinite;opacity:.7}
-@keyframes pcbTrace{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
-/* чипы */
-.ha-chip{position:absolute;width:34px;height:22px;border-radius:3px;background:linear-gradient(180deg,#1a2230,#0e1420);border:1px solid rgba(74,222,128,.3);box-shadow:0 2px 6px rgba(0,0,0,.5)}
-.ha-chip::before{content:'';position:absolute;top:-3px;left:3px;right:3px;height:2px;background:rgba(255,255,255,.25);border-radius:2px}
-.ha-chip i{position:absolute;inset:6px 8px;border-radius:2px;background:radial-gradient(circle at 50% 50%,rgba(74,222,128,.4),transparent)}
-.ha-chip.c1{top:12px;left:14px;animation:chipGlow 3s ease-in-out infinite}
-.ha-chip.c2{top:12px;right:14px;animation:chipGlow 3s ease-in-out 1s infinite}
-.ha-chip.c3{bottom:14px;left:24px;width:44px;animation:chipGlow 3s ease-in-out 2s infinite}
-@keyframes chipGlow{0%,100%{box-shadow:0 2px 6px rgba(0,0,0,.5)}50%{box-shadow:0 0 12px rgba(74,222,128,.5),0 2px 6px rgba(0,0,0,.5)}}
-/* конденсаторы */
-.ha-cap{position:absolute;width:14px;height:18px;border-radius:3px;background:linear-gradient(180deg,#334155,#1e293b);border:1px solid rgba(255,255,255,.2);top:44px;left:12px}
-.ha-cap::after{content:'';position:absolute;top:-3px;left:50%;transform:translateX(-50%);width:8px;height:3px;border-radius:2px;background:rgba(255,255,255,.4)}
-.ha-cap.cap2{left:60px;top:52px;animation:capPulse 4s ease-in-out infinite}
-@keyframes capPulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.6)}}
-/* резисторы */
-.ha-res{position:absolute;width:16px;height:5px;border-radius:3px;background:linear-gradient(180deg,#d97706,#92400e);border:1px solid rgba(0,0,0,.4);transform:rotate(-25deg)}
-.ha-res.r1{top:46px;left:84px}
-.ha-res.r2{top:58px;left:100px;transform:rotate(20deg)}
-.ha-res.r3{bottom:16px;right:14px;transform:rotate(-10deg)}
-/* светодиоды */
-.ha-led{position:absolute;width:6px;height:6px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#22d3ee);box-shadow:0 0 8px rgba(34,211,238,.8);animation:ledBlink 2s ease-in-out infinite}
-.ha-led.led1{top:42px;right:12px}
-.ha-led.led2{top:70px;left:14px;background:radial-gradient(circle at 35% 30%,#fff,#f59e0b);box-shadow:0 0 8px rgba(245,158,11,.8);animation-delay:.6s}
-.ha-led.led3{bottom:10px;left:10px;background:radial-gradient(circle at 35% 30%,#fff,#4ade80);box-shadow:0 0 8px rgba(74,222,128,.8);animation-delay:1.2s}
-@keyframes ledBlink{0%,100%{opacity:1}50%{opacity:.3}}
-/* подпись-плашка */
-.ha-schematic{
-  margin-top:8px;text-align:center;padding:5px 10px;border-radius:8px;
-  background:rgba(16,22,36,.85);border:1px solid rgba(34,211,238,.25);
-  font-size:9px;font-weight:800;letter-spacing:.12em;color:var(--cyan);font-family:'Unbounded',sans-serif;
-  animation:bubblePop 6s ease-in-out infinite;
-}
-@media(max-width:1100px){.ha-electronics{transform:scale(.8);left:0}}
-@media(max-width:860px){.ha-electronics{display:none}}
-
-/* ===== КОФЕЙНЫЙ РОБОТ-ПОМОЩНИК ===== */
-.bot-helper{
-  position:absolute;top:-40px;right:0;z-index:5;width:110px;height:140px;
-  animation:botFloat 4.5s ease-in-out infinite;
-  cursor:pointer;
-}
-@media(max-width:1100px){.bot-helper{transform:scale(.8);top:-30px;right:-10px}}
-@media(max-width:860px){.bot-helper{display:none}}
-@keyframes botFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
-@keyframes botJump{0%{transform:translateY(0)}40%{transform:translateY(-30px)}100%{transform:translateY(0)}}
-/* антенна */
-.bot-ant{
-  position:absolute;top:6px;left:50%;transform:translateX(-50%);
-  width:4px;height:22px;border-radius:4px;background:linear-gradient(180deg,#f59e0b,#64748b);
-}
-.bot-light{
-  position:absolute;top:-6px;left:50%;transform:translateX(-50%);
-  width:11px;height:11px;border-radius:50%;
-  background:radial-gradient(circle at 35% 30%,#fff,#fbbf24,#d97706);
-  box-shadow:0 0 10px rgba(245,158,11,.9),0 0 22px rgba(245,158,11,.5);
-  animation:botLight 2s ease-in-out infinite;
-}
-@keyframes botLight{0%,100%{opacity:1;transform:translateX(-50%) scale(1)}50%{opacity:.5;transform:translateX(-50%) scale(.8)}}
-/* голова */
-.bot-head{
-  position:absolute;top:30px;left:50%;transform:translateX(-50%);
-  width:76px;height:62px;border-radius:18px;
-  background:linear-gradient(180deg,#37455a,#1e2838);
-  border:1px solid rgba(255,255,255,.14);
-  box-shadow:inset 0 0 18px rgba(0,0,0,.4),0 8px 20px rgba(0,0,0,.4);
-  animation:botHead 4s ease-in-out infinite;
-}
-@keyframes botHead{0%,100%{transform:translateX(-50%) rotate(0)}25%{transform:translateX(-50%) rotate(-3deg)}75%{transform:translateX(-50%) rotate(3deg)}}
-.bot-face{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:12px;flex-direction:row;flex-wrap:nowrap;padding:8px}
-/* глаза */
-.bot-eye{
-  width:15px;height:17px;border-radius:50%;
-  background:radial-gradient(circle at 40% 35%,#fff 15%,#4ade80 50%,#15803d);
-  box-shadow:0 0 8px rgba(74,222,128,.6),inset 0 -3px 5px rgba(0,0,0,.3);
-  animation:botBlink 3.6s ease-in-out infinite;
-  position:relative;
-}
-.bot-eye::after{content:'';position:absolute;top:50%;left:50%;width:5px;height:5px;border-radius:50%;background:#0a0e17;transform:translate(-50%,-50%);animation:botLook 6s ease-in-out infinite}
-.bot-eye.left{animation-delay:.1s}
-.bot-eye.right{animation-delay:.1s}
-@keyframes botBlink{0%,90%,100%{transform:scaleY(1)}93%{transform:scaleY(.1)}96%{transform:scaleY(1)}}
-@keyframes botLook{0%,20%{transform:translate(-50%,-50%)}25%,45%{transform:translate(-50%,-50%) translateX(4px)}50%,70%{transform:translate(-50%,-50%) translateX(-4px)}75%,100%{transform:translate(-50%,-50%)}}
-/* рот */
-.bot-mouth{
-  position:absolute;bottom:10px;left:50%;transform:translateX(-50%);
-  width:20px;height:7px;border-radius:0 0 10px 10px;
-  background:linear-gradient(180deg,#1a2230,#0e1420);
-  border:2px solid #f59e0b;border-top:none;
-  animation:botTalk 2.2s ease-in-out infinite;
-}
-@keyframes botTalk{0%,60%,100%{height:6px}70%,85%{height:12px}}
-/* уши */
-.bot-ear{position:absolute;top:20px;width:12px;height:26px;border-radius:6px;background:linear-gradient(180deg,#475569,#2b3648);border:1px solid rgba(255,255,255,.12)}
-.bot-ear.el{left:-8px}
-.bot-ear.er{right:-8px}
-/* тело */
-.bot-body{
-  position:absolute;top:94px;left:50%;transform:translateX(-50%);
-  width:56px;height:48px;border-radius:12px;
-  background:linear-gradient(180deg,#2c3748,#161d2b);
-  border:1px solid rgba(255,255,255,.12);
-  box-shadow:inset 0 0 14px rgba(0,0,0,.4);
-  display:flex;align-items:center;justify-content:center;
-}
-.bot-heart{font-size:20px;animation:botHeart 1.8s ease-in-out infinite;filter:drop-shadow(0 0 6px rgba(245,158,11,.6))}
-@keyframes botHeart{0%,100%{transform:scale(1)}30%{transform:scale(1.25)}60%{transform:scale(1)}}
-.bot-btn{position:absolute;width:7px;height:7px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fbbf24,#b45309);box-shadow:0 0 5px rgba(245,158,11,.7);animation:btnBlink 2s infinite}
-.bot-btn.b1{top:5px;right:7px}
-.bot-btn.b2{top:5px;left:7px;animation-delay:.8s}
-/* руки */
-.bot-arm{position:absolute;top:104px;width:26px;height:18px;border-radius:8px;background:linear-gradient(180deg,#475569,#2b3648);border:1px solid rgba(255,255,255,.12);transform-origin:top center;animation:botWave 3s ease-in-out infinite}
-.bot-arm.arm-l{left:8px;transform:rotate(15deg)}
-.bot-arm.arm-r{right:8px;transform:rotate(-15deg);animation-delay:1.2s}
-@keyframes botWave{0%,100%{transform:rotate(0)}25%{transform:rotate(18deg)}50%{transform:rotate(-5deg)}75%{transform:rotate(12deg)}}
-.bot-cup{
-  position:absolute;top:-8px;right:-10px;width:14px;height:12px;border-radius:0 0 5px 5px;
-  background:linear-gradient(180deg,#eef2f7,#cbd5e1);
-  animation:cupShake 3s ease-in-out infinite;
-}
-.bot-cup::before{content:'';position:absolute;top:1px;left:-5px;width:5px;height:7px;border:1.5px solid #cbd5e1;border-left:none;border-radius:0 3px 3px 0}
-@keyframes cupShake{0%,100%{transform:rotate(0) translateY(0)}30%{transform:rotate(-12deg) translateY(-2px)}70%{transform:rotate(10deg) translateY(-1px)}}
-/* пузырь с речью */
-.bot-bubble{
-  position:absolute;top:8px;right:-86px;padding:8px 12px;border-radius:12px;
-  background:rgba(16,22,36,.9);border:1px solid rgba(245,158,11,.35);
-  font-size:12px;font-weight:700;color:var(--text);white-space:nowrap;
-  box-shadow:0 8px 20px rgba(0,0,0,.4);
-  animation:bubblePop 6s ease-in-out infinite;
-}
-.bot-bubble::before{content:'';position:absolute;left:-7px;top:50%;transform:translateY(-50%);border:6px solid transparent;border-right-color:rgba(16,22,36,.9)}
-@keyframes bubblePop{0%,10%{opacity:0;transform:scale(.6)}18%,70%{opacity:1;transform:scale(1)}85%,100%{opacity:0;transform:scale(.8)}}
-@media(max-width:1100px){.bot-helper{transform:scale(.75);top:-50px;left:-50px}}
-@media(max-width:860px){.bot-helper{display:none}}
-
-@media(max-width:1100px){.hero-art{width:300px;opacity:.8}.ha-machine{transform:scale(.8);right:-20px}}
-@media(max-width:860px){.hero-art{display:none}}
-
-/* ---------- HERO ---------- */
+.ws-mport{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);width:40px;height:14px;border-radius:4px;background:linear-gradient(180deg,#475569,#2b3648);border:1px solid rgba(255,255,255,.12)}
+.ws-mscrew{position:absolute;width:7px;height:7px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#cbd5e1,#64748b);animation:toolSwing 3s infinite}
+.ws-mscrew.s1{top:4px;right:8px}
+.ws-mscrew.s2{bottom:6px;left:8px;animation-delay:1s}
+.ws-mtop{position:absolute;top:-8px;left:50%;transform:translateX(-50%);width:124px;height:14px;border-radius:6px 6px 0 0;background:linear-gradient(180deg,#37455a,#242e40);border:1px solid rgba(255,255,255,.1)}
+.ws-mcup{position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);width:22px;height:16px;border-radius:0 0 6px 6px;background:linear-gradient(180deg,#eef2f7,#cbd5e1);animation:cupShake 3.5s infinite}
+.ws-msteam{position:absolute;top:-12px;left:50%;width:4px;height:12px;border-radius:2px;background:linear-gradient(180deg,transparent,rgba(226,232,240,.6),transparent);animation:steamUp 2s infinite;opacity:0}
+/* детали на столе */
+.ws-detail{position:absolute;bottom:34px;border-radius:8px;background:linear-gradient(180deg,#2c3748,#1a2230);border:1px solid rgba(255,255,255,.12);box-shadow:0 6px 14px rgba(0,0,0,.4)}
+.ws-detail.d1{left:24px;width:56px;height:34px}
+.ws-detail.d1 i{display:block;width:36px;height:20px;margin:7px auto;border-radius:4px;background:linear-gradient(180deg,#f59e0b,#b45309);animation:capPulse 3s infinite}
+.ws-detail.d2{right:24px;width:48px;height:30px}
+.ws-detail.d2 i{display:block;width:30px;height:18px;margin:6px auto;border-radius:50%;background:radial-gradient(circle,#94a3b8,#475569)}
+.ws-detail.d3{left:40%;bottom:40px;width:44px;height:24px}
+.ws-detail.d3 i{display:block;width:26px;height:12px;margin:6px auto;border-radius:3px;background:linear-gradient(180deg,#4ade80,#15803d)}
+/* табличка */
+.ws-sign{position:absolute;top:40px;left:50%;transform:translateX(-50%);padding:8px 18px;border-radius:8px;background:rgba(10,14,23,.85);border:1px solid rgba(245,158,11,.35);font-size:11px;font-weight:800;text-align:center;letter-spacing:.06em;color:var(--amber2);box-shadow:0 8px 20px rgba(0,0,0,.4);animation:signGlow 4s ease-in-out infinite}
+@keyframes signGlow{0%,100%{box-shadow:0 8px 20px rgba(0,0,0,.4)}50%{box-shadow:0 8px 30px rgba(245,158,11,.3)}}
+@media(max-width:1100px){.hero-art{transform:scale(.8);right:-4%}}
+@media(max-width:860px){.hero-art{display:none}}/* ---------- HERO ---------- */
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:120px 5% 80px;overflow:hidden}
 /* canvas removed */
 .hero-inner{position:relative;z-index:2;max-width:600px}
@@ -659,79 +485,61 @@ footer{border-top:1px solid var(--line);padding:44px 5%;background:rgba(10,14,23
 <header class="hero">
   <div class="flow-lines"><div class="flow-line l1"></div><div class="flow-line l2"></div><div class="flow-line l3"></div></div>
   <div class="hero-art">
-    <!-- большая нарисованная автоматическая кофемашина -->
-    <div class="ha-machine">
-      <div class="ha-hopper"><span class="ha-bean b1"></span><span class="ha-bean b2"></span><span class="ha-bean b3"></span></div>
-      <div class="ha-top"></div>
-      <div class="ha-body">
-        <div class="ha-screen">▮▮ 96°C</div>
-        <div class="ha-btns"><i></i><i></i><i></i><i></i><i></i></div>
-        <div class="ha-grinder"></div>
-        <div class="ha-outlet"></div>
+  <!-- МАСТЕРСКАЯ: верстак с кофемашиной, полки, инструменты -->
+  <div class="ws">
+    <!-- стена -->
+    <div class="ws-wall"></div>
+    <!-- полки с запчастями -->
+    <div class="ws-shelf sh1">
+      <span class="ws-part pb"></span>
+      <span class="ws-part jb"></span>
+      <span class="ws-part pump"></span>
+      <span class="ws-part filter"></span>
+    </div>
+    <div class="ws-shelf sh2">
+      <span class="ws-part canister"></span>
+      <span class="ws-part coil"></span>
+      <span class="ws-part gearbox"></span>
+    </div>
+    <!-- инструменты на стене -->
+    <div class="ws-tools">
+      <span class="ws-walltool wt1"></span>
+      <span class="ws-walltool wt2"></span>
+      <span class="ws-walltool wt3"></span>
+    </div>
+    <!-- лампа -->
+    <div class="ws-lamp"><span class="ws-lamphead"></span><span class="ws-light"></span></div>
+    <!-- верстак -->
+    <div class="ws-bench">
+      <div class="ws-benchtop"></div>
+      <div class="ws-benchleg l1"></div>
+      <div class="ws-benchleg l2"></div>
+      <div class="ws-drawer"><i></i><i></i></div>
+    </div>
+    <!-- кофемашина на верстаке (в разборе) -->
+    <div class="ws-machine">
+      <div class="ws-mbody">
+        <div class="ws-mscreen">OK</div>
+        <div class="ws-mgrind"></div>
+        <div class="ws-mport"></div>
+        <div class="ws-mscrew s1"></div>
+        <div class="ws-mscrew s2"></div>
       </div>
-      <div class="ha-base"></div>
-      <div class="ha-cup"><div class="ha-coffee"></div><div class="ha-steam s1"></div><div class="ha-steam s2"></div><div class="ha-steam s3"></div></div>
-      <div class="ha-glow"></div>
+      <div class="ws-mtop"></div>
+      <div class="ws-mcup"><div class="ws-msteam"></div></div>
     </div>
-    <!-- инструменты/механика рядом -->
-    <div class="ha-tools">
-      <div class="ha-tool wrench"><i></i></div>
-      <div class="ha-tool screwdriver"><i></i></div>
-      <div class="ha-tool pliers"><i></i></div>
-      <div class="ha-tool hammer"><i></i></div>
-      <div class="ha-gear g1"></div>
-      <div class="ha-gear g2"></div>
-      <div class="ha-gear g3"></div>
-      <div class="ha-gear g4"></div>
-      <div class="ha-gear g5"></div>
-      <div class="ha-bolt b1"></div>
-      <div class="ha-bolt b2"></div>
-      <div class="ha-spring"></div>
-    </div>
-    <!-- электроника: платы, чипы, микросхемы -->
-    <div class="ha-electronics">
-      <div class="ha-pcb">
-        <div class="ha-chip c1"><i></i></div>
-        <div class="ha-chip c2"><i></i></div>
-        <div class="ha-chip c3"><i></i></div>
-        <div class="ha-cap"></div>
-        <div class="ha-cap cap2"></div>
-        <div class="ha-res r1"></div>
-        <div class="ha-res r2"></div>
-        <div class="ha-res r3"></div>
-        <div class="ha-led led1"></div>
-        <div class="ha-led led2"></div>
-        <div class="ha-led led3"></div>
-      </div>
-      <div class="ha-schematic">▮▮ PCB · CPU · 12V</div>
-    </div>
-    <div class="hi-chip c1">🔧 Ремонт за 1 день</div>
-    <div class="hi-chip c2">🛡️ Гарантия 12 мес</div>
-    <div class="hi-chip c3">⚡ Выезд сегодня</div>
+    <!-- детали рядом: блок, жернова, помпа -->
+    <div class="ws-detail d1"><i></i></div>
+    <div class="ws-detail d2"><i></i></div>
+    <div class="ws-detail d3"><i></i></div>
+    <!-- табличка -->
+    <div class="ws-sign">Сервисный центр<br>COFFEE CARE</div>
   </div>
-<div class="hero-inner">
+  <div class="hi-chip c1">🔧 Ремонт за 1 день</div>
+  <div class="hi-chip c2">🛡️ Гарантия 12 мес</div>
+  <div class="hi-chip c3">⚡ Выезд сегодня</div>
+</div><div class="hero-inner">
     <div class="hero-badge"><span class="pulse"></span> Умный сервис · ИИ-диагностика 24/7</div>
-    <!-- кофейный робот-помощник (у заголовка) -->
-    <div class="bot-helper" id="botHelper">
-      <div class="bot-ant"><span class="bot-light"></span></div>
-      <div class="bot-head">
-        <div class="bot-face">
-          <div class="bot-eye left"></div>
-          <div class="bot-eye right"></div>
-          <div class="bot-mouth"></div>
-        </div>
-        <div class="bot-ear el"></div>
-        <div class="bot-ear er"></div>
-      </div>
-      <div class="bot-body">
-        <div class="bot-heart">☕</div>
-        <div class="bot-btn b1"></div>
-        <div class="bot-btn b2"></div>
-      </div>
-      <div class="bot-arm arm-l"><span class="bot-cup"></span></div>
-      <div class="bot-arm arm-r"></div>
-      <div class="bot-bubble">Привет! Я помогу 😊</div>
-    </div>
     <h1 id="heroTitle">
       <span class="ht-line l1"><span class="ht-word">Диагностика</span> <span class="ht-accent">точная</span><span class="ht-dot">.</span></span>
       <span class="ht-line l2"><span class="ht-word">Цены</span> <span class="ht-accent">честные</span><span class="ht-dot">.</span></span>
@@ -797,24 +605,17 @@ footer{border-top:1px solid var(--line);padding:44px 5%;background:rgba(10,14,23
 <section id="useful">
   <div class="sec-head reveal">
     <div class="sec-label">Полезное</div>
-    <h2 class="sec-title">База знаний — всё онлайн</h2>
-    <p class="sec-sub">Мануалы, размеры колец, расходники, типовые неисправности — без скачивания, прямо на сайте. Обновляется мастером.</p>
+    <h2 class="sec-title">База знаний — всё отдельно</h2>
+    <p class="sec-sub">Мануалы, размеры уплотнителей, расходники — на отдельных страницах. Составлено мастером с 12-летним опытом.</p>
   </div>
-  <div class="kb-tabs reveal">
-    <button class="kb-tab active" data-tab="orings">⭕ Кольца</button>
-    <button class="kb-tab" data-tab="sizes">📐 Размеры</button>
-    <button class="kb-tab" data-tab="parts">🔩 Расходники</button>
-    <button class="kb-tab" data-tab="manuals">📚 Мануалы</button>
-    <button class="kb-tab" data-tab="issues">🩹 Неисправности</button>
-    <button class="kb-tab" data-tab="cases">⚡ Частые случаи</button>
-    <button class="kb-tab" data-tab="firmwares">📡 Прошивки</button>
-    <button class="kb-tab" data-tab="updates">🚀 Апгрейды</button>
-    <button class="kb-tab" data-tab="suppliers">🏪 Запчасти где купить</button>
+  <div class="serv-grid">
+    <a href="knowledge.html" class="serv-card reveal" style="text-decoration:none;color:inherit"><div class="serv-icon">📚</div><h3>База знаний</h3><p>Всё в одном месте: неисправности, случаи, прошивки, апгрейды, поставщики.</p><span class="serv-price">Открыть →</span></a>
+    <a href="manuals.html" class="serv-card reveal" style="text-decoration:none;color:inherit"><div class="serv-icon">📖</div><h3>Мануалы</h3><p>Инструкции по ремонту и обслуживанию для всех брендов кофемашин.</p><span class="serv-price">Открыть →</span></a>
+    <a href="sizes.html" class="serv-card reveal" style="text-decoration:none;color:inherit"><div class="serv-icon">📐</div><h3>Размеры уплотнителей</h3><p>O-ring и комплектующие: все размеры в одной таблице, экспорт в Excel.</p><span class="serv-price">Открыть →</span></a>
+    <a href="parts.html" class="serv-card reveal" style="text-decoration:none;color:inherit"><div class="serv-icon">🔩</div><h3>Расходники</h3><p>Шланги, жернова, помпы, фильтры — с ценами и ресурсом.</p><span class="serv-price">Открыть →</span></a>
+    <a href="firmware.html" class="serv-card reveal" style="text-decoration:none;color:inherit"><div class="serv-icon">📡</div><h3>Прошивки</h3><p>Как обновить ПО кофемашины: инструкции по всем брендам.</p><span class="serv-price">Открыть →</span></a>
+    <a href="blog.html" class="serv-card reveal" style="text-decoration:none;color:inherit"><div class="serv-icon">✍️</div><h3>Блог</h3><p>Статьи о ремонте, чистке и обслуживании кофемашин.</p><span class="serv-price">Открыть →</span></a>
   </div>
-  <div class="kb-search reveal">
-    <input id="kbSearch" type="text" placeholder="🔍 Поиск: бренд, размер, модель, проблема..." oninput="kbSearchNow()">
-  </div>
-  <div id="kbContent" class="reveal"></div>
 </section>
 
 <!-- BRANDS -->
@@ -976,8 +777,9 @@ footer{border-top:1px solid var(--line);padding:44px 5%;background:rgba(10,14,23
 <!-- Плавающая навигация (низ экрана) -->
 <div class="bottom-nav" id="bottomNav">
   <a href="#problems">🔧 Проблемы</a>
-  <a href="#useful">📚 Знания</a>
-  <a href="#prices">💰 Прайс</a>
+  <a href="manuals.html">📖 Мануалы</a>
+  <a href="sizes.html">📐 Размеры</a>
+  <a href="parts.html">🔩 Расходники</a>
   <a href="#ai-zone">🤖 ИИ</a>
   <a href="#contact">📞 Вызов</a>
 </div>
@@ -1012,36 +814,6 @@ footer{border-top:1px solid var(--line);padding:44px 5%;background:rgba(10,14,23
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
 document.getElementById('burger').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
-
-/* ===== КОФЕЙНЫЙ РОБОТ: реакции ===== */
-(function(){
-  const bot = document.getElementById('botHelper');
-  if (!bot) return;
-  const bubble = bot.querySelector('.bot-bubble');
-  const phrases = [
-    'Привет! Я помогу 😊',
-    'Кофемашина сломалась?',
-    'Опишите проблему — ИИ решит 🤖',
-    'Ремонт за 1 день! ⚡',
-    'Диагностика бесплатно 🎁'
-  ];
-  let idx = 0;
-  // менять фразу по клику
-  bot.addEventListener('click', function(){
-    idx = (idx + 1) % phrases.length;
-    bubble.textContent = phrases[idx];
-    bubble.style.animation = 'none';
-    bubble.offsetHeight;
-    bubble.style.animation = 'bubblePop 6s ease-in-out infinite';
-  });
-  // подпрыгивание при наведении
-  bot.addEventListener('mouseenter', function(){
-    this.style.animation = 'botFloat 4.5s ease-in-out infinite, botJump 0.5s ease';
-  });
-  bot.addEventListener('mouseleave', function(){
-    this.style.animation = 'botFloat 4.5s ease-in-out infinite';
-  });
-})();
 
 /* REVEAL */
 const io = new IntersectionObserver((e) => e.forEach(x => { if (x.isIntersecting) { x.target.classList.add('visible'); io.unobserve(x.target); } }), { threshold: 0.1 });
@@ -1129,12 +901,12 @@ function kbRender(t, data, q){
       html = '<table class="kb-table"><tr><th>Бренд</th><th>Узел</th><th>Размер</th><th>Материал</th><th>Кол-во</th></tr>' +
         data.map(r => `<tr><td><b>${kbEscape(r.brand)}</b></td><td>${kbEscape(r.system)}</td><td><span class="kb-badge">${kbEscape(r.size)}</span></td><td>${kbEscape(r.material)}</td><td>${r.qty} шт</td></tr>`).join('') + '</table>';
     } else if (t === 'sizes'){
-      // Размеры: только расходники и комплектующие (шланги, жернова, помпы, прокладки) — БЕЗ колец (они во вкладке «Кольца»)
+      // Размеры: только расходники и комплектующие (шланги, жернова, помпы, прокладки) — БЕЗ колец (они во вкладке «Уплотнители»)
       const parts = data.parts || [];
       html = '<div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap">' +
         '<button class="btn btn-primary" style="padding:10px 18px;font-size:12px" onclick="kbExportCSV()">📥 Скачать Excel (CSV)</button>' +
         '<button class="btn btn-ghost" style="padding:10px 18px;font-size:12px" onclick="kbCopyTable()">📋 Копировать таблицу</button>' +
-        '<div class="kb-badge" style="align-self:center">Кольца O-ring — во вкладке «Кольца»</div>' +
+        '<div class="kb-badge" style="align-self:center">Уплотнители O-ring — во вкладке «Уплотнители»</div>' +
         '</div>';
       html += '<table class="kb-table" id="sizesTable"><tr><th>Наименование</th><th>Бренд</th><th>Размер</th><th>Ресурс</th><th>Цена</th></tr>';
       parts.forEach(p => {
@@ -1193,6 +965,11 @@ kbLoad('orings');
 </script>
 </body>
 </html>
+
+
+
+
+
 
 
 
