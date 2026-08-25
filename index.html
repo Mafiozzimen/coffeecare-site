@@ -78,23 +78,51 @@ nav.scrolled{background:rgba(10,14,23,.75);backdrop-filter:blur(18px);border-bot
 .hero h1{font-family:'Unbounded',sans-serif;font-size:clamp(34px,5.2vw,62px);font-weight:800;line-height:1.12;letter-spacing:-.01em;margin-bottom:22px}
 .hero h1 .grad{background:linear-gradient(120deg,var(--amber),var(--amber2) 40%,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
 
-/* ===== 3D-заголовок: нарастает из глубины ===== */
+/* ===== 3D-заголовок: нарастает из глубины, потом ЖИВЁТ вечно ===== */
 #heroTitle{perspective:900px}
 #heroTitle .ht-line{display:block;overflow:visible}
 #heroTitle .ht-line span{display:inline-block;opacity:0;transform:translateZ(-300px) rotateX(35deg) scale(0.5);animation:htGrow 1.2s var(--ease) forwards}
 #heroTitle .ht-line:nth-child(1) span{animation-delay:.2s}
 #heroTitle .ht-line:nth-child(2) span{animation-delay:.7s}
 #heroTitle .ht-line:nth-child(3) span{animation-delay:1.2s}
-#heroTitle .ht-accent{background:linear-gradient(120deg,var(--amber),var(--amber2) 50%,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
-#heroTitle .ht-dot{color:var(--amber)}
+#heroTitle .ht-accent{background:linear-gradient(120deg,var(--amber),var(--amber2) 50%,var(--cyan),var(--amber));-webkit-background-clip:text;background-clip:text;color:transparent;background-size:300% 100%;animation:shimmerFlow 5s linear infinite}
+#heroTitle .ht-dot{color:var(--amber);animation:dotPulse 1.6s ease-in-out infinite}
 @keyframes htGrow{
   0%{opacity:0;transform:translateZ(-300px) rotateX(35deg) scale(0.4)}
   60%{opacity:1;transform:translateZ(40px) rotateX(-6deg) scale(1.04)}
   80%{transform:translateZ(-10px) rotateX(0) scale(.99)}
   100%{opacity:1;transform:translateZ(0) rotateX(0) scale(1)}
 }
-/* постоянное «дыхание» после появления */
-#heroTitle.played .ht-line span{animation:none;opacity:1;transform:none}
+/* ===== ПОСТОЯННАЯ ЖИЗНЬ заголовка ===== */
+/* после появления каждая строка «дышит» и покачивается волной */
+#heroTitle .ht-line span{
+  animation:htGrow 1.2s var(--ease) forwards, htBreath 3.4s ease-in-out infinite 1.6s, htWave 4s ease-in-out infinite 2.2s;
+}
+#heroTitle .ht-line:nth-child(1) span{animation-delay:.2s,1.6s,2.2s}
+#heroTitle .ht-line:nth-child(2) span{animation-delay:.7s,1.9s,2.6s}
+#heroTitle .ht-line:nth-child(3) span{animation-delay:1.2s,2.2s,3s}
+/* лёгкое «дыхание» — строки слегка наклоняются вперёд-назад */
+@keyframes htBreath{
+  0%,100%{transform:translateZ(0) rotateX(0) scale(1)}
+  25%{transform:translateZ(18px) rotateX(-8deg) scale(1.02)}
+  50%{transform:translateZ(6px) rotateX(0) scale(1)}
+  75%{transform:translateZ(22px) rotateX(-5deg) scale(1.03)}
+}
+/* волна по словам */
+@keyframes htWave{
+  0%,100%{transform:translateY(0)}
+  25%{transform:translateY(-4px)}
+  50%{transform:translateY(0)}
+  75%{transform:translateY(3px)}
+}
+/* перелив градиента непрерывно */
+@keyframes shimmerFlow{0%{background-position:0% 0}100%{background-position:300% 0}}
+/* пульс точки */
+@keyframes dotPulse{0%,100%{opacity:1;text-shadow:0 0 8px var(--amber)}50%{opacity:.5;text-shadow:0 0 20px var(--amber),0 0 40px var(--amber)}}
+/* мерцание акцента */
+#heroTitle .ht-accent{filter:drop-shadow(0 0 6px rgba(245,158,11,.3))}
+#heroTitle .ht-line:hover span{animation-play-state:paused}
+#heroTitle.played .ht-line span{animation-name:htGrow,htBreath,htWave;animation-fill-mode:forwards,none,none}
 
 /* ===== Бегущие светящиеся линии (энергия/вода) ===== */
 .flow-lines{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
@@ -120,13 +148,13 @@ nav.scrolled{background:rgba(10,14,23,.75);backdrop-filter:blur(18px);border-bot
 @keyframes flowDot{0%{left:-10px;opacity:0}10%{opacity:1}90%{opacity:1}100%{left:calc(100% + 10px);opacity:0}}
 .hero p{color:var(--muted);font-size:17px;font-weight:300;max-width:520px;margin-bottom:34px}
 .hero-btns{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:48px}
-.btn{padding:16px 32px;border-radius:50px;text-decoration:none;font-size:14px;font-weight:700;transition:.35s var(--ease);position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:8px}
+.btn{padding:17px 34px;border-radius:50px;text-decoration:none;font-size:14px;font-weight:700;transition:.35s var(--ease);position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:8px}
 .btn-primary{background:linear-gradient(135deg,var(--amber),var(--amber3));color:#0a0e17;box-shadow:0 6px 24px rgba(245,158,11,.35)}
-.btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(245,158,11,.5)}
-.btn-primary::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);transition:left .5s}
+.btn-primary:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 12px 40px rgba(245,158,11,.55)}
+.btn-primary::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);transition:left .5s}
 .btn-primary:hover::after{left:100%}
 .btn-ghost{border:1px solid var(--line);color:var(--text);background:var(--card);backdrop-filter:blur(8px)}
-.btn-ghost:hover{border-color:var(--amber);color:var(--amber);transform:translateY(-3px)}
+.btn-ghost:hover{border-color:var(--amber);color:var(--amber);transform:translateY(-3px);box-shadow:0 8px 24px rgba(245,158,11,.15)}
 .hero-stats{display:flex;gap:44px;flex-wrap:wrap}
 .stat-num{font-family:'Unbounded',sans-serif;font-size:30px;font-weight:800;background:linear-gradient(120deg,var(--amber2),var(--amber));-webkit-background-clip:text;background-clip:text;color:transparent}
 .stat-label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:4px}
@@ -162,7 +190,10 @@ section{padding:110px 5%;position:relative}
 .serv-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--amber),var(--cyan),transparent);opacity:0;transition:.5s}
 .serv-card:hover{transform:translateY(-8px);border-color:rgba(245,158,11,.3);background:var(--card2);box-shadow:0 24px 60px rgba(0,0,0,.45)}
 .serv-card:hover::before{opacity:1}
-.serv-icon{width:58px;height:58px;border-radius:16px;margin-bottom:22px;background:linear-gradient(135deg,rgba(245,158,11,.18),rgba(34,211,238,.08));border:1px solid rgba(245,158,11,.2);display:flex;align-items:center;justify-content:center;font-size:26px}
+.serv-icon{width:76px;height:76px;border-radius:20px;margin-bottom:24px;background:linear-gradient(135deg,rgba(245,158,11,.2),rgba(34,211,238,.1));border:1px solid rgba(245,158,11,.25);display:flex;align-items:center;justify-content:center;font-size:36px;position:relative;transition:.45s var(--ease);box-shadow:0 8px 24px rgba(245,158,11,.15)}
+.serv-card:hover .serv-icon{transform:scale(1.12) rotate(-5deg);box-shadow:0 12px 32px rgba(245,158,11,.3);border-color:var(--amber)}
+.serv-icon::after{content:'';position:absolute;inset:-4px;border-radius:24px;border:1px solid rgba(245,158,11,.2);opacity:0;transition:.4s}
+.serv-card:hover .serv-icon::after{opacity:1;inset:-8px}
 .serv-card h3{font-size:19px;font-weight:800;margin-bottom:12px}
 .serv-card p{color:var(--muted);font-size:14px;font-weight:300}
 .serv-price{margin-top:20px;display:inline-block;color:var(--amber2);font-weight:800;font-size:15px}
@@ -415,11 +446,10 @@ footer{border-top:1px solid var(--line);padding:44px 5%;background:rgba(10,14,23
 <nav id="nav">
   <a href="#" class="logo"><span class="cup">☕</span> COFFEE <span>CARE</span></a>
   <ul class="nav-links" id="navLinks">
+    <li><a href="#problems">Проблемы и решения</a></li>
+    <li><a href="#useful">Полезное</a></li>
     <li><a href="#services">Услуги</a></li>
-    <li><a href="#brands">Бренды</a></li>
-    <li><a href="#ai-zone">ИИ-ассистент</a></li>
-    <li><a href="#prices">Цены</a></li>
-    <li><a href="blog.html">Блог</a></li>
+    <li><a href="#prices">Прайс</a></li>
     <li><a href="#contact">Контакты</a></li>
   </ul>
   <a href="#contact" class="nav-cta">Вызвать мастера</a>
@@ -473,6 +503,43 @@ footer{border-top:1px solid var(--line);padding:44px 5%;background:rgba(10,14,23
     <div class="serv-card reveal"><div class="serv-icon">🏪</div><h3>Вендинговые автоматы</h3><p>Ремонт, настройка, обслуживание кофейных автоматов для бизнеса.</p><span class="serv-price">по договору</span></div>
     <div class="serv-card reveal"><div class="serv-icon">🚀</div><h3>Запуск кофейни</h3><p>Подключение оборудования, водоснабжение, настройка рецептур, обучение персонала.</p><span class="serv-price">от 5 000 ₽</span></div>
     <div class="serv-card reveal"><div class="serv-icon">🏭</div><h3>Вендинг под ключ</h3><p>Jofemar, Jetinno, Dr.Coffee, Unicum — установка, настройка, обслуживание и ремонт кофейных автоматов для бизнеса.</p><span class="serv-price">по договору</span></div>
+  </div>
+</section>
+
+<!-- PROBLEMS -->
+<section id="problems">
+  <div class="sec-head reveal">
+    <div class="sec-label">Проблемы и решения</div>
+    <h2 class="sec-title">Самое частое, с чем приходят</h2>
+    <p class="sec-sub">90% неисправностей чиним за один визит. Назовите свою — сразу скажем цену.</p>
+  </div>
+  <div class="serv-grid">
+    <div class="serv-card reveal"><div class="serv-icon">💧</div><h3>Машина течёт</h3><p>Лужи под машиной, пар, вода в поддоне. Частая причина — износ уплотнений или байпасного клапана.</p><span class="serv-price">Ремонт от 1 800 ₽</span></div>
+    <div class="serv-card reveal"><div class="serv-icon">☕</div><h3>Кофе стал безвкусным</h3><p>Жидкий, кислый или горький. Накипь и масла убивают вкус — нужна чистка и декальцинация.</p><span class="serv-price">Чистка от 1 200 ₽</span></div>
+    <div class="serv-card reveal"><div class="serv-icon">⚙️</div><h3>Шумит и вибрирует</h3><p>Стук при помолке или странные звуки — чаще всего жернова или заваривающий блок.</p><span class="serv-price">Диагностика 0 ₽</span></div>
+    <div class="serv-card reveal"><div class="serv-icon">❌</div><h3>Не включается / ошибка</h3><p>Код на дисплее или полная тишина. Причина в плате или блоке питания.</p><span class="serv-price">Ремонт от 1 500 ₽</span></div>
+    <div class="serv-card reveal"><div class="serv-icon">🫘</div><h3>Не мелет кофе</h3><p>Жернова не крутятся или хруст. Заменим жернова — и снова тихо.</p><span class="serv-price">Замена от 1 500 ₽</span></div>
+    <div class="serv-card reveal"><div class="serv-icon">🖥️</div><h3>Вендинг не работает</h3><p>Jofemar, Jetinno, Dr.Coffee, Unicum — не выдаёт, зависает, ошибка. Выезд на точку.</p><span class="serv-price">по договору</span></div>
+  </div>
+</section>
+
+<!-- USEFUL -->
+<section id="useful">
+  <div class="sec-head reveal">
+    <div class="sec-label">Полезное</div>
+    <h2 class="sec-title">Каталоги, руководства, мануалы</h2>
+    <p class="sec-sub">Собрано мастером с 12-летним опытом. Скачивайте и пользуйтесь бесплатно.</p>
+  </div>
+  <div class="serv-grid">
+    <a href="files/Мануалы_по_брендам.txt" class="serv-card reveal" download style="text-decoration:none;color:inherit"><div class="serv-icon">📚</div><h3>Мануалы по брендам</h3><p>Инструкции по ремонту и чистке: De'Longhi, Jura, Saeco, Philips и др.</p><span class="serv-price">Скачать ↓</span></a>
+    <a href="files/Прошивки_и_обновления.txt" class="serv-card reveal" download style="text-decoration:none;color:inherit"><div class="serv-icon">📡</div><h3>Прошивки и обновления</h3><p>Версии ПО по брендам, источники, способы обновления.</p><span class="serv-price">Скачать ↓</span></a>
+    <a href="files/Регламенты_ТО_и_гидросистема.txt" class="serv-card reveal" download style="text-decoration:none;color:inherit"><div class="serv-icon">🔧</div><h3>Регламенты ТО</h3><p>Периодичность обслуживания и полная замена гидросистемы.</p><span class="serv-price">Скачать ↓</span></a>
+    <a href="files/Размеры_уплотнительных_колец.txt" class="serv-card reveal" download style="text-decoration:none;color:inherit"><div class="serv-icon">⭕</div><h3>Размеры уплотнительных колец</h3><p>O-ring по брендам: размеры, материалы, количество.</p><span class="serv-price">Скачать ↓</span></a>
+    <a href="files/Болячки_по_брендам.txt" class="serv-card reveal" download style="text-decoration:none;color:inherit"><div class="serv-icon">🩹</div><h3>Типовые неисправности</h3><p>Симптом → причина → решение по каждому бренду.</p><span class="serv-price">Скачать ↓</span></a>
+    <a href="files/Частые_случаи_ремонта.txt" class="serv-card reveal" download style="text-decoration:none;color:inherit"><div class="serv-icon">⚡</div><h3>Частые случаи ремонта</h3><p>Симптом → запчасти → устранение → цена.</p><span class="serv-price">Скачать ↓</span></a>
+    <a href="files/Расходники_с_размерами.txt" class="serv-card reveal" download style="text-decoration:none;color:inherit"><div class="serv-icon">🔩</div><h3>Расходники с размерами</h3><p>Шланги, жернова, помпы, фильтры — с ценами и ресурсом.</p><span class="serv-price">Скачать ↓</span></a>
+    <a href="files/Апгрейды_кофемашин.txt" class="serv-card reveal" download style="text-decoration:none;color:inherit"><div class="serv-icon">🚀</div><h3>Апгрейды и модернизация</h3><p>WiFi-модуль, фильтры, паровой кран, подогрев чашек.</p><span class="serv-price">Скачать ↓</span></a>
+    <a href="files/Поставщики_запчастей.txt" class="serv-card reveal" download style="text-decoration:none;color:inherit"><div class="serv-icon">🏪</div><h3>Где купить запчасти</h3><p>Проверенные поставщики и магазины с рейтингами.</p><span class="serv-price">Скачать ↓</span></a>
   </div>
 </section>
 
