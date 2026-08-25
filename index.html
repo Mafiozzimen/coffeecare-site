@@ -68,6 +68,32 @@ nav.scrolled{background:rgba(10,14,23,.75);backdrop-filter:blur(18px);border-bot
 .burger{display:none;cursor:pointer;flex-direction:column;gap:5px;background:none;border:none;padding:6px}
 .burger div{width:26px;height:2.5px;background:var(--amber);border-radius:3px;transition:.35s}
 
+/* ---------- HERO фото: машина + инструменты ---------- */
+.hero-imgs{position:absolute;right:6%;top:50%;transform:translateY(-50%);z-index:3;width:340px;height:380px;pointer-events:none}
+.hi-main{
+  position:absolute;right:0;top:0;width:280px;height:280px;object-fit:cover;border-radius:24px;
+  border:1px solid rgba(255,255,255,.14);box-shadow:0 24px 60px rgba(0,0,0,.55);
+  filter:saturate(.9) brightness(.95);animation:hiFloat 6s ease-in-out infinite;
+}
+.hi-tools{
+  position:absolute;left:0;bottom:0;width:180px;height:150px;object-fit:cover;border-radius:18px;
+  border:1px solid rgba(255,255,255,.14);box-shadow:0 18px 44px rgba(0,0,0,.5);
+  filter:saturate(.9) brightness(.9);animation:hiFloat 7s ease-in-out 1s infinite;z-index:2;
+}
+.hi-chip{
+  position:absolute;padding:10px 16px;border-radius:30px;font-size:12px;font-weight:700;
+  background:rgba(16,22,36,.85);border:1px solid rgba(245,158,11,.35);backdrop-filter:blur(10px);
+  color:var(--text);box-shadow:0 8px 24px rgba(0,0,0,.4);z-index:3;
+  animation:chipPop .6s var(--ease) both;
+}
+.hi-chip.c1{top:12px;left:-14px;animation-delay:1.4s}
+.hi-chip.c2{bottom:34px;right:-8px;animation-delay:1.8s}
+.hi-chip.c3{bottom:-10px;left:40px;animation-delay:2.2s}
+@keyframes hiFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes chipPop{from{opacity:0;transform:translateY(20px) scale(.8)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:1100px){.hero-imgs{opacity:.55;width:260px}.hi-main{width:220px;height:220px}.hi-tools{width:140px;height:120px}}
+@media(max-width:860px){.hero-imgs{display:none}}
+
 /* ---------- HERO ---------- */
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:120px 5% 80px;overflow:hidden}
 #hero-canvas{position:absolute;right:-5%;top:50%;transform:translateY(-50%);width:58%;height:85%;z-index:1}
@@ -460,6 +486,13 @@ footer{border-top:1px solid var(--line);padding:44px 5%;background:rgba(10,14,23
 <header class="hero">
   <canvas id="hero-canvas"></canvas>
   <div class="flow-lines"><div class="flow-line l1"></div><div class="flow-line l2"></div><div class="flow-line l3"></div></div>
+  <div class="hero-imgs">
+    <img src="images/brands/delonghi.jpg" alt="Автоматическая кофемашина" class="hi-main">
+    <img src="images/machine-repair.jpg" alt="Инструменты мастера" class="hi-tools">
+    <div class="hi-chip c1">🔧 Ремонт за 1 день</div>
+    <div class="hi-chip c2">🛡️ Гарантия 12 мес</div>
+    <div class="hi-chip c3">⚡ Выезд сегодня</div>
+  </div>
   <div class="hero-inner">
     <div class="hero-badge"><span class="pulse"></span> Умный сервис · ИИ-диагностика 24/7</div>
     <h1 id="heroTitle">
