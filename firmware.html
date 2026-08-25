@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Прошивки и обновления кофемашин — как обновить ПО | COFFEE CARE</title>
+<meta name="description" content="Как обновить прошивку кофемашины: Jura, De'Longhi, Saeco, Philips, Melitta, Nivona, вендинговые автоматы. Полные инструкции, источники, версии ПО.">
+<link rel="canonical" href="https://mafiozzimen.github.io/coffeecare-site/firmware.html">
+<style>
+:root{--bg:#0a0e17;--card:rgba(255,255,255,.04);--line:rgba(255,255,255,.09);--text:#eef2f7;--muted:#8a94a6;--amber:#f59e0b;--amber2:#fbbf24;--cyan:#22d3ee}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;line-height:1.65}
+.bg-fx{position:fixed;inset:0;z-index:-1;background:radial-gradient(ellipse 60% 50% at 70% 20%,rgba(245,158,11,.08),transparent 60%),radial-gradient(ellipse 40% 40% at 20% 80%,rgba(34,211,238,.06),transparent 60%),var(--bg)}
+.top{position:sticky;top:0;z-index:10;padding:16px 5%;display:flex;justify-content:space-between;align-items:center;background:rgba(10,14,23,.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.logo{color:var(--text);text-decoration:none;font-weight:800;font-size:17px}
+.logo span{color:var(--amber)}
+.back{color:var(--amber);text-decoration:none;font-size:13px;font-weight:700}
+h1{font-size:clamp(24px,3.6vw,40px);padding:40px 5% 6px;font-weight:800}
+.sub{color:var(--muted);padding:0 5% 30px;font-size:15px;max-width:800px}
+main{max-width:1000px;margin:0 auto;padding:0 5% 70px}
+.brand-block{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;margin-bottom:16px}
+.brand-block h2{font-size:20px;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.brand-block .ver{font-size:13px;color:var(--amber2);font-weight:700;margin-bottom:14px}
+.brand-block h3{font-size:14px;color:var(--cyan);margin:14px 0 6px;text-transform:uppercase;letter-spacing:.06em}
+.brand-block ol{padding-left:22px;margin-bottom:8px}
+.brand-block li{margin-bottom:7px;font-size:14px;color:var(--text)}
+.brand-block p{font-size:14px;color:var(--muted);margin-bottom:8px}
+.warn{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.3);border-radius:12px;padding:14px 16px;margin:14px 0;font-size:13.5px;color:var(--amber2)}
+.tip{background:rgba(34,211,238,.06);border:1px solid rgba(34,211,238,.25);border-radius:12px;padding:14px 16px;margin:14px 0;font-size:13.5px;color:var(--cyan)}
+table{width:100%;border-collapse:collapse;margin:12px 0;background:rgba(255,255,255,.02);border-radius:12px;overflow:hidden;font-size:13px}
+th{background:rgba(245,158,11,.12);color:var(--amber2);padding:10px 12px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.08em}
+td{padding:10px 12px;border-top:1px solid var(--line)}
+@media(max-width:600px){.brand-block{padding:18px}}
+</style>
+</head>
+<body>
+<div class="bg-fx"></div>
+<div class="top"><a class="logo" href="index.html">☕ COFFEE <span>CARE</span></a><a class="back" href="index.html">← На главную</a></div>
+<h1>📡 Прошивки и обновления кофемашин</h1>
+<div class="sub">Полное руководство: как обновить ПО вашей кофемашины, где взять прошивку, что важно знать. Обновление прошивки исправляет ошибки, добавляет новые рецепты и функции.</div>
+<main>
+
+<div class="brand-block">
+<h2>☕ Jura</h2><div class="ver">Актуальные версии: E8 v2.4.1 · Z10 v2.4.1 · GIGA X3c v2.4.1</div>
+<h3>Способы обновления</h3>
+<ol>
+<li><b>Через приложение J.O.E. (Wi-Fi):</b> подключите машину к Wi-Fi (2.4 GHz), откройте приложение J.O.E., машина сама предложит обновление.</li>
+<li><b>Через USB:</b> скачайте файл прошивки на сайте Jura (Support → Downloads), скопируйте на USB-флешку (FAT32), вставьте в USB-порт машины, следуйте подсказкам на дисплее.</li>
+<li>Требуется аккаунт Jura и регистрация машины.</li>
+</ol>
+<div class="tip">💡 После обновления: сбросьте фильтр Claris в меню и перекалибруйте помол — машина «забудет» настройки.</div>
+<div class="warn">⚠️ НЕ отключайте питание во время прошивки! Это может убить плату. Прошивка занимает 5–15 минут.</div>
+</div>
+
+<div class="brand-block">
+<h2>🔧 De'Longhi</h2><div class="ver">ECAM 22.110 v1.8.2 · Magnifica S v1.8.2 · PrimaDonna v1.8.2</div>
+<h3>Способы обновления</h3>
+<ol>
+<li><b>Через USB:</b> на сайте De'Longhi (Поддержка → Обновление ПО) скачайте архив, распакуйте на USB-флешку (FAT32, файл в корне).</li>
+<li>Выключите машину, вставьте USB, включите — начнётся обновление.</li>
+<li>Для моделей с Wi-Fi/приложением Coffee Link — обновление через приложение.</li>
+</ol>
+<div class="warn">⚠️ Перед прошивкой сделайте бэкап настроек (если модель поддерживает). При сбое — сервисный режим: удерживайте кнопку OK 15 сек при включении.</div>
+</div>
+
+<div class="brand-block">
+<h2>🟡 Saeco / Philips</h2><div class="ver">Xelsis v1.6.0 · 2200/3200/4300 v1.4.3</div>
+<h3>Способы обновления</h3>
+<ol>
+<li><b>Philips (2200–4300):</b> приложение Philips Coffee — машина с Wi-Fi сама скачивает обновление.</li>
+<li><b>Saeco Xelsis:</b> через Bluetooth-приложение (модели с модулем) или USB-кабель к компьютеру.</li>
+<li><b>Старые Saeco:</b> только через сервисный USB-адаптер (требует доступ к ПО производителя).</li>
+</ol>
+<div class="tip">💡 Проверьте текущую версию: меню → Настройки → Информация → Версия ПО.</div>
+</div>
+
+<div class="brand-block">
+<h2>⚪ Krups / Bosch / Siemens</h2><div class="ver">Krups EA810 · Bosch VeroCafe · Siemens EQ</div>
+<h3>Способы обновления</h3>
+<ol>
+<li><b>Home Connect (Bosch/Siemens):</b> приложение Home Connect → выберите машину → Обновление ПО.</li>
+<li><b>Krups:</b> модели с Wi-Fi обновляются через приложение Krups / Home Connect. Без Wi-Fi — только в сервисе.</li>
+</ol>
+<div class="warn">⚠️ Если ваша модель без Wi-Fi и без USB — обновление прошивки возможно только через сервисный центр (замена чипа/платы).</div>
+</div>
+
+<div class="brand-block">
+<h2>🌱 Melitta / Nivona</h2><div class="ver">Melitta CI Touch · Nivona CafeRomatica</div>
+<h3>Способы обновления</h3>
+<ol>
+<li><b>Melitta:</b> только через авторизованный сервис — прошивка чипа на плате программатором.</li>
+<li><b>Nivona:</b> через сервисный USB-адаптер, доступ нужен партнёрам Nivona.</li>
+</ol>
+<div class="tip">💡 Эти бренды не дают пользовательских прошивок — «самому» обновить нельзя. Обратитесь к нам — сделаем за 1 день.</div>
+</div>
+
+<div class="brand-block">
+<h2>🏢 Профессиональные (La Marzocco, Nuova Simonelli, Rancilio)</h2><div class="ver">La Marzocco GS3/Linea Mini v4.6 · Mythos DSP v5.2</div>
+<h3>Способы обновления</h3>
+<ol>
+<li><b>La Marzocco GS3 / Linea Mini:</b> через приложение La Marzocco Home App по Wi-Fi.</li>
+<li><b>Linea PB / Strada:</b> только сервисным инженером (замена плат с прошивкой).</li>
+<li><b>Nuova Simonelli Mythos:</b> прошивка DSP-платы через компьютер с фирменным ПО.</li>
+</ol>
+</div>
+
+<div class="brand-block">
+<h2>🏪 Вендинговые автоматы (Unicum, Saeco Vending, Necta, Jofemar)</h2><div class="ver">Unicum W20 v3.2 · Saeco Vending v7.1</div>
+<h3>Способы обновления</h3>
+<ol>
+<li><b>Unicum:</b> прошивка через USB на плате управления. Сохраните конфигурацию дозаторов ДО обновления.</li>
+<li><b>Saeco Vending (Evoca):</b> через SD-карту, загрузка из сервисного меню. После — проверьте телеметрию.</li>
+<li><b>Jofemar / Necta / Jetinno:</b> через сервисный порт или SD-карту, инструкция в техпортале производителя.</li>
+</ol>
+<div class="warn">⚠️ Для вендинговых автоматов прошивка критична: неверная версия может заблокировать платёжную систему. Доверяйте это специалистам.</div>
+</div>
+
+<h2 style="margin:30px 0 14px">📋 Сводная таблица способов обновления</h2>
+<table>
+<tr><th>Бренд</th><th>Wi-Fi/приложение</th><th>USB</th><th>Только сервис</th></tr>
+<tr><td>Jura</td><td>✅ J.O.E.</td><td>✅</td><td>—</td></tr>
+<tr><td>De'Longhi</td><td>✅ Coffee Link</td><td>✅</td><td>—</td></tr>
+<tr><td>Philips/Saeco</td><td>✅ Philips Coffee</td><td>✅ (некоторые)</td><td>Старые Saeco</td></tr>
+<tr><td>Bosch/Siemens</td><td>✅ Home Connect</td><td>—</td><td>Без Wi-Fi</td></tr>
+<tr><td>Krups</td><td>✅ (с Wi-Fi)</td><td>—</td><td>Без Wi-Fi</td></tr>
+<tr><td>Melitta/Nivona</td><td>—</td><td>—</td><td>✅</td></tr>
+<tr><td>La Marzocco GS3</td><td>✅ Home App</td><td>—</td><td>Linea PB</td></tr>
+<tr><td>Вендинг</td><td>—</td><td>✅ SD/USB</td><td>Сложные случаи</td></tr>
+</table>
+
+<div class="warn" style="margin-top:24px">⚠️ <b>Важно:</b> Прошивка «не той» версии или прерывание питания при обновлении может вывести машину из строя. Если сомневаетесь — доверьте обновление нам: выезд в день обращения, гарантия на работы.</div>
+
+</main>
+</body>
+</html>

@@ -176,8 +176,8 @@ nav.scrolled{background:rgba(10,14,23,.75);backdrop-filter:blur(18px);border-bot
 #heroTitle{perspective:900px}
 #heroTitle .ht-line{display:block;overflow:visible;white-space:nowrap}
 #heroTitle .ht-char{
-  display:inline-block;font-weight:800;opacity:0;
-  animation:charWave 1.2s cubic-bezier(.19,1,.22,1) forwards;
+  display:inline-block;font-weight:800;opacity:1; /* всегда видимы — страховка */
+  animation:charWave 1.2s cubic-bezier(.19,1,.22,1) both;
   will-change:transform,opacity;
 }
 /* появление волной */
@@ -188,8 +188,7 @@ nav.scrolled{background:rgba(10,14,23,.75);backdrop-filter:blur(18px);border-bot
   100%{opacity:1;transform:translateY(0) scale(1) rotate(0)}
 }
 /* акцентное слово — градиент */
-#heroTitle .ht-accent{background:linear-gradient(120deg,var(--amber),var(--amber2) 50%,var(--cyan),var(--amber));-webkit-background-clip:text;background-clip:text;color:transparent;background-size:300% 100%;animation:shimmerFlow 5s linear infinite;display:inline-block}
-#heroTitle .ht-accent .ht-char{-webkit-text-fill-color:transparent}
+#heroTitle .ht-accent{background:linear-gradient(120deg,var(--amber),var(--amber2) 50%,var(--cyan),var(--amber));-webkit-background-clip:text;background-clip:text;color:transparent;background-size:300% 100%;animation:shimmerFlow 5s linear infinite;display:inline-block;font-weight:800;opacity:1}
 @keyframes shimmerFlow{0%{background-position:0% 0}100%{background-position:300% 0}}
 
 /* ===== ЖИВЫЕ БУКВЫ: бегущая волна-прыжок по буквам (цикл навсегда) ===== */
@@ -578,6 +577,7 @@ footer{border-top:1px solid var(--line);padding:44px 5%;background:rgba(10,14,23
     <li><a href="#useful">Полезное</a></li>
     <li><a href="#services">Услуги</a></li>
     <li><a href="#prices">Прайс</a></li>
+    <li><a href="firmware.html">Прошивки</a></li>
     <li><a href="#contact">Контакты</a></li>
   </ul>
   <a href="#contact" class="nav-cta">Вызвать мастера</a>
@@ -687,6 +687,7 @@ footer{border-top:1px solid var(--line);padding:44px 5%;background:rgba(10,14,23
   </div>
   <div class="kb-tabs reveal">
     <button class="kb-tab active" data-tab="orings">⭕ Кольца</button>
+    <button class="kb-tab" data-tab="sizes">📐 Размеры</button>
     <button class="kb-tab" data-tab="parts">🔩 Расходники</button>
     <button class="kb-tab" data-tab="manuals">📚 Мануалы</button>
     <button class="kb-tab" data-tab="issues">🩹 Неисправности</button>
@@ -918,6 +919,12 @@ footer{border-top:1px solid var(--line);padding:44px 5%;background:rgba(10,14,23
     gi++;
     line.appendChild(dot);
   });
+  // СТРАХОВКА: через 2.5 сек все буквы гарантированно видимы (анимация продолжает жить)
+  setTimeout(function(){
+    document.querySelectorAll('#heroTitle .ht-char').forEach(function(c){
+      c.style.opacity = '1';
+    });
+  }, 2500);
 })();
 
 /* NAV */
@@ -991,12 +998,42 @@ function kbSearchNow(){
   const q = (document.getElementById('kbSearch').value||'').toLowerCase().trim();
   const box = document.getElementById('kbContent');
   const t = kbCurrent;
+  if (t === 'sizes'){
+    Promise.all([
+      fetch('/api/orings' + (q ? '?q=' + encodeURIComponent(q) : '')).then(r => r.json()),
+      fetch('/api/parts' + (q ? '?q=' + encodeURIComponent(q) : '')).then(r => r.json())
+    ]).then(([rings, parts]) => kbRender(t, {rings, parts}, q)).catch(() => kbFallback(box));
+    return;
+  }
   const url = '/api/' + t + (q ? '?q=' + encodeURIComponent(q) : '');
-  fetch(url).then(r => r.json()).then(data => {
-    let html = '';
+  fetch(url).then(r => r.json()).then(data => kbRender(t, data, q)).catch(() => kbFallback(box));
+}
+function kbFallback(box){
+  box.innerHTML = '<div class="kb-card2"><div class="kb-body">База знаний доступна на основном сервере. Позвоните: +7 (000) 000-00-00</div></div>';
+}
+function kbRender(t, data, q){
+  const box = document.getElementById('kbContent');
+  let html = '';
     if (t === 'orings'){
       html = '<table class="kb-table"><tr><th>Бренд</th><th>Узел</th><th>Размер</th><th>Материал</th><th>Кол-во</th></tr>' +
         data.map(r => `<tr><td><b>${kbEscape(r.brand)}</b></td><td>${kbEscape(r.system)}</td><td><span class="kb-badge">${kbEscape(r.size)}</span></td><td>${kbEscape(r.material)}</td><td>${r.qty} шт</td></tr>`).join('') + '</table>';
+    } else if (t === 'sizes'){
+      // Excel-подобная таблица всех размеров: кольца + расходники + фильтры
+      const rings = data.rings || [];
+      const parts = data.parts || [];
+      html = '<div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap">' +
+        '<button class="btn btn-primary" style="padding:10px 18px;font-size:12px" onclick="kbExportCSV()">📥 Скачать Excel (CSV)</button>' +
+        '<button class="btn btn-ghost" style="padding:10px 18px;font-size:12px" onclick="kbCopyTable()">📋 Копировать таблицу</button>' +
+        '</div>';
+      html += '<table class="kb-table" id="sizesTable"><tr><th>Тип</th><th>Бренд</th><th>Наименование / Узел</th><th>Размер</th><th>Материал</th><th>Кол-во</th><th>Цена</th></tr>';
+      rings.forEach(r => {
+        html += `<tr><td><span class="kb-badge">Кольцо</span></td><td>${kbEscape(r.brand)}</td><td>${kbEscape(r.system)}</td><td><b>${kbEscape(r.size)}</b></td><td>${kbEscape(r.material)}</td><td>${r.qty} шт</td><td>—</td></tr>`;
+      });
+      parts.forEach(p => {
+        html += `<tr><td><span class="kb-badge">Расходник</span></td><td>${kbEscape(p.brand)}</td><td>${kbEscape(p.name)}</td><td><b>${kbEscape(p.size)}</b></td><td>—</td><td>${kbEscape(p.life)}</td><td>${kbEscape(p.price)}</td></tr>`;
+      });
+      html += '</table>';
+      window._kbSizesData = { rings, parts };
     } else if (t === 'parts'){
       html = data.map(r => `<div class="kb-card2"><b>${kbEscape(r.name)} <span class="kb-price">${kbEscape(r.price)}</span></b><div class="kb-meta">${kbEscape(r.brand)} · размер: ${kbEscape(r.size)} · ресурс: ${kbEscape(r.life)}</div><div class="kb-body">${kbEscape(r.note)}</div></div>`).join('');
     } else if (t === 'manuals'){
@@ -1013,8 +1050,35 @@ function kbSearchNow(){
       html = data.map(r => `<div class="kb-card2"><b>🏪 ${kbEscape(r.name)} ${'★'.repeat(r.rating||0)}</b><div class="kb-meta">${kbEscape(r.type)} · ${kbEscape(r.city)} · ${kbEscape(r.delivery)}</div><div class="kb-body">${kbEscape(r.specialization)}<br>Сайт: ${kbEscape(r.site)}<br>${kbEscape(r.note)}</div></div>`).join('');
     }
     box.innerHTML = html || '<div class="kb-card2"><div class="kb-body">Ничего не найдено по запросу «' + kbEscape(q) + '»</div></div>';
-  }).catch(() => {
-    box.innerHTML = '<div class="kb-card2"><div class="kb-body">База знаний доступна на основном сервере. Позвоните: +7 (000) 000-00-00</div></div>';
+}
+function kbExportCSV(){
+  const d = window._kbSizesData;
+  if (!d) return;
+  const esc = v => '"' + String(v||'').replace(/"/g,'""') + '"';
+  let csv = 'Тип;Бренд;Наименование;Размер;Материал;Кол-во;Цена\n';
+  d.rings.forEach(r => { csv += [esc('Кольцо'),esc(r.brand),esc(r.system),esc(r.size),esc(r.material),esc(r.qty+' шт'),esc('')].join(';') + '\n'; });
+  d.parts.forEach(p => { csv += [esc('Расходник'),esc(p.brand),esc(p.name),esc(p.size),esc(''),esc(p.life),esc(p.price)].join(';') + '\n'; });
+  const blob = new Blob(['\ufeff' + csv], {type:'text/csv;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'razmery-kofemashiny.csv';
+  a.click();
+}
+function kbCopyTable(){
+  const tbl = document.getElementById('sizesTable');
+  if (!tbl) return;
+  let txt = '';
+  tbl.querySelectorAll('tr').forEach((tr, i) => {
+    const cells = Array.from(tr.children).map(td => td.textContent.trim());
+    if (i > 0 || cells.length) txt += cells.join('\t') + '\n';
+  });
+  navigator.clipboard.writeText(txt).then(() => {
+    const box = document.getElementById('kbContent');
+    const d = document.createElement('div');
+    d.style.cssText = 'position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:#4a9e4f;color:#fff;padding:12px 22px;border-radius:12px;z-index:999;font-size:13px';
+    d.textContent = 'Таблица скопирована — вставьте в Excel (Ctrl+V)';
+    document.body.appendChild(d);
+    setTimeout(() => d.remove(), 3000);
   });
 }
 document.querySelectorAll('.kb-tab').forEach(b => b.addEventListener('click', () => kbLoad(b.dataset.tab)));
