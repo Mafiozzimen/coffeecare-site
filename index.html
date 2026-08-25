@@ -139,21 +139,24 @@ nav.scrolled{background:rgba(10,14,23,.75);backdrop-filter:blur(18px);border-bot
 @keyframes glowPulse{0%,100%{opacity:.5}50%{opacity:1}}
 
 /* инструменты и механика рядом */
-.ha-tools{position:absolute;left:-10px;bottom:30px;width:170px;height:170px}
+.ha-tools{position:absolute;left:-16px;bottom:24px;width:190px;height:190px}
 .ha-tool{position:absolute;filter:drop-shadow(0 10px 20px rgba(0,0,0,.5));animation:haFloat 6s ease-in-out infinite}
-.ha-tool.wrench{top:10px;left:0;animation-delay:.8s}
-.ha-tool.screwdriver{top:70px;left:70px;animation-delay:1.6s}
-.ha-wrench-body{width:90px;height:16px;border-radius:6px;background:linear-gradient(180deg,#94a3b8,#475569);border:1px solid rgba(255,255,255,.2);transform:rotate(-25deg)}
-.ha-wrench-body::before{content:'';position:absolute;top:-6px;left:8px;width:16px;height:26px;border:5px solid #64748b;border-radius:8px;transform:rotate(0)}
-.ha-tool.screwdriver i{display:block;width:14px;height:90px;border-radius:7px;background:linear-gradient(180deg,#f59e0b,#d97706);box-shadow:inset -3px 0 4px rgba(0,0,0,.3);transform:rotate(15deg)}
-.ha-tool.screwdriver i::before{content:'';display:block;width:14px;height:26px;background:linear-gradient(180deg,#94a3b8,#475569);border-radius:7px 7px 2px 2px;margin-top:-26px}
-.ha-tool.screwdriver i::after{content:'';display:block;width:6px;height:20px;background:linear-gradient(180deg,#cbd5e1,#64748b);border-radius:2px;margin:72px auto 0}
-/* шестерни */
-.ha-gear{position:absolute;border-radius:50%;background:radial-gradient(circle at 40% 35%,#64748b,#334155);border:3px dashed rgba(255,255,255,.35);animation:gearSpin 10s linear infinite}
-.ha-gear.g1{width:44px;height:44px;bottom:0;right:-6px;animation-duration:8s}
-.ha-gear.g2{width:30px;height:30px;bottom:44px;left:10px;animation-duration:5s;animation-direction:reverse}
-.ha-gear.g3{width:20px;height:20px;top:36px;left:-4px;animation-duration:4s}
-.ha-gear::after{content:'';position:absolute;inset:25%;border-radius:50%;background:#1a2230}
+.ha-tool.wrench{top:6px;left:0;animation-delay:.8s}
+.ha-tool.screwdriver{top:76px;left:66px;animation-delay:1.6s}
+.ha-wrench-body{width:96px;height:18px;border-radius:6px;background:linear-gradient(180deg,#94a3b8,#475569);border:1px solid rgba(255,255,255,.2);transform:rotate(-25deg)}
+.ha-wrench-body::before{content:'';position:absolute;top:-7px;left:8px;width:18px;height:30px;border:6px solid #64748b;border-radius:9px}
+.ha-wrench-body::after{content:'';position:absolute;top:4px;right:12px;width:7px;height:7px;border-radius:50%;background:#1a2230}
+.ha-tool.screwdriver i{display:block;width:16px;height:100px;border-radius:8px;background:linear-gradient(180deg,#f59e0b,#d97706);box-shadow:inset -3px 0 4px rgba(0,0,0,.3);transform:rotate(15deg)}
+.ha-tool.screwdriver i::before{content:'';display:block;width:16px;height:30px;background:linear-gradient(180deg,#94a3b8,#475569);border-radius:8px 8px 2px 2px;margin-top:-30px}
+.ha-tool.screwdriver i::after{content:'';display:block;width:7px;height:22px;background:linear-gradient(180deg,#cbd5e1,#64748b);border-radius:2px;margin:80px auto 0}
+/* шестерни — крупнее и с зубцами */
+.ha-gear{position:absolute;border-radius:50%;background:radial-gradient(circle at 40% 35%,#64748b,#2b3648);border:4px dashed rgba(255,255,255,.4);animation:gearSpin 10s linear infinite;box-shadow:0 8px 20px rgba(0,0,0,.4)}
+.ha-gear.g1{width:56px;height:56px;bottom:-4px;right:-10px;animation-duration:7s}
+.ha-gear.g2{width:38px;height:38px;bottom:52px;left:2px;animation-duration:4.5s;animation-direction:reverse}
+.ha-gear.g3{width:26px;height:26px;top:40px;left:-8px;animation-duration:3.5s}
+.ha-gear.g4{width:18px;height:18px;bottom:90px;right:6px;animation-duration:2.8s}
+.ha-gear::after{content:'';position:absolute;inset:22%;border-radius:50%;background:radial-gradient(circle,#1a2230,#0e1420)}
+.ha-gear::before{content:'';position:absolute;inset:-6px;border-radius:50%;background:conic-gradient(from 0deg,transparent 0deg 24deg,#f59e0b 24deg 30deg,transparent 30deg 54deg,#f59e0b 54deg 60deg,transparent 60deg 84deg,#f59e0b 84deg 90deg,transparent 90deg 114deg,#f59e0b 114deg 120deg,transparent 120deg 144deg,#f59e0b 144deg 150deg,transparent 150deg 174deg,#f59e0b 174deg 180deg,transparent 180deg 204deg,#f59e0b 204deg 210deg,transparent 210deg 234deg,#f59e0b 234deg 240deg,transparent 240deg 264deg,#f59e0b 264deg 270deg,transparent 270deg 294deg,#f59e0b 294deg 300deg,transparent 300deg 324deg,#f59e0b 324deg 330deg,transparent 330deg 354deg,#f59e0b 354deg 360deg);opacity:.5;filter:blur(1px)}
 @keyframes gearSpin{to{transform:rotate(360deg)}}
 
 @media(max-width:1100px){.hero-art{width:300px;opacity:.8}.ha-machine{transform:scale(.8);right:-20px}}
@@ -186,7 +189,8 @@ nav.scrolled{background:rgba(10,14,23,.75);backdrop-filter:blur(18px);border-bot
   100%{opacity:1;transform:translateY(0) scale(1) rotate(0)}
 }
 /* акцентное слово — переливающийся градиент + постоянное «дыхание» */
-#heroTitle .ht-accent{background:linear-gradient(120deg,var(--amber),var(--amber2) 50%,var(--cyan),var(--amber));-webkit-background-clip:text;background-clip:text;color:transparent;background-size:300% 100%;animation:shimmerFlow 5s linear infinite}
+#heroTitle .ht-accent{background:linear-gradient(120deg,var(--amber),var(--amber2) 50%,var(--cyan),var(--amber));-webkit-background-clip:text;background-clip:text;color:transparent;background-size:300% 100%;animation:shimmerFlow 5s linear infinite;display:inline-block}
+#heroTitle .ht-accent .ht-char{-webkit-text-fill-color:transparent}
 #heroTitle .ht-accent .ht-char{animation:charWave 1.4s cubic-bezier(.19,1,.22,1) forwards, charBreath 3.2s ease-in-out 3s infinite}
 @keyframes charBreath{0%,100%{transform:scale(1) translateY(0)}25%{transform:scale(1.06) translateY(-3px)}50%{transform:scale(1)}75%{transform:scale(1.04) translateY(-2px)}}
 @keyframes shimmerFlow{0%{background-position:0% 0}100%{background-position:300% 0}}
@@ -575,6 +579,7 @@ footer{border-top:1px solid var(--line);padding:44px 5%;background:rgba(10,14,23
       <div class="ha-gear g1"></div>
       <div class="ha-gear g2"></div>
       <div class="ha-gear g3"></div>
+      <div class="ha-gear g4"></div>
     </div>
     <div class="hi-chip c1">🔧 Ремонт за 1 день</div>
     <div class="hi-chip c2">🛡️ Гарантия 12 мес</div>
@@ -583,9 +588,9 @@ footer{border-top:1px solid var(--line);padding:44px 5%;background:rgba(10,14,23
   <div class="hero-inner">
     <div class="hero-badge"><span class="pulse"></span> Умный сервис · ИИ-диагностика 24/7</div>
     <h1 id="heroTitle">
-      <span class="ht-line" data-text="Диагностика"><span class="ht-accent">точная</span>.</span>
-      <span class="ht-line" data-text="Цены"><span class="ht-accent">честные</span>.</span>
-      <span class="ht-line" data-text="Гарантия"><span class="ht-accent">железная</span>.</span>
+      <span class="ht-line" data-text="Диагностика" data-accent="точная"></span>
+      <span class="ht-line" data-text="Цены" data-accent="честные"></span>
+      <span class="ht-line" data-text="Гарантия" data-accent="железная"></span>
     </h1>
     <p>ИИ-ассистент за 30 секунд определит причину поломки и назовёт цену. Выезд мастера в день обращения, гарантия до 12 месяцев, все бренды.</p>
     <div class="hero-btns">
@@ -838,48 +843,50 @@ footer{border-top:1px solid var(--line);padding:44px 5%;background:rgba(10,14,23
   const title = document.getElementById('heroTitle');
   if (!title) return;
   let gi = 0;
-  function wrapChars(el, extraClass, delayBase){
-    const text = el.textContent;
+  function wrapChars(el, delayBase){
+    const text = el.getAttribute('data-text') || el.textContent;
     el.textContent = '';
     for (let i = 0; i < text.length; i++){
       const ch = text[i];
       if (ch === ' '){ el.appendChild(document.createTextNode(' ')); continue; }
       const s = document.createElement('span');
-      s.className = 'ht-char' + (extraClass ? ' ' + extraClass : '');
+      s.className = 'ht-char';
       s.textContent = ch;
-      s.style.animationDelay = (delayBase + gi * 0.045) + 's';
+      s.style.animationDelay = (delayBase + gi * 0.05) + 's';
       el.appendChild(s);
       gi++;
     }
   }
   title.querySelectorAll('.ht-line').forEach((line, li) => {
-    const accent = line.querySelector('.ht-accent');
-    const base = 0.3 + li * 0.45;
-    // обычные слова до акцента + точка
-    Array.from(line.childNodes).forEach(node => {
-      if (node.nodeType === 3 && node.textContent.trim()){
-        const w = document.createElement('span');
-        w.textContent = node.textContent;
-        wrapChars(w, '', base);
-        line.replaceChild(w, node);
-      }
-    });
-    if (accent){
-      wrapChars(accent, 'ht-accent-char', base);
-    }
+    const base = 0.3 + li * 0.5;
+    // слово из data-text (обычные буквы)
+    const word = document.createElement('span');
+    word.className = 'ht-word';
+    word.setAttribute('data-text', line.getAttribute('data-text') || '');
+    wrapChars(word, base);
+    line.textContent = '';
+    line.appendChild(word);
+    line.appendChild(document.createTextNode(' '));
+    // акцентное слово — переливающийся градиент
+    const accent = document.createElement('span');
+    accent.className = 'ht-accent';
+    const accentText = line.getAttribute('data-accent') || 'точная';
+    accent.setAttribute('data-text', accentText);
+    accent.innerHTML = '';
+    let giAccent = gi;
+    const accentChars = document.createElement('span');
+    accentChars.className = 'ht-accent-chars';
+    accentChars.setAttribute('data-text', accentText);
+    accent.appendChild(accentChars);
+    wrapChars(accentChars, base);
+    line.appendChild(accent);
+    // точка
     const dot = document.createElement('span');
     dot.className = 'ht-dot';
     dot.textContent = '.';
-    dot.style.animationDelay = (base + gi * 0.045) + 's';
+    dot.style.animationDelay = (base + gi * 0.05) + 's';
     gi++;
     line.appendChild(dot);
-  });
-  // акцент: градиент наследуется от .ht-accent, буквы прозрачные
-  document.querySelectorAll('#heroTitle .ht-accent .ht-char').forEach(c => {
-    c.style.webkitTextFillColor = 'transparent';
-    c.style.background = 'inherit';
-    c.style.backgroundClip = 'text';
-    c.style.webkitBackgroundClip = 'text';
   });
 })();
 
