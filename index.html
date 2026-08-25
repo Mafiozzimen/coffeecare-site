@@ -68,35 +68,100 @@ nav.scrolled{background:rgba(10,14,23,.75);backdrop-filter:blur(18px);border-bot
 .burger{display:none;cursor:pointer;flex-direction:column;gap:5px;background:none;border:none;padding:6px}
 .burger div{width:26px;height:2.5px;background:var(--amber);border-radius:3px;transition:.35s}
 
-/* ---------- HERO фото: машина + инструменты ---------- */
-.hero-imgs{position:absolute;right:6%;top:50%;transform:translateY(-50%);z-index:3;width:340px;height:380px;pointer-events:none}
-.hi-main{
-  position:absolute;right:0;top:0;width:280px;height:280px;object-fit:cover;border-radius:24px;
-  border:1px solid rgba(255,255,255,.14);box-shadow:0 24px 60px rgba(0,0,0,.55);
-  filter:saturate(.9) brightness(.95);animation:hiFloat 6s ease-in-out infinite;
+/* ---------- HERO арт: нарисованная автоматическая машина + инструменты ---------- */
+.hero-art{position:absolute;right:4%;top:50%;transform:translateY(-50%);z-index:3;width:420px;height:430px;pointer-events:none}
+/* машина */
+.ha-machine{position:absolute;right:10px;top:30px;width:250px;height:330px;filter:drop-shadow(0 30px 50px rgba(0,0,0,.6));animation:haFloat 5s ease-in-out infinite}
+@keyframes haFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+.ha-body{
+  position:absolute;top:70px;left:50%;transform:translateX(-50%);
+  width:210px;height:190px;border-radius:16px 16px 8px 8px;
+  background:linear-gradient(180deg,#2c3748,#161d2b);
+  border:1px solid rgba(255,255,255,.13);
+  box-shadow:inset 0 0 40px rgba(0,0,0,.5),inset 0 2px 0 rgba(255,255,255,.1);
 }
-.hi-tools{
-  position:absolute;left:0;bottom:0;width:180px;height:150px;object-fit:cover;border-radius:18px;
-  border:1px solid rgba(255,255,255,.14);box-shadow:0 18px 44px rgba(0,0,0,.5);
-  filter:saturate(.9) brightness(.9);animation:hiFloat 7s ease-in-out 1s infinite;z-index:2;
+.ha-body::before{content:'';position:absolute;top:8px;left:10px;width:26px;height:150px;border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,.14),transparent);filter:blur(3px)}
+/* экран */
+.ha-screen{
+  position:absolute;top:18px;left:50%;transform:translateX(-50%);
+  width:150px;height:44px;border-radius:8px;
+  background:linear-gradient(180deg,#0b3a22,#0a2d1a);
+  border:1px solid rgba(80,255,160,.4);
+  box-shadow:inset 0 0 16px rgba(80,255,160,.3),0 0 20px rgba(80,255,160,.15);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Unbounded',sans-serif;font-size:14px;font-weight:600;color:#4ade80;
+  letter-spacing:.1em;animation:screenPulse 3s ease-in-out infinite;
 }
-.hi-chip{
-  position:absolute;padding:10px 16px;border-radius:30px;font-size:12px;font-weight:700;
-  background:rgba(16,22,36,.85);border:1px solid rgba(245,158,11,.35);backdrop-filter:blur(10px);
-  color:var(--text);box-shadow:0 8px 24px rgba(0,0,0,.4);z-index:3;
-  animation:chipPop .6s var(--ease) both;
+@keyframes screenPulse{0%,100%{box-shadow:inset 0 0 16px rgba(80,255,160,.25),0 0 20px rgba(80,255,160,.12)}50%{box-shadow:inset 0 0 26px rgba(80,255,160,.5),0 0 36px rgba(80,255,160,.3)}}
+/* кнопки */
+.ha-btns{position:absolute;top:72px;left:50%;transform:translateX(-50%);display:flex;gap:12px}
+.ha-btns i{width:13px;height:13px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fbbf24,#b45309);box-shadow:0 0 8px rgba(245,158,11,.7);animation:btnBlink 2.4s infinite}
+.ha-btns i:nth-child(2){animation-delay:.4s}.ha-btns i:nth-child(3){animation-delay:.8s}
+.ha-btns i:nth-child(4){animation-delay:1.2s}.ha-btns i:nth-child(5){animation-delay:1.6s}
+@keyframes btnBlink{0%,100%{opacity:1}50%{opacity:.35}}
+/* мельница внутри */
+.ha-grinder{position:absolute;top:100px;left:50%;transform:translateX(-50%);width:90px;height:46px;border-radius:8px;background:linear-gradient(180deg,#3d4a5e,#232c3d);border:1px solid rgba(255,255,255,.1);overflow:hidden}
+.ha-grinder::before{content:'';position:absolute;top:6px;left:50%;transform:translateX(-50%);width:60px;height:12px;border-radius:6px;background:#1a2230;border:1px solid rgba(255,255,255,.12)}
+.ha-grinder::after{content:'';position:absolute;bottom:6px;left:20%;width:26px;height:8px;border-radius:4px;background:linear-gradient(90deg,#8a5a1a,#5a3a12);animation:grindMove 2s ease-in-out infinite}
+@keyframes grindMove{0%,100%{left:18%}50%{left:55%}}
+/* лоток выдачи */
+.ha-outlet{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);width:76px;height:22px;border-radius:6px;background:linear-gradient(180deg,#1a2230,#0e1420);border:1px solid rgba(255,255,255,.12)}
+.ha-outlet::after{content:'';position:absolute;top:4px;left:50%;transform:translateX(-50%);width:4px;height:12px;border-radius:3px;background:linear-gradient(180deg,#f59e0b,transparent);animation:pour 3.5s ease-in-out infinite}
+@keyframes pour{0%,55%{opacity:0}65%,80%{opacity:.9}100%{opacity:0}}
+/* верх машины */
+.ha-top{position:absolute;top:52px;left:50%;transform:translateX(-50%);width:214px;height:22px;border-radius:8px 8px 0 0;background:linear-gradient(180deg,#37455a,#242e40);border:1px solid rgba(255,255,255,.1)}
+/* бункер */
+.ha-hopper{
+  position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:66px;height:56px;border-radius:10px;
+  background:linear-gradient(180deg,rgba(245,158,11,.28),rgba(245,158,11,.1));
+  border:1px solid rgba(245,158,11,.45);
+  box-shadow:inset 0 0 20px rgba(245,158,11,.15);
 }
-.hi-chip.c1{top:12px;left:-14px;animation-delay:1.4s}
-.hi-chip.c2{bottom:34px;right:-8px;animation-delay:1.8s}
-.hi-chip.c3{bottom:-10px;left:40px;animation-delay:2.2s}
-@keyframes hiFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
-@keyframes chipPop{from{opacity:0;transform:translateY(20px) scale(.8)}to{opacity:1;transform:translateY(0) scale(1)}}
-@media(max-width:1100px){.hero-imgs{opacity:.55;width:260px}.hi-main{width:220px;height:220px}.hi-tools{width:140px;height:120px}}
-@media(max-width:860px){.hero-imgs{display:none}}
+.ha-bean{position:absolute;width:9px;height:6px;border-radius:50%;background:linear-gradient(135deg,#8a5a1a,#5a3a12);box-shadow:inset -1px 0 1px rgba(0,0,0,.5);animation:beanFall 2.2s ease-in infinite;opacity:0}
+.ha-bean.b1{left:30%;top:8px;animation-delay:0s}
+.ha-bean.b2{left:50%;top:6px;animation-delay:.7s}
+.ha-bean.b3{left:40%;top:10px;animation-delay:1.4s}
+@keyframes beanFall{0%{transform:translateY(0);opacity:0}25%{opacity:1}100%{transform:translateY(38px);opacity:0}}
+/* основание */
+.ha-base{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:230px;height:20px;border-radius:10px;background:linear-gradient(180deg,#2c3748,#1a2230);border:1px solid rgba(255,255,255,.1)}
+/* чашка с кофе и паром */
+.ha-cup{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);width:44px;height:34px}
+.ha-cup::before{content:'';position:absolute;top:8px;right:-12px;width:12px;height:16px;border:3px solid #cbd5e1;border-left:none;border-radius:0 8px 8px 0}
+.ha-cup::after{content:'';position:absolute;top:0;left:0;width:44px;height:34px;border-radius:0 0 12px 12px;background:linear-gradient(180deg,#eef2f7,#cbd5e1);box-shadow:0 6px 16px rgba(0,0,0,.3)}
+.ha-coffee{position:absolute;top:4px;left:4px;width:36px;height:14px;border-radius:4px;background:linear-gradient(180deg,#4a2c14,#3a2010);z-index:2;animation:coffeeRise 3.5s ease-in-out infinite}
+@keyframes coffeeRise{0%,55%{height:6px}70%,90%{height:14px}100%{height:14px}}
+.ha-steam{position:absolute;top:-14px;left:50%;width:5px;height:16px;border-radius:3px;background:linear-gradient(180deg,transparent,rgba(226,232,240,.6),transparent);animation:steamUp 2.2s ease-out infinite;opacity:0}
+.ha-steam.s1{left:30%}.ha-steam.s2{left:50%;animation-delay:.6s}.ha-steam.s3{left:70%;animation-delay:1.2s}
+@keyframes steamUp{0%{transform:translateY(6px) scaleX(1);opacity:0}30%{opacity:.8}100%{transform:translateY(-20px) scaleX(1.8);opacity:0}}
+/* свечение позади */
+.ha-glow{position:absolute;bottom:-40px;left:50%;transform:translateX(-50%);width:280px;height:80px;border-radius:50%;background:radial-gradient(ellipse,rgba(245,158,11,.3),transparent 70%);filter:blur(20px);animation:glowPulse 4s ease-in-out infinite}
+@keyframes glowPulse{0%,100%{opacity:.5}50%{opacity:1}}
+
+/* инструменты и механика рядом */
+.ha-tools{position:absolute;left:-10px;bottom:30px;width:170px;height:170px}
+.ha-tool{position:absolute;filter:drop-shadow(0 10px 20px rgba(0,0,0,.5));animation:haFloat 6s ease-in-out infinite}
+.ha-tool.wrench{top:10px;left:0;animation-delay:.8s}
+.ha-tool.screwdriver{top:70px;left:70px;animation-delay:1.6s}
+.ha-wrench-body{width:90px;height:16px;border-radius:6px;background:linear-gradient(180deg,#94a3b8,#475569);border:1px solid rgba(255,255,255,.2);transform:rotate(-25deg)}
+.ha-wrench-body::before{content:'';position:absolute;top:-6px;left:8px;width:16px;height:26px;border:5px solid #64748b;border-radius:8px;transform:rotate(0)}
+.ha-tool.screwdriver i{display:block;width:14px;height:90px;border-radius:7px;background:linear-gradient(180deg,#f59e0b,#d97706);box-shadow:inset -3px 0 4px rgba(0,0,0,.3);transform:rotate(15deg)}
+.ha-tool.screwdriver i::before{content:'';display:block;width:14px;height:26px;background:linear-gradient(180deg,#94a3b8,#475569);border-radius:7px 7px 2px 2px;margin-top:-26px}
+.ha-tool.screwdriver i::after{content:'';display:block;width:6px;height:20px;background:linear-gradient(180deg,#cbd5e1,#64748b);border-radius:2px;margin:72px auto 0}
+/* шестерни */
+.ha-gear{position:absolute;border-radius:50%;background:radial-gradient(circle at 40% 35%,#64748b,#334155);border:3px dashed rgba(255,255,255,.35);animation:gearSpin 10s linear infinite}
+.ha-gear.g1{width:44px;height:44px;bottom:0;right:-6px;animation-duration:8s}
+.ha-gear.g2{width:30px;height:30px;bottom:44px;left:10px;animation-duration:5s;animation-direction:reverse}
+.ha-gear.g3{width:20px;height:20px;top:36px;left:-4px;animation-duration:4s}
+.ha-gear::after{content:'';position:absolute;inset:25%;border-radius:50%;background:#1a2230}
+@keyframes gearSpin{to{transform:rotate(360deg)}}
+
+@media(max-width:1100px){.hero-art{width:300px;opacity:.8}.ha-machine{transform:scale(.8);right:-20px}}
+@media(max-width:860px){.hero-art{display:none}}
 
 /* ---------- HERO ---------- */
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:120px 5% 80px;overflow:hidden}
-#hero-canvas{position:absolute;right:-5%;top:50%;transform:translateY(-50%);width:58%;height:85%;z-index:1}
+/* canvas removed */
 .hero-inner{position:relative;z-index:2;max-width:600px}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:50px;border:1px solid rgba(245,158,11,.3);background:rgba(245,158,11,.08);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-bottom:26px;backdrop-filter:blur(8px)}
 .hero-badge .pulse{width:7px;height:7px;border-radius:50%;background:var(--amber);box-shadow:0 0 12px var(--amber);animation:blink 1.6s infinite}
@@ -104,51 +169,33 @@ nav.scrolled{background:rgba(10,14,23,.75);backdrop-filter:blur(18px);border-bot
 .hero h1{font-family:'Unbounded',sans-serif;font-size:clamp(34px,5.2vw,62px);font-weight:800;line-height:1.12;letter-spacing:-.01em;margin-bottom:22px}
 .hero h1 .grad{background:linear-gradient(120deg,var(--amber),var(--amber2) 40%,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
 
-/* ===== 3D-заголовок: нарастает из глубины, потом ЖИВЁТ вечно ===== */
+/* ===== Заголовок: буквы нарастают ВОЛНОЙ с увеличением ===== */
 #heroTitle{perspective:900px}
-#heroTitle .ht-line{display:block;overflow:visible}
-#heroTitle .ht-line span{display:inline-block;opacity:0;transform:translateZ(-300px) rotateX(35deg) scale(0.5);animation:htGrow 1.2s var(--ease) forwards}
-#heroTitle .ht-line:nth-child(1) span{animation-delay:.2s}
-#heroTitle .ht-line:nth-child(2) span{animation-delay:.7s}
-#heroTitle .ht-line:nth-child(3) span{animation-delay:1.2s}
+#heroTitle .ht-line{display:block;overflow:visible;white-space:nowrap}
+#heroTitle .ht-char{
+  display:inline-block;opacity:0;font-weight:800;
+  animation:charWave 1.4s cubic-bezier(.19,1,.22,1) forwards;
+  will-change:transform,opacity;
+}
+/* волна: буква поднимается и увеличивается, плавно оседает */
+@keyframes charWave{
+  0%{opacity:0;transform:translateY(46px) scale(.25) rotate(8deg)}
+  35%{opacity:1;transform:translateY(-14px) scale(1.28) rotate(-2deg)}
+  55%{transform:translateY(2px) scale(1.02) rotate(0)}
+  75%{transform:translateY(-5px) scale(1.08)}
+  100%{opacity:1;transform:translateY(0) scale(1) rotate(0)}
+}
+/* акцентное слово — переливающийся градиент + постоянное «дыхание» */
 #heroTitle .ht-accent{background:linear-gradient(120deg,var(--amber),var(--amber2) 50%,var(--cyan),var(--amber));-webkit-background-clip:text;background-clip:text;color:transparent;background-size:300% 100%;animation:shimmerFlow 5s linear infinite}
-#heroTitle .ht-dot{color:var(--amber);animation:dotPulse 1.6s ease-in-out infinite}
-@keyframes htGrow{
-  0%{opacity:0;transform:translateZ(-300px) rotateX(35deg) scale(0.4)}
-  60%{opacity:1;transform:translateZ(40px) rotateX(-6deg) scale(1.04)}
-  80%{transform:translateZ(-10px) rotateX(0) scale(.99)}
-  100%{opacity:1;transform:translateZ(0) rotateX(0) scale(1)}
-}
-/* ===== ПОСТОЯННАЯ ЖИЗНЬ заголовка ===== */
-/* после появления каждая строка «дышит» и покачивается волной */
-#heroTitle .ht-line span{
-  animation:htGrow 1.2s var(--ease) forwards, htBreath 3.4s ease-in-out infinite 1.6s, htWave 4s ease-in-out infinite 2.2s;
-}
-#heroTitle .ht-line:nth-child(1) span{animation-delay:.2s,1.6s,2.2s}
-#heroTitle .ht-line:nth-child(2) span{animation-delay:.7s,1.9s,2.6s}
-#heroTitle .ht-line:nth-child(3) span{animation-delay:1.2s,2.2s,3s}
-/* лёгкое «дыхание» — строки слегка наклоняются вперёд-назад */
-@keyframes htBreath{
-  0%,100%{transform:translateZ(0) rotateX(0) scale(1)}
-  25%{transform:translateZ(18px) rotateX(-8deg) scale(1.02)}
-  50%{transform:translateZ(6px) rotateX(0) scale(1)}
-  75%{transform:translateZ(22px) rotateX(-5deg) scale(1.03)}
-}
-/* волна по словам */
-@keyframes htWave{
-  0%,100%{transform:translateY(0)}
-  25%{transform:translateY(-4px)}
-  50%{transform:translateY(0)}
-  75%{transform:translateY(3px)}
-}
-/* перелив градиента непрерывно */
+#heroTitle .ht-accent .ht-char{animation:charWave 1.4s cubic-bezier(.19,1,.22,1) forwards, charBreath 3.2s ease-in-out 3s infinite}
+@keyframes charBreath{0%,100%{transform:scale(1) translateY(0)}25%{transform:scale(1.06) translateY(-3px)}50%{transform:scale(1)}75%{transform:scale(1.04) translateY(-2px)}}
 @keyframes shimmerFlow{0%{background-position:0% 0}100%{background-position:300% 0}}
-/* пульс точки */
+/* обычные слова — лёгкое покачивание после появления */
+#heroTitle .ht-line .ht-char{animation:charWave 1.4s cubic-bezier(.19,1,.22,1) forwards, charBob 4.5s ease-in-out 3.2s infinite}
+@keyframes charBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+/* точка — пульс */
+#heroTitle .ht-dot{color:var(--amber);animation:dotPulse 1.6s ease-in-out infinite}
 @keyframes dotPulse{0%,100%{opacity:1;text-shadow:0 0 8px var(--amber)}50%{opacity:.5;text-shadow:0 0 20px var(--amber),0 0 40px var(--amber)}}
-/* мерцание акцента */
-#heroTitle .ht-accent{filter:drop-shadow(0 0 6px rgba(245,158,11,.3))}
-#heroTitle .ht-line:hover span{animation-play-state:paused}
-#heroTitle.played .ht-line span{animation-name:htGrow,htBreath,htWave;animation-fill-mode:forwards,none,none}
 
 /* ===== Бегущие светящиеся линии (энергия/вода) ===== */
 .flow-lines{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
@@ -197,6 +244,27 @@ nav.scrolled{background:rgba(10,14,23,.75);backdrop-filter:blur(18px);border-bot
 @keyframes scroll{to{transform:translateX(-50%)}}
 
 /* ---------- SECTIONS ---------- */
+/* ---------- KB: онлайн-база знаний ---------- */
+.kb-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.kb-tab{padding:10px 18px;border-radius:30px;border:1px solid var(--line);background:var(--card);color:var(--muted);font-size:13px;font-weight:700;cursor:pointer;transition:.3s var(--ease);font-family:inherit}
+.kb-tab:hover{border-color:var(--amber);color:var(--amber);transform:translateY(-2px)}
+.kb-tab.active{background:linear-gradient(135deg,var(--amber),var(--amber3));color:#0a0e17;border-color:transparent;box-shadow:0 6px 20px rgba(245,158,11,.3)}
+.kb-search{margin-bottom:22px}
+.kb-search input{width:100%;padding:14px 20px;border-radius:40px;background:var(--card);border:1px solid var(--line);color:var(--text);font-size:14px;outline:none;font-family:inherit;transition:.3s}
+.kb-search input:focus{border-color:var(--amber);box-shadow:0 0 0 3px rgba(245,158,11,.12)}
+.kb-table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;font-size:13.5px}
+.kb-table th{background:rgba(245,158,11,.12);color:var(--amber2);text-align:left;padding:13px 16px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid var(--line)}
+.kb-table td{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.06);color:var(--text);vertical-align:top}
+.kb-table tr:hover td{background:rgba(255,255,255,.03)}
+.kb-table tr:last-child td{border-bottom:none}
+.kb-badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;background:rgba(245,158,11,.15);color:var(--amber2);border:1px solid rgba(245,158,11,.25)}
+.kb-card2{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:12px;transition:.3s}
+.kb-card2:hover{border-color:rgba(245,158,11,.35);background:var(--card2)}
+.kb-card2 b{font-size:15px;display:block;margin-bottom:6px}
+.kb-card2 .kb-meta{font-size:12px;color:var(--muted);margin-bottom:8px}
+.kb-card2 .kb-body{font-size:13.5px;color:var(--text);white-space:pre-wrap;line-height:1.65}
+.kb-card2 .kb-price{color:var(--amber2);font-weight:800}
+@media(max-width:640px){.kb-table{font-size:12px}.kb-table th,.kb-table td{padding:9px 10px}}
 section{padding:110px 5%;position:relative}
 .sec-head{max-width:640px;margin-bottom:64px}
 .sec-label{font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--amber);display:flex;align-items:center;gap:14px;margin-bottom:18px;font-weight:600}
@@ -446,7 +514,7 @@ footer{border-top:1px solid var(--line);padding:44px 5%;background:rgba(10,14,23
 /* ---------- RESPONSIVE ---------- */
 @media(max-width:960px){
   .contact-wrap{grid-template-columns:1fr}
-  #hero-canvas{width:80%;opacity:.5;right:-10%}
+  /* canvas removed */
 }
 @media(max-width:760px){
   .nav-links{display:none;position:fixed;inset:0;background:rgba(10,14,23,.97);flex-direction:column;align-items:center;justify-content:center;gap:28px;z-index:99}
@@ -484,11 +552,30 @@ footer{border-top:1px solid var(--line);padding:44px 5%;background:rgba(10,14,23
 
 <!-- HERO -->
 <header class="hero">
-  <canvas id="hero-canvas"></canvas>
   <div class="flow-lines"><div class="flow-line l1"></div><div class="flow-line l2"></div><div class="flow-line l3"></div></div>
-  <div class="hero-imgs">
-    <img src="images/brands/delonghi.jpg" alt="Автоматическая кофемашина" class="hi-main">
-    <img src="images/machine-repair.jpg" alt="Инструменты мастера" class="hi-tools">
+  <div class="hero-art">
+    <!-- большая нарисованная автоматическая кофемашина -->
+    <div class="ha-machine">
+      <div class="ha-hopper"><span class="ha-bean b1"></span><span class="ha-bean b2"></span><span class="ha-bean b3"></span></div>
+      <div class="ha-top"></div>
+      <div class="ha-body">
+        <div class="ha-screen">▮▮ 96°C</div>
+        <div class="ha-btns"><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="ha-grinder"></div>
+        <div class="ha-outlet"></div>
+      </div>
+      <div class="ha-base"></div>
+      <div class="ha-cup"><div class="ha-coffee"></div><div class="ha-steam s1"></div><div class="ha-steam s2"></div><div class="ha-steam s3"></div></div>
+      <div class="ha-glow"></div>
+    </div>
+    <!-- инструменты/механика рядом -->
+    <div class="ha-tools">
+      <div class="ha-tool wrench"><i></i></div>
+      <div class="ha-tool screwdriver"><i></i></div>
+      <div class="ha-gear g1"></div>
+      <div class="ha-gear g2"></div>
+      <div class="ha-gear g3"></div>
+    </div>
     <div class="hi-chip c1">🔧 Ремонт за 1 день</div>
     <div class="hi-chip c2">🛡️ Гарантия 12 мес</div>
     <div class="hi-chip c3">⚡ Выезд сегодня</div>
@@ -496,9 +583,9 @@ footer{border-top:1px solid var(--line);padding:44px 5%;background:rgba(10,14,23
   <div class="hero-inner">
     <div class="hero-badge"><span class="pulse"></span> Умный сервис · ИИ-диагностика 24/7</div>
     <h1 id="heroTitle">
-      <span class="ht-line"><span>Диагностика</span> <span class="ht-accent">точная</span><span class="ht-dot">.</span></span>
-      <span class="ht-line"><span>Цены</span> <span class="ht-accent">честные</span><span class="ht-dot">.</span></span>
-      <span class="ht-line"><span>Гарантия</span> <span class="ht-accent">железная</span><span class="ht-dot">.</span></span>
+      <span class="ht-line" data-text="Диагностика"><span class="ht-accent">точная</span>.</span>
+      <span class="ht-line" data-text="Цены"><span class="ht-accent">честные</span>.</span>
+      <span class="ht-line" data-text="Гарантия"><span class="ht-accent">железная</span>.</span>
     </h1>
     <p>ИИ-ассистент за 30 секунд определит причину поломки и назовёт цену. Выезд мастера в день обращения, гарантия до 12 месяцев, все бренды.</p>
     <div class="hero-btns">
@@ -560,20 +647,23 @@ footer{border-top:1px solid var(--line);padding:44px 5%;background:rgba(10,14,23
 <section id="useful">
   <div class="sec-head reveal">
     <div class="sec-label">Полезное</div>
-    <h2 class="sec-title">Каталоги, руководства, мануалы</h2>
-    <p class="sec-sub">Собрано мастером с 12-летним опытом. Скачивайте и пользуйтесь бесплатно.</p>
+    <h2 class="sec-title">База знаний — всё онлайн</h2>
+    <p class="sec-sub">Мануалы, размеры колец, расходники, типовые неисправности — без скачивания, прямо на сайте. Обновляется мастером.</p>
   </div>
-  <div class="serv-grid">
-    <a href="files/Мануалы_по_брендам.txt" class="serv-card reveal" download style="text-decoration:none;color:inherit"><div class="serv-icon">📚</div><h3>Мануалы по брендам</h3><p>Инструкции по ремонту и чистке: De'Longhi, Jura, Saeco, Philips и др.</p><span class="serv-price">Скачать ↓</span></a>
-    <a href="files/Прошивки_и_обновления.txt" class="serv-card reveal" download style="text-decoration:none;color:inherit"><div class="serv-icon">📡</div><h3>Прошивки и обновления</h3><p>Версии ПО по брендам, источники, способы обновления.</p><span class="serv-price">Скачать ↓</span></a>
-    <a href="files/Регламенты_ТО_и_гидросистема.txt" class="serv-card reveal" download style="text-decoration:none;color:inherit"><div class="serv-icon">🔧</div><h3>Регламенты ТО</h3><p>Периодичность обслуживания и полная замена гидросистемы.</p><span class="serv-price">Скачать ↓</span></a>
-    <a href="files/Размеры_уплотнительных_колец.txt" class="serv-card reveal" download style="text-decoration:none;color:inherit"><div class="serv-icon">⭕</div><h3>Размеры уплотнительных колец</h3><p>O-ring по брендам: размеры, материалы, количество.</p><span class="serv-price">Скачать ↓</span></a>
-    <a href="files/Болячки_по_брендам.txt" class="serv-card reveal" download style="text-decoration:none;color:inherit"><div class="serv-icon">🩹</div><h3>Типовые неисправности</h3><p>Симптом → причина → решение по каждому бренду.</p><span class="serv-price">Скачать ↓</span></a>
-    <a href="files/Частые_случаи_ремонта.txt" class="serv-card reveal" download style="text-decoration:none;color:inherit"><div class="serv-icon">⚡</div><h3>Частые случаи ремонта</h3><p>Симптом → запчасти → устранение → цена.</p><span class="serv-price">Скачать ↓</span></a>
-    <a href="files/Расходники_с_размерами.txt" class="serv-card reveal" download style="text-decoration:none;color:inherit"><div class="serv-icon">🔩</div><h3>Расходники с размерами</h3><p>Шланги, жернова, помпы, фильтры — с ценами и ресурсом.</p><span class="serv-price">Скачать ↓</span></a>
-    <a href="files/Апгрейды_кофемашин.txt" class="serv-card reveal" download style="text-decoration:none;color:inherit"><div class="serv-icon">🚀</div><h3>Апгрейды и модернизация</h3><p>WiFi-модуль, фильтры, паровой кран, подогрев чашек.</p><span class="serv-price">Скачать ↓</span></a>
-    <a href="files/Поставщики_запчастей.txt" class="serv-card reveal" download style="text-decoration:none;color:inherit"><div class="serv-icon">🏪</div><h3>Где купить запчасти</h3><p>Проверенные поставщики и магазины с рейтингами.</p><span class="serv-price">Скачать ↓</span></a>
+  <div class="kb-tabs reveal">
+    <button class="kb-tab active" data-tab="orings">⭕ Кольца</button>
+    <button class="kb-tab" data-tab="parts">🔩 Расходники</button>
+    <button class="kb-tab" data-tab="manuals">📚 Мануалы</button>
+    <button class="kb-tab" data-tab="issues">🩹 Неисправности</button>
+    <button class="kb-tab" data-tab="cases">⚡ Частые случаи</button>
+    <button class="kb-tab" data-tab="firmwares">📡 Прошивки</button>
+    <button class="kb-tab" data-tab="updates">🚀 Апгрейды</button>
+    <button class="kb-tab" data-tab="suppliers">🏪 Запчасти где купить</button>
   </div>
+  <div class="kb-search reveal">
+    <input id="kbSearch" type="text" placeholder="🔍 Поиск: бренд, размер, модель, проблема..." oninput="kbSearchNow()">
+  </div>
+  <div id="kbContent" class="reveal"></div>
 </section>
 
 <!-- BRANDS -->
@@ -741,10 +831,58 @@ footer{border-top:1px solid var(--line);padding:44px 5%;background:rgba(10,14,23
   </div>
 </div>
 
-<script src="three.min.js"></script>
-<script src="machine3d.js"></script>
 <script src="ai-chat.js"></script>
 <script>
+/* ===== Заголовок: разбивка на буквы с каскадным появлением ===== */
+(function(){
+  const title = document.getElementById('heroTitle');
+  if (!title) return;
+  let gi = 0;
+  function wrapChars(el, extraClass, delayBase){
+    const text = el.textContent;
+    el.textContent = '';
+    for (let i = 0; i < text.length; i++){
+      const ch = text[i];
+      if (ch === ' '){ el.appendChild(document.createTextNode(' ')); continue; }
+      const s = document.createElement('span');
+      s.className = 'ht-char' + (extraClass ? ' ' + extraClass : '');
+      s.textContent = ch;
+      s.style.animationDelay = (delayBase + gi * 0.045) + 's';
+      el.appendChild(s);
+      gi++;
+    }
+  }
+  title.querySelectorAll('.ht-line').forEach((line, li) => {
+    const accent = line.querySelector('.ht-accent');
+    const base = 0.3 + li * 0.45;
+    // обычные слова до акцента + точка
+    Array.from(line.childNodes).forEach(node => {
+      if (node.nodeType === 3 && node.textContent.trim()){
+        const w = document.createElement('span');
+        w.textContent = node.textContent;
+        wrapChars(w, '', base);
+        line.replaceChild(w, node);
+      }
+    });
+    if (accent){
+      wrapChars(accent, 'ht-accent-char', base);
+    }
+    const dot = document.createElement('span');
+    dot.className = 'ht-dot';
+    dot.textContent = '.';
+    dot.style.animationDelay = (base + gi * 0.045) + 's';
+    gi++;
+    line.appendChild(dot);
+  });
+  // акцент: градиент наследуется от .ht-accent, буквы прозрачные
+  document.querySelectorAll('#heroTitle .ht-accent .ht-char').forEach(c => {
+    c.style.webkitTextFillColor = 'transparent';
+    c.style.background = 'inherit';
+    c.style.backgroundClip = 'text';
+    c.style.webkitBackgroundClip = 'text';
+  });
+})();
+
 /* NAV */
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
@@ -802,8 +940,51 @@ fetch('/api/content')
     set('.contact-line a[href^="mailto"]', map['contact:email']);
   })
   .catch(() => {});
+
+/* ===== База знаний онлайн (вкладки + поиск) ===== */
+let kbCurrent = 'orings';
+let kbCache = {};
+function kbEscape(s){ return String(s||'').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function kbLoad(tab){
+  kbCurrent = tab;
+  document.querySelectorAll('.kb-tab').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+  kbSearchNow();
+}
+function kbSearchNow(){
+  const q = (document.getElementById('kbSearch').value||'').toLowerCase().trim();
+  const box = document.getElementById('kbContent');
+  const t = kbCurrent;
+  const url = '/api/' + t + (q ? '?q=' + encodeURIComponent(q) : '');
+  fetch(url).then(r => r.json()).then(data => {
+    let html = '';
+    if (t === 'orings'){
+      html = '<table class="kb-table"><tr><th>Бренд</th><th>Узел</th><th>Размер</th><th>Материал</th><th>Кол-во</th></tr>' +
+        data.map(r => `<tr><td><b>${kbEscape(r.brand)}</b></td><td>${kbEscape(r.system)}</td><td><span class="kb-badge">${kbEscape(r.size)}</span></td><td>${kbEscape(r.material)}</td><td>${r.qty} шт</td></tr>`).join('') + '</table>';
+    } else if (t === 'parts'){
+      html = data.map(r => `<div class="kb-card2"><b>${kbEscape(r.name)} <span class="kb-price">${kbEscape(r.price)}</span></b><div class="kb-meta">${kbEscape(r.brand)} · размер: ${kbEscape(r.size)} · ресурс: ${kbEscape(r.life)}</div><div class="kb-body">${kbEscape(r.note)}</div></div>`).join('');
+    } else if (t === 'manuals'){
+      html = data.map(r => `<div class="kb-card2"><b>${kbEscape(r.brand)} · ${kbEscape(r.title)}</b><div class="kb-meta">${kbEscape(r.category)}</div><div class="kb-body">${kbEscape(r.content)}</div></div>`).join('');
+    } else if (t === 'issues'){
+      html = data.map(r => `<div class="kb-card2"><b>🩹 ${kbEscape(r.symptom)}</b><div class="kb-meta">${kbEscape(r.brand)}</div><div class="kb-body"><b>Причина:</b> ${kbEscape(r.cause)}<br><b>Решение:</b> ${kbEscape(r.fix)}</div></div>`).join('');
+    } else if (t === 'cases'){
+      html = data.map(r => `<div class="kb-card2"><b>⚡ ${kbEscape(r.case_title)} <span class="kb-price">${kbEscape(r.price)}</span></b><div class="kb-meta">⏱ ${kbEscape(r.time_est)} · запчасти: ${(r.parts||[]).join(', ')}</div><div class="kb-body">${(r.steps||[]).join('\n')}</div></div>`).join('');
+    } else if (t === 'firmwares'){
+      html = data.map(r => `<div class="kb-card2"><b>📡 ${kbEscape(r.brand)} — ${kbEscape(r.version)}</b><div class="kb-meta">Модели: ${kbEscape(r.models)}</div><div class="kb-body"><b>Источник:</b> ${kbEscape(r.source)}<br>${kbEscape(r.notes)}</div></div>`).join('');
+    } else if (t === 'updates'){
+      html = data.map(r => `<div class="kb-card2"><b>🚀 ${kbEscape(r.title)} <span class="kb-badge">${kbEscape(r.effort)}</span></b><div class="kb-meta">${kbEscape(r.benefit)}</div><div class="kb-body">${(r.steps||[]).join('\n')}</div></div>`).join('');
+    } else if (t === 'suppliers'){
+      html = data.map(r => `<div class="kb-card2"><b>🏪 ${kbEscape(r.name)} ${'★'.repeat(r.rating||0)}</b><div class="kb-meta">${kbEscape(r.type)} · ${kbEscape(r.city)} · ${kbEscape(r.delivery)}</div><div class="kb-body">${kbEscape(r.specialization)}<br>Сайт: ${kbEscape(r.site)}<br>${kbEscape(r.note)}</div></div>`).join('');
+    }
+    box.innerHTML = html || '<div class="kb-card2"><div class="kb-body">Ничего не найдено по запросу «' + kbEscape(q) + '»</div></div>';
+  }).catch(() => {
+    box.innerHTML = '<div class="kb-card2"><div class="kb-body">База знаний доступна на основном сервере. Позвоните: +7 (000) 000-00-00</div></div>';
+  });
+}
+document.querySelectorAll('.kb-tab').forEach(b => b.addEventListener('click', () => kbLoad(b.dataset.tab)));
+kbLoad('orings');
 </script>
 </body>
 </html>
+
 
 
